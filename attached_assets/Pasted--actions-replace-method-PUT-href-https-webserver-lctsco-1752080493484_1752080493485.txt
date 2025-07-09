@@ -1,0 +1,73 @@
+{
+  "actions": {
+    "replace": {
+      "method": "PUT",
+      "href": "https://webserver-lctscottishpowersand-prd.lfr.cloud/o/headless-delivery/v1.0/navigation-menus/36850"
+    },
+    "delete": {
+      "method": "DELETE",
+      "href": "https://webserver-lctscottishpowersand-prd.lfr.cloud/o/headless-delivery/v1.0/navigation-menus/36850"
+    }
+  },
+  "creator": {
+    "additionalName": "",
+    "contentType": "UserAccount",
+    "familyName": "Test",
+    "givenName": "Test",
+    "id": 20126,
+    "name": "Test Test"
+  },
+  "dateCreated": "2025-07-09T16:46:39Z",
+  "dateModified": "2025-07-09T16:46:39Z",
+  "externalReferenceCode": "5a94b992-aac3-8971-de81-5532e0943b66",
+  "id": 36850,
+  "name": "Public",
+  "navigationMenuItems": [
+    {
+      "availableLanguages": [],
+      "creator": {
+        "additionalName": "",
+        "contentType": "UserAccount",
+        "familyName": "Test",
+        "givenName": "Test",
+        "id": 20126,
+        "name": "Test Test"
+      },
+      "customFields": [],
+      "dateCreated": "2025-07-09T16:47:53Z",
+      "dateModified": "2025-07-09T16:47:53Z",
+      "id": 36857,
+      "link": "/home",
+      "name": "Home",
+      "navigationMenuItems": [
+        {
+          "availableLanguages": [
+            "en-US"
+          ],
+          "creator": {
+            "additionalName": "",
+            "contentType": "UserAccount",
+            "familyName": "Test",
+            "givenName": "Test",
+            "id": 20126,
+            "name": "Test Test"
+          },
+          "customFields": [],
+          "dateCreated": "2025-07-09T16:59:12Z",
+          "dateModified": "2025-07-09T16:59:44Z",
+          "id": 36878,
+          "link": "/home",
+          "name": "Somewhere else",
+          "navigationMenuItems": [],
+          "sitePageURL": "https://webserver-lctscottishpowersand-prd.lfr.cloud/o/headless-delivery/v1.0/sites/35182/site-pages/home",
+          "type": "page",
+          "useCustomName": true
+        }
+      ],
+      "sitePageURL": "https://webserver-lctscottishpowersand-prd.lfr.cloud/o/headless-delivery/v1.0/sites/35182/site-pages/home",
+      "type": "page",
+      "useCustomName": false
+    }
+  ],
+  "siteId": 35182
+}
