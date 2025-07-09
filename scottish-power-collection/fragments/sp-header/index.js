@@ -83,7 +83,8 @@ function fetchNavigationMenu(menuId) {
     
     // Check if Liferay object exists and has authToken
     if (typeof Liferay === 'undefined' || !Liferay.authToken) {
-        console.warn('⚠️ Liferay context not available. Using static navigation.');
+        console.warn('⚠️ Liferay context not available. Building fallback navigation.');
+        buildFallbackNavigation();
         return;
     }
     
@@ -116,7 +117,7 @@ function fetchNavigationMenu(menuId) {
         })
         .catch(error => {
             console.error('❌ Error fetching navigation menu:', error);
-            console.log('🔄 Falling back to static navigation menu');
+            console.log('🔄 Building fallback navigation menu');
             
             // Try alternative API endpoints for debugging
             if (typeof Liferay !== 'undefined' && Liferay.ThemeDisplay) {
@@ -133,6 +134,9 @@ function fetchNavigationMenu(menuId) {
                         console.error('❌ Alternative endpoint also failed:', altError);
                     });
             }
+            
+            // Build fallback navigation
+            buildFallbackNavigation();
         });
 }
 
@@ -172,6 +176,35 @@ function renderNavigationMenu(menuItems) {
     });
     
     console.log('✅ Navigation menu rendered successfully');
+}
+
+function buildFallbackNavigation() {
+    console.log('🔧 Building fallback navigation...');
+    
+    const navContainer = document.querySelector('.navbar-nav');
+    if (!navContainer) {
+        console.error('❌ Cannot build fallback navigation - no container found');
+        return;
+    }
+    
+    // Clear loading state
+    navContainer.innerHTML = '';
+    
+    // Create basic navigation structure
+    const fallbackItems = [
+        { name: 'Energy', link: '/energy' },
+        { name: 'Solar', link: '/solar' },
+        { name: 'EV Charging', link: '/ev-charging' },
+        { name: 'Home Services', link: '/home-services' },
+        { name: 'Help', link: '/help' }
+    ];
+    
+    fallbackItems.forEach(item => {
+        const navItem = createNavigationItem(item);
+        navContainer.appendChild(navItem);
+    });
+    
+    console.log('✅ Fallback navigation built successfully');
 }
 
 function createNavigationItem(item) {

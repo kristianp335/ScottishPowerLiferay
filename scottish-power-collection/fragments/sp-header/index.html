@@ -15,60 +15,11 @@
                      data-lfr-editable-type="image">
             </div>
             
-            <!-- Main Navigation -->
+            <!-- Main Navigation - Dynamically Built -->
             <nav class="navbar-nav">
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="energy-nav" data-lfr-editable-type="link">Energy</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="energy-tariffs" data-lfr-editable-type="link">Energy Tariffs</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="switch-energy" data-lfr-editable-type="link">Switch to Us</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="green-energy" data-lfr-editable-type="link">Green Energy</a>
-                    </div>
-                </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="solar-nav" data-lfr-editable-type="link">Solar</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-panels" data-lfr-editable-type="link">Solar Panels</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-quote" data-lfr-editable-type="link">Get a Quote</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-benefits" data-lfr-editable-type="link">Benefits</a>
-                    </div>
-                </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="heating-nav" data-lfr-editable-type="link">Heating and cooling</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="boiler-care" data-lfr-editable-type="link">Boiler Care</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="heat-pumps" data-lfr-editable-type="link">Heat Pumps</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="insulation" data-lfr-editable-type="link">Insulation</a>
-                    </div>
-                </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="ev-nav" data-lfr-editable-type="link">EV charging</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-optimise" data-lfr-editable-type="link">EV Optimise</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-chargers" data-lfr-editable-type="link">Home Chargers</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-tariffs" data-lfr-editable-type="link">EV Tariffs</a>
-                    </div>
-                </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="services-nav" data-lfr-editable-type="link">Home services</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="boiler-services" data-lfr-editable-type="link">Boiler Services</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="electrical-services" data-lfr-editable-type="link">Electrical Services</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="smart-home" data-lfr-editable-type="link">Smart Home</a>
-                    </div>
-                </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="help-nav" data-lfr-editable-type="link">Help</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="support-centre" data-lfr-editable-type="link">Support Centre</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="contact-us" data-lfr-editable-type="link">Contact Us</a>
-                        <a href="#" class="dropdown-item" data-lfr-editable-id="live-chat" data-lfr-editable-type="link">Live Chat</a>
-                    </div>
+                <!-- Navigation items will be loaded dynamically from API -->
+                <div class="nav-loading">
+                    <span class="loading-text">Loading navigation...</span>
                 </div>
             </nav>
             
@@ -252,5 +203,18 @@
         width: 100%;
         margin-bottom: 10px;
     }
+}
+
+/* Navigation loading state */
+.nav-loading {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: var(--sp-gray-600);
+}
+
+.loading-text {
+    font-size: 14px;
+    opacity: 0.7;
 }
 </style>
