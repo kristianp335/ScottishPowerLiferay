@@ -103,12 +103,12 @@ function fetchNavigationMenu(menuId) {
 function renderNavigationMenu(menuItems) {
     console.log('🎨 Attempting to render navigation menu...');
     
-    const navContainer = document.querySelector('.nav-menu');
+    const navContainer = document.querySelector('.navbar-nav');
     console.log('📍 Nav container found:', !!navContainer);
     console.log('📝 Menu items to render:', menuItems ? menuItems.length : 'none');
     
     if (!navContainer) {
-        console.warn('⚠️ No .nav-menu container found in DOM');
+        console.warn('⚠️ No .navbar-nav container found in DOM');
         console.log('🔍 Available navigation elements:', 
             Array.from(document.querySelectorAll('[class*="nav"]')).map(el => ({
                 className: el.className,
