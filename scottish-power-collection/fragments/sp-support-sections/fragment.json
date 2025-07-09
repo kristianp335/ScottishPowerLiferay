@@ -3,5 +3,9 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Support Sections",
-  "type": "section"
+  "type": "section",
+  "resources": [
+    "../../resources/customer-service-image.jpg",
+    "../../resources/smart-meter-image.jpg"
+  ]
 }

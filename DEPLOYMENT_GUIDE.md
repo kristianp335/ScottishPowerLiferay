@@ -6,7 +6,7 @@ This guide provides step-by-step instructions for deploying the Scottish Power c
 
 ## Package Contents
 
-The `scottish-power-collection.zip` file contains:
+The `scottish-power-collection.zip` file contains properly configured fragments with resource declarations:
 
 ```
 scottish-power-collection/

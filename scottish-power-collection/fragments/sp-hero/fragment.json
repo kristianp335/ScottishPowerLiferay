@@ -3,5 +3,8 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Hero Section",
-  "type": "section"
+  "type": "section",
+  "resources": [
+    "../../resources/hero-background.jpg"
+  ]
 }

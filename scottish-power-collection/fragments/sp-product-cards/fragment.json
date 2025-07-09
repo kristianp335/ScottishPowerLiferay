@@ -3,5 +3,11 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Product Cards",
-  "type": "section"
+  "type": "section",
+  "resources": [
+    "../../resources/solar-panel-image.jpg",
+    "../../resources/icon-solar.svg",
+    "../../resources/icon-ev.svg",
+    "../../resources/icon-boiler.svg"
+  ]
 }

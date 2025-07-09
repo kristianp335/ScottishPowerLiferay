@@ -3,5 +3,8 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Header",
-  "type": "section"
+  "type": "section",
+  "resources": [
+    "../../resources/scottishpower-logo.svg"
+  ]
 }

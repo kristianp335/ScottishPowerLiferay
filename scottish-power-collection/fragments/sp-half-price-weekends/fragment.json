@@ -3,5 +3,8 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Half-Price Weekends",
-  "type": "section"
+  "type": "section",
+  "resources": [
+    "../../resources/green-energy-image.jpg"
+  ]
 }
