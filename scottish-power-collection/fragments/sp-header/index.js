@@ -1,7 +1,8 @@
 
 /* JavaScript for sp-header */
 
-document.addEventListener('DOMContentLoaded', function() {
+// Navigation initialization function
+function initializeNavigation() {
     console.log('🏗️ Header fragment initializing...');
     
     // Get the navigation menu ID from fragment configuration
@@ -29,7 +30,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fetch navigation menu data
     fetchNavigationMenu(navigationMenuId);
-});
+}
+
+// Listen for multiple initialization events
+document.addEventListener('DOMContentLoaded', initializeNavigation);
+
+// Listen for SennaJS navigation events
+if (typeof Liferay !== 'undefined' && Liferay.on) {
+    // Listen for SennaJS page navigation start
+    Liferay.on('beforeNavigate', function() {
+        console.log('🚢 SennaJS navigation starting...');
+    });
+    
+    // Listen for SennaJS page navigation completion
+    Liferay.on('endNavigate', function() {
+        console.log('🚢 SennaJS navigation completed, reinitializing navigation...');
+        setTimeout(initializeNavigation, 100); // Small delay to ensure DOM is ready
+    });
+}
+
+// Listen for fragment re-rendering events
+if (typeof Liferay !== 'undefined' && Liferay.component) {
+    // Listen for fragment updates
+    document.addEventListener('fragmentEntryLinkRendered', function(event) {
+        console.log('🔄 Fragment re-rendered, reinitializing navigation...');
+        setTimeout(initializeNavigation, 100);
+    });
+}
+
+// Fallback: Check and reinitialize periodically
+setInterval(function() {
+    const navContainer = document.querySelector('.navbar-nav');
+    if (navContainer && navContainer.children.length === 0) {
+        console.log('🔧 Navigation container is empty, reinitializing...');
+        initializeNavigation();
+    }
+}, 2000);
 
 function fetchNavigationMenu(menuId) {
     console.log('🚀 Attempting to fetch navigation menu...');
@@ -210,8 +246,29 @@ function initializeDropdowns() {
     });
 }
 
-// Initialize dropdowns after menu is rendered
-document.addEventListener('DOMContentLoaded', function() {
-    // Wait a bit for menu to be potentially updated
-    setTimeout(initializeDropdowns, 100);
-});
+// Ensure script persists across SennaJS navigation
+if (typeof window.scottishPowerHeaderInitialized === 'undefined') {
+    window.scottishPowerHeaderInitialized = true;
+    
+    // Mark this script as permanent for SennaJS
+    const scriptElements = document.querySelectorAll('script[src*="sp-header"]');
+    scriptElements.forEach(script => {
+        script.setAttribute('data-senna-track', 'permanent');
+    });
+}
+
+// Initialize dropdowns with SennaJS support
+function initializeDropdownsWithSennaSupport() {
+    setTimeout(function() {
+        initializeDropdowns();
+        console.log('🎯 Dropdowns initialized with SennaJS support');
+    }, 100);
+}
+
+// Initialize dropdowns after navigation events
+document.addEventListener('DOMContentLoaded', initializeDropdownsWithSennaSupport);
+
+// Re-initialize dropdowns after SennaJS navigation
+if (typeof Liferay !== 'undefined' && Liferay.on) {
+    Liferay.on('endNavigate', initializeDropdownsWithSennaSupport);
+}
