@@ -68,6 +68,11 @@ function fetchNavigationMenu(menuId) {
     if (typeof Liferay === 'undefined' || !Liferay.authToken) {
         console.warn('Liferay context not available. Building fallback navigation.');
         buildFallbackNavigation();
+        
+        // Initialize mobile menu and dropdowns
+        initializeMobileMenu();
+        initializeDropdowns();
+        
         window.spNavigation.loading = false;
         window.spNavigation.initialized = true;
         return;
@@ -86,6 +91,10 @@ function fetchNavigationMenu(menuId) {
             console.log('Navigation menu loaded with', data.navigationMenuItems ? data.navigationMenuItems.length : 0, 'items');
             renderNavigationMenu(data.navigationMenuItems);
             
+            // Initialize mobile menu and dropdowns
+            initializeMobileMenu();
+            initializeDropdowns();
+            
             // Mark as completed
             window.spNavigation.loading = false;
             window.spNavigation.initialized = true;
@@ -95,6 +104,10 @@ function fetchNavigationMenu(menuId) {
             
             // Build fallback navigation
             buildFallbackNavigation();
+            
+            // Initialize mobile menu and dropdowns
+            initializeMobileMenu();
+            initializeDropdowns();
             
             // Mark as completed
             window.spNavigation.loading = false;
@@ -155,6 +168,62 @@ function buildFallbackNavigation() {
     });
     
     console.log('Fallback navigation built successfully');
+}
+
+// Initialize mobile menu functionality
+function initializeMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navbarNav = document.querySelector('.navbar-nav');
+    const navbarActions = document.querySelector('.navbar-actions');
+    
+    if (!menuToggle || !navbarNav) {
+        return;
+    }
+    
+    // Remove any existing event listeners
+    menuToggle.replaceWith(menuToggle.cloneNode(true));
+    const newMenuToggle = document.querySelector('.menu-toggle');
+    
+    newMenuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Toggle menu state
+        const isActive = navbarNav.classList.contains('active');
+        
+        if (isActive) {
+            navbarNav.classList.remove('active');
+            navbarActions.classList.remove('active');
+            newMenuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        } else {
+            navbarNav.classList.add('active');
+            navbarActions.classList.add('active');
+            newMenuToggle.classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.navbar-header')) {
+            navbarNav.classList.remove('active');
+            navbarActions.classList.remove('active');
+            newMenuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            navbarNav.classList.remove('active');
+            navbarActions.classList.remove('active');
+            newMenuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
+    console.log('Mobile menu initialized');
 }
 
 function createNavigationItem(item) {
