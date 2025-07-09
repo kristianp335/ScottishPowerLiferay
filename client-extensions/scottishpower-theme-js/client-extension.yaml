@@ -6,3 +6,7 @@ scottishpower-theme-js:
   name: Scottish Power Theme JavaScript
   type: globalJS
   url: main.js
+  async: true
+  data-attribute: value
+  data-senna-track: permanent
+  fetchpriority: low
