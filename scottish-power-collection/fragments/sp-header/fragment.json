@@ -1,8 +1,10 @@
 {
-  "cssPath": "index.css",
   "configurationPath": "configuration.json",
+  "jsPath": "index.js",
   "htmlPath": "index.html",
-  "jsPath": "index.js", 
+  "cssPath": "index.css",
+  "icon": "code",
   "name": "Scottish Power Header",
+  "thumbnailPath": "thumbnail.png",
   "type": "section"
 }
