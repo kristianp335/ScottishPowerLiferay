@@ -10,6 +10,13 @@ This is a complete component-based website system for Scottish Power, built usin
 
 Preferred communication style: Simple, everyday language.
 
+### Liferay Client Extension Development
+- Always include `assemble` property in client-extension.yaml files
+- Use proper extension ID naming convention (e.g., `scottishpower-global-css:`)
+- Remove `typeSettings` wrapper - put properties like `url` at root level
+- Use `globalCSS` and `globalJS` types for site-wide availability
+- Standard assemble pattern: `from: src` to `into: static`
+
 ## System Architecture
 
 ### Frontend Architecture
