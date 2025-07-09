@@ -16,6 +16,11 @@ Preferred communication style: Simple, everyday language.
 - Remove `typeSettings` wrapper - put properties like `url` at root level
 - Use `globalCSS` and `globalJS` types for site-wide availability
 - Standard assemble pattern: `from: src` to `into: static`
+- For JavaScript extensions, always include performance and SPA properties:
+  - `async: true` (async loading)
+  - `data-senna-track: permanent` (persist across SPA navigation)
+  - `fetchpriority: low` (optimize loading priority)
+  - Custom data attributes as needed
 
 ## System Architecture
 
