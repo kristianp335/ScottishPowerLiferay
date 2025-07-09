@@ -173,4 +173,4 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - Authentic Scottish Power and Trustpilot logos with generated placeholder images for protected assets
 - Complete deployment documentation
 
-**Note**: Client extensions are stored separately in the `client-extensions/` directory and deployed using Liferay's client extension deployment methods. The CSS client extension is configured as `globalCSS` type for site-wide styling.
+**Note**: Client extensions are stored separately in the `client-extensions/` directory and deployed using Liferay's client extension deployment methods. Both CSS and JavaScript extensions are configured as global types (`globalCSS` and `globalJS`) for site-wide availability. Each extension includes proper `assemble` blocks for correct file packaging.

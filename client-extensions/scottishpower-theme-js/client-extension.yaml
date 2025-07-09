@@ -1,4 +1,8 @@
-name: Scottish Power Theme JS
-type: themeJS
-typeSettings:
+assemble:
+  - from: src
+    into: static
+
+scottishpower-theme-js:
+  name: Scottish Power Theme JavaScript
+  type: globalJS
   url: main.js

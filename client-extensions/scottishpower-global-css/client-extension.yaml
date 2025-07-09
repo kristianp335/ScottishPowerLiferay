@@ -1,4 +1,8 @@
-name: Scottish Power Global CSS
-type: globalCSS
-typeSettings:
+assemble:
+  - from: src
+    into: static
+
+scottishpower-global-css:
+  name: Scottish Power Global CSS
+  type: globalCSS
   url: main.css
