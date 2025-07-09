@@ -1,0 +1,82 @@
+{
+  "name": "Scottish Power Resources",
+  "description": "Image and icon resources for Scottish Power fragment collection",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "name": "scottishpower-logo.svg",
+      "type": "image/svg+xml",
+      "description": "Scottish Power main logo"
+    },
+    {
+      "name": "hero-background.jpg",
+      "type": "image/jpeg",
+      "description": "Hero section background image"
+    },
+    {
+      "name": "trustpilot-logo.png",
+      "type": "image/png",
+      "description": "Trustpilot logo for testimonials"
+    },
+    {
+      "name": "rating-five.png",
+      "type": "image/png",
+      "description": "Five star rating image"
+    },
+    {
+      "name": "solar-panel-image.jpg",
+      "type": "image/jpeg",
+      "description": "Solar panel product image"
+    },
+    {
+      "name": "boiler-care-image.jpg",
+      "type": "image/jpeg",
+      "description": "Boiler care service image"
+    },
+    {
+      "name": "heat-pump-image.jpg",
+      "type": "image/jpeg",
+      "description": "Heat pump product image"
+    },
+    {
+      "name": "smart-meter-image.jpg",
+      "type": "image/jpeg",
+      "description": "Smart meter technology image"
+    },
+    {
+      "name": "green-energy-image.jpg",
+      "type": "image/jpeg",
+      "description": "Green energy solutions image"
+    },
+    {
+      "name": "customer-service-image.jpg",
+      "type": "image/jpeg",
+      "description": "Customer service support image"
+    },
+    {
+      "name": "icon-solar.svg",
+      "type": "image/svg+xml",
+      "description": "Solar panel service icon"
+    },
+    {
+      "name": "icon-ev.svg",
+      "type": "image/svg+xml",
+      "description": "Electric vehicle charging icon"
+    },
+    {
+      "name": "icon-boiler.svg",
+      "type": "image/svg+xml",
+      "description": "Boiler care service icon"
+    },
+    {
+      "name": "icon-support.svg",
+      "type": "image/svg+xml",
+      "description": "Customer support icon"
+    },
+    {
+      "name": "icon-energy.svg",
+      "type": "image/svg+xml",
+      "description": "Energy services icon"
+    }
+  ]
+}

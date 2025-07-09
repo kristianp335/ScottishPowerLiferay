@@ -1,0 +1,256 @@
+<header class="navbar" data-lfr-background-image-id="header-bg">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Personal/Business Toggle -->
+            <div class="account-type-toggle" [#if showPersonalBusiness]style="display: block;"[#else]style="display: none;"[/#if]>
+                <span data-lfr-editable-id="personal-label" data-lfr-editable-type="text">Personal</span>
+                <span data-lfr-editable-id="business-label" data-lfr-editable-type="text">Business</span>
+            </div>
+            
+            <!-- Brand Logo -->
+            <div class="navbar-brand">
+                <img src="[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}scottishpower-logo.svg" 
+                     alt="Scottish Power"
+                     data-lfr-editable-id="brand-logo" 
+                     data-lfr-editable-type="image">
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="navbar-nav">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="energy-nav" data-lfr-editable-type="text">Energy</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="energy-tariffs" data-lfr-editable-type="link">Energy Tariffs</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="switch-energy" data-lfr-editable-type="link">Switch to Us</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="green-energy" data-lfr-editable-type="link">Green Energy</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="solar-nav" data-lfr-editable-type="text">Solar</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-panels" data-lfr-editable-type="link">Solar Panels</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-quote" data-lfr-editable-type="link">Get a Quote</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="solar-benefits" data-lfr-editable-type="link">Benefits</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="heating-nav" data-lfr-editable-type="text">Heating and cooling</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="boiler-care" data-lfr-editable-type="link">Boiler Care</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="heat-pumps" data-lfr-editable-type="link">Heat Pumps</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="insulation" data-lfr-editable-type="link">Insulation</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="ev-nav" data-lfr-editable-type="text">EV charging</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-optimise" data-lfr-editable-type="link">EV Optimise</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-chargers" data-lfr-editable-type="link">Home Chargers</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="ev-tariffs" data-lfr-editable-type="link">EV Tariffs</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="services-nav" data-lfr-editable-type="text">Home services</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="boiler-services" data-lfr-editable-type="link">Boiler Services</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="electrical-services" data-lfr-editable-type="link">Electrical Services</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="smart-home" data-lfr-editable-type="link">Smart Home</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="help-nav" data-lfr-editable-type="text">Help</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="support-centre" data-lfr-editable-type="link">Support Centre</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="contact-us" data-lfr-editable-type="link">Contact Us</a>
+                        <a href="#" class="dropdown-item" data-lfr-editable-id="live-chat" data-lfr-editable-type="link">Live Chat</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- User Actions -->
+            <div class="navbar-actions">
+                <a href="#" class="nav-link" data-lfr-editable-id="my-account" data-lfr-editable-type="link">My account</a>
+                <a href="#" class="btn btn-primary" data-lfr-editable-id="get-quote-btn" data-lfr-editable-type="link">Get a quote</a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<style>
+.navbar {
+    background-color: var(--sp-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.navbar.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.account-type-toggle {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: var(--sp-text-secondary);
+}
+
+.navbar-brand img {
+    max-height: 40px;
+    width: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: var(--sp-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 0;
+    transition: var(--sp-transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-link:hover {
+    color: var(--sp-primary-green);
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--sp-white);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: var(--sp-border-radius);
+    padding: 10px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--sp-transition);
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: var(--sp-text-primary);
+    text-decoration: none;
+    transition: var(--sp-transition);
+}
+
+.dropdown-item:hover {
+    background-color: var(--sp-light-grey);
+    color: var(--sp-primary-green);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    width: 20px;
+    height: 2px;
+    background-color: var(--sp-text-primary);
+    margin: 2px 0;
+    transition: var(--sp-transition);
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--sp-white);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+    }
+    
+    .navbar-nav.active {
+        display: flex;
+    }
+    
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid var(--sp-border-color);
+    }
+    
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: var(--sp-light-grey);
+        margin-top: 10px;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .account-type-toggle {
+        order: -1;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+</style>
