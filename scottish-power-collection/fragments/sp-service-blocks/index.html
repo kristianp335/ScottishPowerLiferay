@@ -1,4 +1,4 @@
-<section class="service-blocks [#if cardStyle == 'flat']flat-style[#elseif cardStyle == 'bordered']bordered-style[#else]elevated-style[/#if]" 
+<section class="service-blocks [#if (cardStyle!'elevated') == 'flat']flat-style[#elseif (cardStyle!'elevated') == 'bordered']bordered-style[#else]elevated-style[/#if]" 
          data-lfr-background-image-id="services-bg">
     
     <div class="container">
@@ -7,10 +7,10 @@
             <p data-lfr-editable-id="section-subtitle" data-lfr-editable-type="text">Discover our range of services designed to help you save money and live more sustainably</p>
         </div>
         
-        <div class="services-grid col-${columnsCount}">
+        <div class="services-grid col-${columnsCount!'3'}">
             <!-- RTS Service Block -->
             <div class="service-block fade-in">
-                <div class="service-icon" [#if showIcons]style="display: flex;"[#else]style="display: none;"[/#if]>
+                <div class="service-icon" [#if (showIcons!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                     <svg data-lfr-editable-id="rts-icon" data-lfr-editable-type="html" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
@@ -22,7 +22,7 @@
             
             <!-- Customer Service Block -->
             <div class="service-block fade-in">
-                <div class="service-icon" [#if showIcons]style="display: flex;"[#else]style="display: none;"[/#if]>
+                <div class="service-icon" [#if (showIcons!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                     <svg data-lfr-editable-id="service-icon" data-lfr-editable-type="html" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
@@ -34,7 +34,7 @@
             
             <!-- Cancer Research Partnership Block -->
             <div class="service-block fade-in">
-                <div class="service-icon" [#if showIcons]style="display: flex;"[#else]style="display: none;"[/#if]>
+                <div class="service-icon" [#if (showIcons!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                     <svg data-lfr-editable-id="cruk-icon" data-lfr-editable-type="html" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
@@ -45,8 +45,8 @@
             </div>
             
             <!-- Additional Service Block (if 4 columns) -->
-            <div class="service-block fade-in" [#if columnsCount == '4']style="display: block;"[#else]style="display: none;"[/#if]>
-                <div class="service-icon" [#if showIcons]style="display: flex;"[#else]style="display: none;"[/#if]>
+            <div class="service-block fade-in" [#if (columnsCount!'3') == '4']style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="service-icon" [#if (showIcons!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                     <svg data-lfr-editable-id="additional-icon" data-lfr-editable-type="html" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                     </svg>

@@ -1,9 +1,9 @@
-<section class="product-cards [#if layoutStyle == 'grid']grid-layout[#elseif layoutStyle == 'masonry']masonry-layout[#else]carousel-layout[/#if]" 
+<section class="product-cards [#if (layoutStyle!'carousel') == 'grid']grid-layout[#elseif (layoutStyle!'carousel') == 'masonry']masonry-layout[#else]carousel-layout[/#if]" 
          data-lfr-background-image-id="products-bg">
     
     <div class="container">
         <div class="products-wrapper">
-            <div class="products-navigation" [#if showNavigation && layoutStyle == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
+            <div class="products-navigation" [#if (showNavigation!true) && (layoutStyle!'carousel') == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
                 <button class="nav-btn prev-btn" aria-label="Previous products">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -16,9 +16,9 @@
                 </button>
             </div>
             
-            <div class="products-container [#if layoutStyle == 'carousel']carousel[/#if]" [#if autoRotate && layoutStyle == 'carousel']data-auto-rotate="true"[/#if]>
+            <div class="products-container [#if (layoutStyle!'carousel') == 'carousel']carousel[/#if]" [#if (autoRotate!false) && (layoutStyle!'carousel') == 'carousel']data-auto-rotate="true"[/#if]>
                 <!-- Solar Panels Card -->
-                <div class="product-card [#if layoutStyle == 'carousel']carousel-item[/#if] slide-up">
+                <div class="product-card [#if (layoutStyle!'carousel') == 'carousel']carousel-item[/#if] slide-up">
                     <div class="product-image">
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/solar/Bruce_SolarSky_16x9_desktop.png" 
                              alt="Solar Panels"
@@ -50,7 +50,7 @@
                 </div>
                 
                 <!-- EV Optimise Card -->
-                <div class="product-card [#if layoutStyle == 'carousel']carousel-item[/#if] slide-up">
+                <div class="product-card [#if (layoutStyle!'carousel') == 'carousel']carousel-item[/#if] slide-up">
                     <div class="product-image">
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/ev-optimise/EV_Optimise_phones_16x9_desktop.png" 
                              alt="EV Optimise"
@@ -82,7 +82,7 @@
                 </div>
                 
                 <!-- Boiler Care Card -->
-                <div class="product-card [#if layoutStyle == 'carousel']carousel-item[/#if] slide-up">
+                <div class="product-card [#if (layoutStyle!'carousel') == 'carousel']carousel-item[/#if] slide-up">
                     <div class="product-image">
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/home/Bruce_Boiler_Care_Service_desktop.jpg" 
                              alt="Boiler Care"

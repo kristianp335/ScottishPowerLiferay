@@ -1,9 +1,9 @@
-<section class="testimonials-section [#if displayStyle == 'grid']grid-layout[#elseif displayStyle == 'masonry']masonry-layout[#else]carousel-layout[/#if]" 
+<section class="testimonials-section [#if (displayStyle!'carousel') == 'grid']grid-layout[#elseif (displayStyle!'carousel') == 'masonry']masonry-layout[#else]carousel-layout[/#if]" 
          data-lfr-background-image-id="testimonials-bg">
     
     <div class="container">
         <!-- Trustpilot Header -->
-        <div class="trustpilot-header [#if showTrustpilotBranding]visible[#else]hidden[/#if]">
+        <div class="trustpilot-header [#if (showTrustpilotBranding!true)]visible[#else]hidden[/#if]">
             <div class="trustpilot-logo">
                 <img src="[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}trustpilot-logo.png" 
                      alt="Trustpilot"
@@ -26,11 +26,11 @@
             <h2 data-lfr-editable-id="testimonials-title" data-lfr-editable-type="text">Showing our favourite reviews:</h2>
         </div>
         
-        <div class="testimonials-container [#if displayStyle == 'carousel']carousel[/#if]" [#if autoRotate && displayStyle == 'carousel']data-auto-rotate="true"[/#if]>
+        <div class="testimonials-container [#if (displayStyle!'carousel') == 'carousel']carousel[/#if]" [#if (autoRotate!false) && (displayStyle!'carousel') == 'carousel']data-auto-rotate="true"[/#if]>
             <div class="testimonials-wrapper">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-card [#if displayStyle == 'carousel']carousel-item[/#if] fade-in">
-                    <div class="testimonial-rating" [#if showRatings]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="testimonial-card [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if] fade-in">
+                    <div class="testimonial-rating" [#if (showRatings!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <img src="[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}rating-five.png" 
                              alt="5 stars"
                              data-lfr-editable-id="rating-1" 
@@ -44,8 +44,8 @@
                 </div>
                 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-card [#if displayStyle == 'carousel']carousel-item[/#if] fade-in">
-                    <div class="testimonial-rating" [#if showRatings]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="testimonial-card [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if] fade-in">
+                    <div class="testimonial-rating" [#if (showRatings!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/trust-pilot/rating-five.png" 
                              alt="5 stars"
                              data-lfr-editable-id="rating-2" 
@@ -59,8 +59,8 @@
                 </div>
                 
                 <!-- Testimonial 3 -->
-                <div class="testimonial-card [#if displayStyle == 'carousel']carousel-item[/#if] fade-in">
-                    <div class="testimonial-rating" [#if showRatings]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="testimonial-card [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if] fade-in">
+                    <div class="testimonial-rating" [#if (showRatings!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/trust-pilot/rating-five.png" 
                              alt="5 stars"
                              data-lfr-editable-id="rating-3" 
@@ -74,8 +74,8 @@
                 </div>
                 
                 <!-- Testimonial 4 -->
-                <div class="testimonial-card [#if displayStyle == 'carousel']carousel-item[/#if] fade-in">
-                    <div class="testimonial-rating" [#if showRatings]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="testimonial-card [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if] fade-in">
+                    <div class="testimonial-rating" [#if (showRatings!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <img src="https://api.scottishpower.co.uk/cms-next/files/images/trust-pilot/rating-five.png" 
                              alt="5 stars"
                              data-lfr-editable-id="rating-4" 
@@ -90,7 +90,7 @@
             </div>
             
             <!-- Carousel Navigation -->
-            <div class="testimonials-navigation" [#if displayStyle == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
+            <div class="testimonials-navigation" [#if (displayStyle!'carousel') == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
                 <button class="testimonial-nav-btn prev-btn" aria-label="Previous testimonial">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>

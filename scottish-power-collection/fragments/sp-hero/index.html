@@ -1,8 +1,8 @@
-<section class="hero [#if heroLayout == 'centered']hero-centered[#elseif heroLayout == 'full-width']hero-full-width[#else]hero-split[/#if]" 
+<section class="hero [#if (heroLayout!'split') == 'centered']hero-centered[#elseif (heroLayout!'split') == 'full-width']hero-full-width[#else]hero-split[/#if]" 
          data-lfr-background-image-id="hero-bg"
          style="background-image: url('https://api.scottishpower.co.uk/cms-next/files/images/pricecap_woman_holding_phone_1080x1080_desktop.jpg');">
     
-    <div class="hero-overlay" style="opacity: ${backgroundOverlay}"></div>
+    <div class="hero-overlay" style="opacity: ${backgroundOverlay!'0.4'}"></div>
     
     <div class="container">
         <div class="hero-content">
@@ -10,7 +10,7 @@
                 <h1 data-lfr-editable-id="hero-title" data-lfr-editable-type="text">Fix your energy prices and save</h1>
                 <p class="hero-subtitle" data-lfr-editable-id="hero-subtitle" data-lfr-editable-type="text">Stay below the Ofgem price cap with our fixed price tariff. Plus, get half-price electricity every Saturday and Sunday from 11am to 4pm.</p>
                 
-                <div class="hero-form" [#if showForm]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="hero-form" [#if (showForm!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                     <form class="quote-form" action="#" method="post">
                         <div class="form-row">
                             <div class="form-group">
@@ -22,7 +22,7 @@
                     </form>
                 </div>
                 
-                <div class="hero-cta" [#if !showForm]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="hero-cta" [#if !(showForm!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                     <a href="#" class="btn btn-primary btn-lg" data-lfr-editable-id="hero-cta-btn" data-lfr-editable-type="link">Get Started Today</a>
                 </div>
             </div>

@@ -1,9 +1,9 @@
-<footer class="footer [#if footerStyle == 'compact']compact-footer[#elseif footerStyle == 'minimal']minimal-footer[#else]full-footer[/#if]" 
+<footer class="footer [#if (footerStyle!'full') == 'compact']compact-footer[#elseif (footerStyle!'full') == 'minimal']minimal-footer[#else]full-footer[/#if]" 
         data-lfr-background-image-id="footer-bg">
     
     <div class="container">
         <!-- Main Footer Content -->
-        <div class="footer-main" [#if footerStyle == 'full']style="display: block;"[#else]style="display: none;"[/#if]>
+        <div class="footer-main" [#if (footerStyle!'full') == 'full']style="display: block;"[#else]style="display: none;"[/#if]>
             <div class="footer-sections">
                 <!-- Energy Section -->
                 <div class="footer-section">
@@ -55,7 +55,7 @@
             </div>
             
             <!-- Newsletter Signup -->
-            <div class="footer-newsletter" [#if showNewsletter]style="display: block;"[#else]style="display: none;"[/#if]>
+            <div class="footer-newsletter" [#if (showNewsletter!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                 <h5 data-lfr-editable-id="newsletter-title" data-lfr-editable-type="text">Stay updated</h5>
                 <p data-lfr-editable-id="newsletter-description" data-lfr-editable-type="text">Get the latest energy news and offers delivered to your inbox.</p>
                 <form class="newsletter-form" action="#" method="post">
@@ -79,7 +79,7 @@
                 </div>
                 
                 <!-- Social Media Links -->
-                <div class="footer-social" [#if showSocialLinks]style="display: flex;"[#else]style="display: none;"[/#if]>
+                <div class="footer-social" [#if (showSocialLinks!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                     <a href="#" class="social-link" data-lfr-editable-id="social-facebook" data-lfr-editable-type="link" aria-label="Facebook">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -105,7 +105,7 @@
                 <!-- Copyright and Legal -->
                 <div class="footer-legal">
                     <p class="copyright" data-lfr-editable-id="copyright-text" data-lfr-editable-type="text">© 2025 Scottish Power. All rights reserved.</p>
-                    <div class="legal-links" [#if showLegalLinks]style="display: flex;"[#else]style="display: none;"[/#if]>
+                    <div class="legal-links" [#if (showLegalLinks!true)]style="display: flex;"[#else]style="display: none;"[/#if]>
                         <a href="#" data-lfr-editable-id="legal-privacy" data-lfr-editable-type="link">Privacy Policy</a>
                         <a href="#" data-lfr-editable-id="legal-terms" data-lfr-editable-type="link">Terms & Conditions</a>
                         <a href="#" data-lfr-editable-id="legal-cookies" data-lfr-editable-type="link">Cookie Policy</a>

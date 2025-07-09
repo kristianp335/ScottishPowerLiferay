@@ -6,7 +6,7 @@ This guide provides step-by-step instructions for deploying the Scottish Power c
 
 ## Package Contents
 
-The `scottish-power-collection-20250709_123524.zip` file contains:
+The `scottish-power-collection-20250709_123524-fixed.zip` file contains:
 
 ```
 scottish-power-collection/
@@ -84,7 +84,7 @@ Or use the Liferay Workspace:
 
 2. **Import Collection**:
    - Click `Import` button
-   - Select the `scottish-power-collection-20250709_123524.zip` file
+   - Select the `scottish-power-collection-20250709_123524-fixed.zip` file
    - Click `Import`
 
 3. **Verify Import**:
@@ -270,7 +270,7 @@ For technical support with this fragment collection, please refer to:
 
 ---
 
-**Deployment Package**: `scottish-power-collection-20250709_123524.zip`
+**Deployment Package**: `scottish-power-collection-20250709_123524-fixed.zip`
 **Collection Version**: 1.0.0
 **Compatible with**: Liferay DXP 7.4+, Liferay Portal CE 7.4+
 **Last Updated**: July 9, 2025
