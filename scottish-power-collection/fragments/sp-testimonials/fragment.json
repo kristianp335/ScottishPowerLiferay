@@ -1,11 +1,7 @@
 {
   "cssPath": "index.css",
   "htmlPath": "index.html",
-  "jsPath": "index.js",
+  "jsPath": "index.js", 
   "name": "Scottish Power Testimonials",
-  "type": "section",
-  "resources": [
-    "../../resources/trustpilot-logo.png",
-    "../../resources/rating-five.png"
-  ]
+  "type": "component"
 }

@@ -3,8 +3,5 @@
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Footer",
-  "type": "section",
-  "resources": [
-    "../../resources/scottishpower-logo.svg"
-  ]
+  "type": "section"
 }

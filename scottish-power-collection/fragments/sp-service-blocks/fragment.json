@@ -1,11 +1,7 @@
 {
-  "cssPath": "index.css",
+  "cssPath": "index.css", 
   "htmlPath": "index.html",
   "jsPath": "index.js",
   "name": "Scottish Power Service Blocks",
-  "type": "section",
-  "resources": [
-    "../../resources/icon-energy.svg",
-    "../../resources/icon-support.svg"
-  ]
+  "type": "component"
 }

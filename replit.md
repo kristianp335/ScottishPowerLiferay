@@ -154,9 +154,10 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Included resource manifest for asset management
 - ✓ Fixed FreeMarker template syntax errors with proper null checks and default values
 - ✓ Fixed anchor tag editable types (changed from "text" to "link" for all <a> tags)
-- ✓ Fixed all resource path references to use proper Liferay syntax (${fragmentEntryLinkNamespace}/resources/)
-- ✓ Added resource declarations to all fragment.json files (required for Liferay resource upload)
+- ✓ Fixed all resource path references to use correct Liferay syntax ([resources:filename.ext])
+- ✓ Removed resource declarations from fragment.json files (following Liferay best practices)
 - ✓ Removed client extensions from fragment collection (they deploy separately)
+- ✓ Fixed JSON syntax errors in fragment configuration files
 - ✓ Cleaned up deployment package (removed old versions, single `scottish-power-collection.zip` file)
 - ✓ Package ready for import into Liferay DXP/Portal 7.4+
 
