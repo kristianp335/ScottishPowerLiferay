@@ -2,59 +2,140 @@
 /* JavaScript for sp-header */
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🏗️ Header fragment initializing...');
+    
     // Get the navigation menu ID from fragment configuration
     const fragmentElement = document.querySelector('[data-lfr-fragment-entry-link-id]');
     const configurationNamespace = fragmentElement ? 
         fragmentElement.getAttribute('data-lfr-fragment-entry-link-id') : '';
+    
+    console.log('🔍 Fragment element found:', !!fragmentElement);
+    console.log('🏷️ Configuration namespace:', configurationNamespace);
+    console.log('🌐 Window fragmentNamespace exists:', !!window.fragmentNamespace);
+    
+    if (window.fragmentNamespace) {
+        console.log('📋 Available namespaces:', Object.keys(window.fragmentNamespace));
+        if (window.fragmentNamespace[configurationNamespace]) {
+            console.log('⚙️ Fragment configuration:', window.fragmentNamespace[configurationNamespace]);
+        }
+    }
     
     // Get configuration value or use default
     const navigationMenuId = window.fragmentNamespace && 
         window.fragmentNamespace[configurationNamespace] && 
         window.fragmentNamespace[configurationNamespace].navigationMenuId || '36850';
     
+    console.log('🗂️ Using navigation menu ID:', navigationMenuId);
+    
     // Fetch navigation menu data
     fetchNavigationMenu(navigationMenuId);
 });
 
 function fetchNavigationMenu(menuId) {
+    console.log('🚀 Attempting to fetch navigation menu...');
+    console.log('📊 Menu ID requested:', menuId);
+    console.log('🔐 Liferay object exists:', typeof Liferay !== 'undefined');
+    
+    if (typeof Liferay !== 'undefined') {
+        console.log('🎫 Liferay.authToken exists:', !!Liferay.authToken);
+        console.log('👤 Liferay.ThemeDisplay exists:', !!Liferay.ThemeDisplay);
+        if (Liferay.ThemeDisplay) {
+            console.log('🌍 Site Group ID:', Liferay.ThemeDisplay.getSiteGroupId());
+            console.log('🏢 Company ID:', Liferay.ThemeDisplay.getCompanyId());
+        }
+    }
+    
     // Check if Liferay object exists and has authToken
     if (typeof Liferay === 'undefined' || !Liferay.authToken) {
-        console.warn('Liferay context not available. Using static navigation.');
+        console.warn('⚠️ Liferay context not available. Using static navigation.');
         return;
     }
     
     const apiUrl = `/o/headless-delivery/v1.0/navigation-menus/${menuId}?nestedFields=true&p_auth=${Liferay.authToken}`;
+    console.log('🌐 API URL:', apiUrl);
     
     fetch(apiUrl)
         .then(response => {
+            console.log('📡 Response status:', response.status);
+            console.log('📡 Response headers:', [...response.headers.entries()]);
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
+            console.log('✅ Navigation menu data received:', data);
+            console.log('📝 Menu items count:', data.navigationMenuItems ? data.navigationMenuItems.length : 0);
+            
+            if (data.navigationMenuItems) {
+                console.log('🗂️ Menu items:', data.navigationMenuItems.map(item => ({
+                    name: item.name,
+                    link: item.link,
+                    hasChildren: !!(item.navigationMenuItems && item.navigationMenuItems.length > 0)
+                })));
+            }
+            
             renderNavigationMenu(data.navigationMenuItems);
         })
         .catch(error => {
-            console.error('Error fetching navigation menu:', error);
-            console.log('Falling back to static navigation menu');
+            console.error('❌ Error fetching navigation menu:', error);
+            console.log('🔄 Falling back to static navigation menu');
+            
+            // Try alternative API endpoints for debugging
+            if (typeof Liferay !== 'undefined' && Liferay.ThemeDisplay) {
+                const siteId = Liferay.ThemeDisplay.getSiteGroupId();
+                const altUrl = `/o/headless-delivery/v1.0/sites/${siteId}/navigation-menus`;
+                console.log('🔍 Trying alternative endpoint:', altUrl);
+                
+                fetch(altUrl + `?p_auth=${Liferay.authToken}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('📋 Available navigation menus for site:', data);
+                    })
+                    .catch(altError => {
+                        console.error('❌ Alternative endpoint also failed:', altError);
+                    });
+            }
         });
 }
 
 function renderNavigationMenu(menuItems) {
+    console.log('🎨 Attempting to render navigation menu...');
+    
     const navContainer = document.querySelector('.nav-menu');
-    if (!navContainer || !menuItems) {
+    console.log('📍 Nav container found:', !!navContainer);
+    console.log('📝 Menu items to render:', menuItems ? menuItems.length : 'none');
+    
+    if (!navContainer) {
+        console.warn('⚠️ No .nav-menu container found in DOM');
+        console.log('🔍 Available navigation elements:', 
+            Array.from(document.querySelectorAll('[class*="nav"]')).map(el => ({
+                className: el.className,
+                tagName: el.tagName
+            }))
+        );
+        return;
+    }
+    
+    if (!menuItems) {
+        console.warn('⚠️ No menu items provided to render');
         return;
     }
     
     // Clear existing navigation items
+    console.log('🧹 Clearing existing navigation items');
     navContainer.innerHTML = '';
     
     // Build navigation HTML
-    menuItems.forEach(item => {
+    console.log('🏗️ Building navigation HTML...');
+    menuItems.forEach((item, index) => {
+        console.log(`📦 Creating nav item ${index + 1}:`, item.name);
         const navItem = createNavigationItem(item);
         navContainer.appendChild(navItem);
     });
+    
+    console.log('✅ Navigation menu rendered successfully');
 }
 
 function createNavigationItem(item) {
