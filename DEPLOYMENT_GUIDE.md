@@ -37,9 +37,7 @@ scottish-power-collection/
 │   ├── icon-support.svg
 │   ├── icon-energy.svg
 │   └── manifest.json
-└── client-extensions/              # CSS and JavaScript themes
-    ├── scottishpower-theme-css/
-    └── scottishpower-theme-js/
+
 ```
 
 ## Prerequisites
@@ -47,36 +45,10 @@ scottish-power-collection/
 - Liferay DXP 7.4+ or Liferay Portal CE 7.4+
 - Admin access to Liferay instance
 - Fragment collection import capability
-- Client extension deployment capability
 
 ## Deployment Steps
 
-### 1. Deploy Client Extensions
-
-First, deploy the CSS and JavaScript theme extensions:
-
-```bash
-# Navigate to client extensions directory
-cd client-extensions
-
-# Deploy CSS theme
-blade deploy scottishpower-theme-css
-
-# Deploy JavaScript theme
-blade deploy scottishpower-theme-js
-```
-
-Or use the Liferay Workspace:
-
-```bash
-# Build and deploy CSS theme
-./gradlew :client-extensions:scottishpower-theme-css:deploy
-
-# Build and deploy JavaScript theme
-./gradlew :client-extensions:scottishpower-theme-js:deploy
-```
-
-### 2. Import Fragment Collection
+### 1. Import Fragment Collection
 
 1. **Access Fragment Admin**:
    - Go to `Site Administration` → `Design` → `Fragments`
@@ -99,7 +71,7 @@ Or use the Liferay Workspace:
      - sp-testimonials
      - sp-footer
 
-### 3. Configure Fragment Resources
+### 2. Configure Fragment Resources
 
 1. **Upload Resources**:
    - The resources should be automatically imported with the collection
@@ -109,7 +81,7 @@ Or use the Liferay Workspace:
    - Resources are referenced using Liferay's resource path syntax
    - Format: `[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}filename.ext`
 
-### 4. Create Page Templates
+### 3. Create Page Templates
 
 1. **Create Master Page Template**:
    - Go to `Site Administration` → `Design` → `Page Templates`
@@ -129,7 +101,7 @@ Or use the Liferay Workspace:
      - sp-awards (trust indicators)
      - sp-testimonials (social proof)
 
-### 5. Configure Fragment Settings
+### 4. Configure Fragment Settings
 
 Each fragment has configurable options:
 

@@ -156,11 +156,13 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Fixed anchor tag editable types (changed from "text" to "link" for all <a> tags)
 - ✓ Fixed all resource path references to use proper Liferay syntax (${fragmentEntryLinkNamespace}/resources/)
 - ✓ Added resource declarations to all fragment.json files (required for Liferay resource upload)
+- ✓ Removed client extensions from fragment collection (they deploy separately)
 - ✓ Cleaned up deployment package (removed old versions, single `scottish-power-collection.zip` file)
 - ✓ Package ready for import into Liferay DXP/Portal 7.4+
 
 **Package Contents**: 
 - Fragment collection with 9 components (all template and resource errors resolved)
 - 16 image and icon resources with proper references
-- Client extensions for CSS and JavaScript themes
 - Complete deployment documentation
+
+**Note**: Client extensions (CSS/JS themes) are stored separately in the `client-extensions/` directory and deployed using Liferay's client extension deployment methods.

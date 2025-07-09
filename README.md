@@ -28,7 +28,7 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 ├── index.html                  # Complete website demo
 ├── demo.html                   # Fragment component demo
 ├── fragment-loader.js          # Fragment loading utility
-├── scottish-power-collection.zip # Liferay deployment package
+├── scottish-power-collection.zip # Liferay fragment collection package
 ├── DEPLOYMENT_GUIDE.md         # Production deployment instructions
 └── scottish-power-collection.json # Liferay collection metadata
 ```
