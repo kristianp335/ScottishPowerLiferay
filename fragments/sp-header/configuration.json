@@ -1,0 +1,34 @@
+{
+  "fieldSets": [
+    {
+      "label": "Header Settings",
+      "fields": [
+        {
+          "name": "showPersonalBusiness",
+          "label": "Show Personal/Business Toggle",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "enableStickyHeader",
+          "label": "Enable Sticky Header",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "headerStyle",
+          "label": "Header Style",
+          "type": "select",
+          "defaultValue": "default",
+          "typeOptions": {
+            "validValues": [
+              {"value": "default", "label": "Default"},
+              {"value": "compact", "label": "Compact"},
+              {"value": "minimal", "label": "Minimal"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+name: Scottish Power Theme CSS
+type: themeCSS
+typeSettings:
+  url: main.css

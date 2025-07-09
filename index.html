@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scottish Power - Energy for the Future</title>
+    <meta name="description" content="Scottish Power provides green energy solutions including tariffs, solar panels, EV charging, and home services across the UK.">
+    <link rel="stylesheet" href="client-extensions/scottishpower-theme-css/src/main.css">
+    <style>
+        /* CSS Variables for Scottish Power Theme */
+        :root {
+            --sp-primary-green: #00A651;
+            --sp-dark-green: #006B3C;
+            --sp-light-green: #E8F5E8;
+            --sp-accent-orange: #FF6B35;
+            --sp-accent-blue: #0066CC;
+            --sp-white: #FFFFFF;
+            --sp-light-grey: #F8F9FA;
+            --sp-medium-grey: #E9ECEF;
+            --sp-dark-grey: #6C757D;
+            --sp-text-primary: #212529;
+            --sp-text-secondary: #6C757D;
+            --sp-border-color: #DEE2E6;
+            --sp-border-radius: 8px;
+            --sp-transition: all 0.3s ease;
+            --sp-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--sp-text-primary);
+            background-color: var(--sp-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in-out forwards; }
+        .slide-up { transform: translateY(20px); opacity: 0; animation: slideUp 0.6s ease-out forwards; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Section Spacing */
+        .section-spacing {
+            margin-bottom: 80px;
+        }
+
+        /* Demo Header */
+        .demo-header {
+            background: linear-gradient(135deg, var(--sp-primary-green), var(--sp-dark-green));
+            color: var(--sp-white);
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .demo-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+        }
+
+        /* Fragment Loading */
+        .fragment-loading {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--sp-text-secondary);
+            background-color: var(--sp-light-grey);
+            border-radius: var(--sp-border-radius);
+            margin: 20px 0;
+        }
+
+        .fragment-loading::before {
+            content: "⟳";
+            animation: spin 1s linear infinite;
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <div class="container">
+            <h1>Scottish Power Corporate Website</h1>
+            <p>Liferay Fragment Collection - Live Demo</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Header Fragment -->
+        <div id="header-fragment">
+            <div class="fragment-loading">Loading Header...</div>
+        </div>
+
+        <!-- Hero Fragment -->
+        <div id="hero-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Hero Section...</div>
+        </div>
+
+        <!-- Half-Price Weekends Fragment -->
+        <div id="half-price-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Half-Price Weekends...</div>
+        </div>
+
+        <!-- Service Blocks Fragment -->
+        <div id="service-blocks-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Service Blocks...</div>
+        </div>
+
+        <!-- Product Cards Fragment -->
+        <div id="product-cards-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Product Cards...</div>
+        </div>
+
+        <!-- Support Sections Fragment -->
+        <div id="support-sections-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Support Sections...</div>
+        </div>
+
+        <!-- Awards Fragment -->
+        <div id="awards-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Awards...</div>
+        </div>
+
+        <!-- Testimonials Fragment -->
+        <div id="testimonials-fragment" class="section-spacing">
+            <div class="fragment-loading">Loading Testimonials...</div>
+        </div>
+
+        <!-- Footer Fragment -->
+        <div id="footer-fragment">
+            <div class="fragment-loading">Loading Footer...</div>
+        </div>
+    </div>
+
+    <script>
+        // Fragment loading utility
+        async function loadFragmentContent(fragmentName, containerId) {
+            try {
+                const response = await fetch(`fragments/${fragmentName}/index.html`);
+                const html = await response.text();
+                
+                // Process Liferay template syntax for demo
+                const processedHtml = html
+                    // Remove conditional statements but keep content
+                    .replace(/\[#if[^\]]*\]/g, '')
+                    .replace(/\[#else\]/g, '')
+                    .replace(/\[#elseif[^\]]*\]/g, '')
+                    .replace(/\[#\/if\]/g, '')
+                    // Remove Liferay-specific attributes
+                    .replace(/data-lfr-editable-id="[^"]*"/g, '')
+                    .replace(/data-lfr-editable-type="[^"]*"/g, '')
+                    .replace(/data-lfr-background-image-id="[^"]*"/g, '');
+                
+                document.getElementById(containerId).innerHTML = processedHtml;
+                
+                // Add fade-in animation
+                const elements = document.querySelectorAll(`#${containerId} *`);
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('fade-in');
+                    }, index * 50);
+                });
+                
+                return true;
+            } catch (error) {
+                console.log(`Could not load fragment ${fragmentName}:`, error);
+                document.getElementById(containerId).innerHTML = `
+                    <div style="padding: 40px; text-align: center; color: var(--sp-text-secondary); background-color: var(--sp-light-grey); border-radius: var(--sp-border-radius); margin: 20px 0;">
+                        <h3>${fragmentName} Fragment</h3>
+                        <p>Component content available in full Liferay deployment</p>
+                    </div>
+                `;
+                return false;
+            }
+        }
+
+        // Load all fragments in sequence
+        document.addEventListener('DOMContentLoaded', async function() {
+            const fragments = [
+                'sp-header',
+                'sp-hero',
+                'sp-half-price-weekends',
+                'sp-service-blocks',
+                'sp-product-cards',
+                'sp-support-sections',
+                'sp-awards',
+                'sp-testimonials',
+                'sp-footer'
+            ];
+
+            // Load fragments with slight delays for better UX
+            for (let i = 0; i < fragments.length; i++) {
+                setTimeout(async () => {
+                    const fragmentName = fragments[i];
+                    const containerId = fragmentName.replace('sp-', '') + '-fragment';
+                    await loadFragmentContent(fragmentName, containerId);
+                }, i * 200);
+            }
+
+            // Load main JavaScript functionality
+            setTimeout(() => {
+                loadMainJavaScript();
+            }, 2000);
+        });
+
+        // Load main JavaScript functionality
+        function loadMainJavaScript() {
+            // Initialize scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('slide-up');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('.section-spacing').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Initialize mobile navigation
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
+
+            // Initialize form validation
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    console.log('Form submitted:', Object.fromEntries(formData));
+                    alert('Form submitted successfully! (Demo mode)');
+                });
+            });
+
+            // Initialize carousel functionality
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(carousel => {
+                const prevBtn = carousel.querySelector('.prev-btn');
+                const nextBtn = carousel.querySelector('.next-btn');
+                const items = carousel.querySelectorAll('.carousel-item');
+                let currentIndex = 0;
+
+                function showItem(index) {
+                    items.forEach((item, i) => {
+                        item.classList.toggle('active', i === index);
+                    });
+                }
+
+                if (prevBtn && nextBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + items.length) % items.length;
+                        showItem(currentIndex);
+                    });
+
+                    nextBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % items.length;
+                        showItem(currentIndex);
+                    });
+                }
+
+                // Auto-rotation
+                if (carousel.dataset.autoRotate === 'true') {
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % items.length;
+                        showItem(currentIndex);
+                    }, 5000);
+                }
+            });
+
+            console.log('Scottish Power website loaded successfully!');
+        }
+    </script>
+    <script src="fragment-loader.js"></script>
+    <script src="client-extensions/scottishpower-theme-js/src/main.js"></script>
+</body>
+</html>
