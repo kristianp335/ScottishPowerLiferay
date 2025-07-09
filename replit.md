@@ -172,4 +172,4 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - 22 high-quality PNG/JPG images and icons with proper references (fixed corrupted images)
 - Complete deployment documentation
 
-**Note**: Client extensions (CSS/JS themes) are stored separately in the `client-extensions/` directory and deployed using Liferay's client extension deployment methods.
+**Note**: Client extensions are stored separately in the `client-extensions/` directory and deployed using Liferay's client extension deployment methods. The CSS client extension is configured as `globalCSS` type for site-wide styling.

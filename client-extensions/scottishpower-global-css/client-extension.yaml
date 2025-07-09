@@ -1,0 +1,4 @@
+name: Scottish Power Global CSS
+type: globalCSS
+typeSettings:
+  url: main.css
