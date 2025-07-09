@@ -162,7 +162,9 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Complete structure verification: 70 files, 9 fragments, 15 resources
 - ✓ Fixed ZIP creation method to match working masterclass collection structure
 - ✓ Fixed resource references to match masterclass pattern (only in img src attributes)
-- ✓ Removed problematic CSS background-image resource references
+- ✓ Removed problematic CSS background-image resource references  
+- ✓ Fixed all incorrect fragmentEntryLinkNamespace resource syntax in testimonials and other fragments
+- ✓ All fragments now use correct [resources:filename] syntax matching masterclass collection
 - ✓ Package ready for import into Liferay DXP/Portal 7.4+ with working resource uploads and fragments
 
 **Package Contents**: 

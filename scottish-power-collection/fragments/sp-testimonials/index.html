@@ -5,7 +5,7 @@
         <!-- Trustpilot Header -->
         <div class="trustpilot-header [#if (showTrustpilotBranding!true)]visible[#else]hidden[/#if]">
             <div class="trustpilot-logo">
-                <img src="[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}trustpilot-logo.png" 
+                <img src="[resources:trustpilot-logo.png]" 
                      alt="Trustpilot"
                      data-lfr-editable-id="trustpilot-logo" 
                      data-lfr-editable-type="image">
@@ -31,7 +31,7 @@
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if] fade-in">
                     <div class="testimonial-rating" [#if (showRatings!true)]style="display: block;"[#else]style="display: none;"[/#if]>
-                        <img src="[#assign resource_path = fragmentEntryLinkNamespace + '/resources/']${resource_path}rating-five.png" 
+                        <img src="[resources:rating-five.png]" 
                              alt="5 stars"
                              data-lfr-editable-id="rating-1" 
                              data-lfr-editable-type="image">
