@@ -10,6 +10,16 @@ window.spNavigation = window.spNavigation || {
 
 // Clean initialization function
 function initializeNavigation() {
+    // Check if in edit mode
+    const editMode = document.body.classList.contains('has-edit-mode-menu');
+    
+    if (editMode) {
+        console.log('Edit mode detected - simplified initialization');
+        // In edit mode, skip complex initialization and just ensure basic structure
+        initializeBasicNavigation();
+        return;
+    }
+    
     // Prevent multiple simultaneous loads
     if (window.spNavigation.loading) {
         console.log('Navigation already loading, skipping...');
@@ -41,6 +51,17 @@ function initializeNavigation() {
     fetchNavigationMenu(navigationMenuId);
 }
 
+// Edit mode basic initialization
+function initializeBasicNavigation() {
+    // Ensure mobile menu and dropdowns work in edit mode
+    initializeMobileMenu();
+    initializeDropdowns();
+    
+    // Mark as completed
+    window.spNavigation.loading = false;
+    window.spNavigation.initialized = true;
+}
+
 // Single robust initialization setup
 (function setupNavigation() {
     // Immediate initialization if DOM is ready
@@ -53,12 +74,31 @@ function initializeNavigation() {
     // SennaJS support with cleanup
     if (typeof Liferay !== 'undefined' && Liferay.on) {
         Liferay.on('endNavigate', function() {
-            console.log('Page navigation completed, reinitializing...');
+            console.log('SennaJS navigation completed, reinitializing...');
             window.spNavigation.initialized = false;
             window.spNavigation.loading = false;
             setTimeout(initializeNavigation, 200);
         });
+        
+        Liferay.on('beforeScreenFlip', function() {
+            console.log('SennaJS screen flip starting...');
+        });
+        
+        Liferay.on('screenFlip', function() {
+            console.log('SennaJS screen flip completed, reinitializing...');
+            setTimeout(initializeNavigation, 100);
+        });
     }
+    
+    // Additional SennaJS events
+    document.addEventListener('beforeNavigate', function() {
+        console.log('Before navigate event triggered');
+    });
+    
+    document.addEventListener('navigate', function() {
+        console.log('Navigate event triggered, reinitializing...');
+        setTimeout(initializeNavigation, 100);
+    });
 })();
 
 function fetchNavigationMenu(menuId) {

@@ -157,6 +157,16 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 
 ## Recent Changes
 
+**July 10, 2025** - Added comprehensive SennaJS and edit mode support:
+- ✓ All fragments now include edit mode detection using `document.body.classList.contains('has-edit-mode-menu')`
+- ✓ Comprehensive SennaJS event handling (endNavigate, beforeScreenFlip, screenFlip) across all fragments
+- ✓ Edit mode simplified initialization - disables animations and lazy loading for Liferay Experience Designer
+- ✓ Global state management prevents duplicate initialization during SPA navigation
+- ✓ Proper cleanup and re-initialization on SennaJS navigation events
+- ✓ Enhanced service blocks with Clay framework CSS overrides and full responsive design
+- ✓ All fragments now work properly in both frontend display and Liferay edit mode
+- ✓ Individual fragment ZIP files and collection ZIP updated with SennaJS awareness
+
 **July 9, 2025** - Created complete deployment package:
 - ✓ Generated production-ready ZIP package with all fragments and resources
 - ✓ Downloaded authentic Scottish Power images and assets from their CDN
