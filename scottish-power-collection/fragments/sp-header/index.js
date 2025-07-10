@@ -454,65 +454,35 @@ function checkUserLoginStatus() {
             Liferay.ThemeDisplay.isSignedIn()) {
             resolve(true);
         } else {
-            resolve(false);
+            // Also check for user profile widget presence (FreeMarker conditional rendered it)
+            const userProfileWidget = document.querySelector('.user-profile-widget');
+            if (userProfileWidget && userProfileWidget.children.length > 0) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
         }
     });
 }
 
-// Load Liferay login widget
+// Load Liferay login widget  
 function loadLoginWidget() {
     const loginContent = document.getElementById('login-content');
     
     if (!loginContent) return;
     
-    // Check if we have access to Liferay portlet rendering
-    if (typeof Liferay !== 'undefined' && Liferay.Portlet) {
-        // Try to load the sign-in portlet
-        const loginHTML = `
-            <div class="login-widget">
-                <iframe src="/c/portal/login" 
-                        style="width: 100%; height: 400px; border: none;"
-                        title="Login Form">
-                </iframe>
-            </div>
-        `;
-        loginContent.innerHTML = loginHTML;
-    } else {
-        // Fallback: Simple login form
-        const fallbackLoginHTML = `
-            <div class="login-widget">
-                <form class="login-form">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                    </div>
-                    <div class="form-group">
-                        <a href="/c/portal/register" target="_blank" class="register-link">
-                            Don't have an account? Register here
-                        </a>
-                    </div>
-                </form>
-            </div>
-        `;
-        loginContent.innerHTML = fallbackLoginHTML;
-        
-        // Handle form submission
-        const form = loginContent.querySelector('.login-form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Redirect to Liferay login page with credentials
-                window.location.href = '/c/portal/login';
-            });
+    // The login portlet is already embedded via FreeMarker template
+    // Just ensure it's visible and properly styled
+    console.log('Login portlet loaded via FreeMarker template');
+    
+    // Add custom styling to the login portlet if needed
+    setTimeout(() => {
+        const loginPortlet = loginContent.querySelector('.portlet');
+        if (loginPortlet) {
+            loginPortlet.style.border = 'none';
+            loginPortlet.style.boxShadow = 'none';
         }
-    }
+    }, 100);
 }
 
 // Load user profile widget

@@ -7,34 +7,44 @@
                 <span data-lfr-editable-id="business-label" data-lfr-editable-type="text">Business</span>
             </div>
             
-            <!-- Brand Logo -->
-            <div class="navbar-brand">
-                <img src="[resources:scottishpower-logo.svg]" 
-                     alt="Scottish Power"
-                     data-lfr-editable-id="brand-logo" 
-                     data-lfr-editable-type="image">
-            </div>
-            
-            <!-- Main Navigation - Dynamically Built -->
-            <nav class="navbar-nav">
-                <!-- Navigation items will be loaded dynamically from API -->
-                <div class="nav-loading">
-                    <span class="loading-text">Loading navigation...</span>
+            <!-- Left side: Brand Logo and Navigation -->
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <img src="[resources:scottishpower-logo.svg]" 
+                         alt="Scottish Power"
+                         data-lfr-editable-id="brand-logo" 
+                         data-lfr-editable-type="image">
                 </div>
-            </nav>
-            
-            <!-- User Actions -->
-            <div class="navbar-actions">
-                <button id="login-btn" class="btn btn-secondary" data-lfr-editable-id="login-btn" data-lfr-editable-type="text">Login</button>
-                <a href="#" class="btn btn-primary" data-lfr-editable-id="get-quote-btn" data-lfr-editable-type="link">Get a quote</a>
+                
+                <!-- Main Navigation - Dynamically Built -->
+                <nav class="navbar-nav">
+                    <!-- Navigation items will be loaded dynamically from API -->
+                    <div class="nav-loading">
+                        <span class="loading-text">Loading navigation...</span>
+                    </div>
+                </nav>
             </div>
             
-            <!-- Mobile Menu Toggle -->
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <!-- Right side: User Actions -->
+            <div class="navbar-right">
+                <div class="navbar-actions">
+                    <a href="#" class="btn btn-primary" data-lfr-editable-id="get-quote-btn" data-lfr-editable-type="link">Get a quote</a>
+                    [#if user.isSignedIn()]
+                        <div class="user-profile-widget">
+                            [@liferay.user_personal_bar /]
+                        </div>
+                    [#else]
+                        <button id="login-btn" class="btn btn-secondary">Login</button>
+                    [/#if]
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </div>
 </header>
@@ -47,10 +57,11 @@
             <button id="close-login" class="close-btn" aria-label="Close login">&times;</button>
         </div>
         <div id="login-content" class="login-content">
-            <!-- Liferay login widget will be embedded here -->
-            <div class="login-loading">
-                <span>Loading login...</span>
-            </div>
+            <!-- Liferay login portlet embedded via FreeMarker -->
+            [@liferay_portlet["runtime"]
+                defaultPreferences=preferences
+                portletName="com_liferay_login_web_portlet_LoginPortlet"
+            /]
         </div>
     </div>
 </div>
@@ -76,6 +87,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .account-type-toggle {
@@ -83,6 +95,22 @@
     gap: 20px;
     font-size: 14px;
     color: var(--sp-text-secondary);
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .navbar-brand img {
@@ -94,8 +122,17 @@
     display: flex;
     align-items: center;
     gap: 30px;
-    flex: 1;
-    justify-content: center;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-profile-widget {
+    display: flex;
+    align-items: center;
 }
 
 .nav-item {
@@ -187,6 +224,10 @@
         position: relative;
     }
     
+    .navbar-left {
+        gap: 20px;
+    }
+    
     .navbar-brand {
         flex: 1;
     }
@@ -209,6 +250,10 @@
     
     .navbar-nav.active {
         display: flex;
+    }
+    
+    .navbar-right {
+        gap: 15px;
     }
     
     .navbar-actions {
@@ -265,7 +310,13 @@
     }
     
     .account-type-toggle {
-        display: none;
+        position: static;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .user-profile-widget {
+        order: 1;
     }
     
     /* Burger menu animation */

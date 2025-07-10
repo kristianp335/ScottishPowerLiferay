@@ -181,17 +181,17 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 
 ## Recent Changes
 
-**July 10, 2025** - Enhanced header with login functionality:
-- ✓ Added professional login modal overlay with smooth animations
-- ✓ Integrated with Liferay authentication system (ThemeDisplay.isSignedIn)
-- ✓ Smart login detection - shows user profile when logged in, login form when not
-- ✓ Fallback login form for non-Liferay environments
-- ✓ Complete CSS styling for modal, form elements, and user profile display
-- ✓ Responsive design with mobile-optimized layout
-- ✓ Keyboard navigation support (ESC key closes modal)
-- ✓ Body scroll prevention when modal is open
-- ✓ SennaJS-aware initialization prevents conflicts during navigation
-- ✓ All fragment ZIP files and collection ZIP updated with login functionality
+**July 10, 2025** - Enhanced header with professional Liferay integration:
+- ✓ Improved header layout with proper left/right alignment (logo+nav left, actions right)
+- ✓ Integrated native Liferay login portlet using FreeMarker [@liferay_portlet] template
+- ✓ Smart user authentication with [@liferay.user_personal_bar /] for logged-in users
+- ✓ Conditional rendering: shows user profile widget when logged in, login button when not
+- ✓ Removed complex JavaScript fallbacks in favor of native Liferay functionality
+- ✓ Professional responsive design with mobile-optimized flexbox layout
+- ✓ Clean separation between navbar-left (brand+nav) and navbar-right (actions+toggle)
+- ✓ Keyboard navigation and mobile menu improvements
+- ✓ FreeMarker template integration for seamless Liferay deployment
+- ✓ All fragment ZIP files and collection ZIP updated with improved header structure
 
 **July 10, 2025** - Added comprehensive SennaJS and edit mode support:
 - ✓ All fragments now include edit mode detection using `document.body.classList.contains('has-edit-mode-menu')`
