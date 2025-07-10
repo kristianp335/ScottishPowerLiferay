@@ -63,6 +63,15 @@
 .service-blocks {
     padding: 80px 0;
     background-color: var(--sp-light-grey);
+    width: 100%;
+    max-width: none;
+}
+
+.service-blocks .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .section-header {
@@ -85,9 +94,13 @@
 
 /* Base grid - Mobile first approach */
 .services-grid {
-    display: grid;
+    display: grid !important;
     gap: 20px;
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* Tablet breakpoint */
@@ -113,26 +126,57 @@
 /* Desktop breakpoint */
 @media (min-width: 1024px) {
     .services-grid {
-        gap: 30px;
+        gap: 30px !important;
+        width: 100% !important;
+        max-width: none !important;
     }
     
     .services-grid.col-2 {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
     .services-grid.col-3 {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr) !important;
     }
     
     .services-grid.col-4 {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important;
     }
 }
 
 /* Large desktop breakpoint */
 @media (min-width: 1200px) {
     .services-grid {
-        gap: 40px;
+        gap: 40px !important;
+    }
+}
+
+/* Clay framework overrides */
+.service-blocks .services-grid,
+.service-blocks .services-grid.col-2,
+.service-blocks .services-grid.col-3,
+.service-blocks .services-grid.col-4 {
+    display: grid !important;
+    flex-direction: unset !important;
+    align-items: unset !important;
+    justify-content: unset !important;
+}
+
+/* Force grid layout on desktop */
+@media (min-width: 1024px) {
+    .service-blocks .services-grid.col-3 {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: unset !important;
+        flex-wrap: unset !important;
+        align-items: stretch !important;
+    }
+    
+    .service-blocks .service-block {
+        width: auto !important;
+        flex: unset !important;
+        min-width: unset !important;
+        max-width: unset !important;
     }
 }
 
@@ -144,6 +188,10 @@
     transition: var(--sp-transition);
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    flex: none;
 }
 
 .service-block::before {
