@@ -321,6 +321,30 @@
     display: block;
 }
 
+/* Edit Mode Specific Styles */
+body.has-edit-mode-menu .testimonial-card {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    position: relative !important;
+    margin-bottom: 20px !important;
+}
+
+body.has-edit-mode-menu .testimonials-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+
+body.has-edit-mode-menu .testimonials-navigation {
+    display: none !important;
+}
+
+body.has-edit-mode-menu .carousel-layout .carousel-item {
+    display: block !important;
+}
+
 @media (max-width: 1024px) {
     .testimonials-wrapper {
         grid-template-columns: 1fr;

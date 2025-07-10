@@ -200,6 +200,8 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Global state management prevents duplicate initialization during SPA navigation
 - ✓ Proper cleanup and re-initialization on SennaJS navigation events
 - ✓ Enhanced service blocks with Clay framework CSS overrides and full responsive design
+- ✓ Fixed testimonials fragment edit mode - all 4 cards now visible and editable in stacked layout
+- ✓ Testimonials carousel functionality working with proper navigation in published mode
 - ✓ All fragments now work properly in both frontend display and Liferay edit mode
 - ✓ Individual fragment ZIP files and collection ZIP updated with SennaJS awareness
 
