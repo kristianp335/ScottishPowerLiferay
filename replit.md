@@ -186,12 +186,12 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Integrated native Liferay login portlet using FreeMarker [@liferay_portlet] template
 - ✓ Smart user authentication with [@liferay.user_personal_bar /] for logged-in users
 - ✓ Conditional rendering: shows user profile widget when logged in, login button when not
-- ✓ Removed complex JavaScript fallbacks in favor of native Liferay functionality
-- ✓ Professional responsive design with mobile-optimized flexbox layout
+- ✓ Fixed FreeMarker syntax using correct themeDisplay.isSignedIn() context variable
+- ✓ Refined styling: grey navigation menu with green hover, dropdown arrows only on nav items
+- ✓ Specific CSS selectors prevent button styles from affecting navigation or user profile
 - ✓ Clean separation between navbar-left (brand+nav) and navbar-right (actions+toggle)
-- ✓ Keyboard navigation and mobile menu improvements
-- ✓ FreeMarker template integration for seamless Liferay deployment
-- ✓ All fragment ZIP files and collection ZIP updated with improved header structure
+- ✓ Professional responsive design with mobile-optimized flexbox layout
+- ✓ All fragment ZIP files and collection ZIP updated with refined styling
 
 **July 10, 2025** - Added comprehensive SennaJS and edit mode support:
 - ✓ All fragments now include edit mode detection using `document.body.classList.contains('has-edit-mode-menu')`
