@@ -56,6 +56,7 @@ function initializeBasicNavigation() {
     // Ensure mobile menu and dropdowns work in edit mode
     initializeMobileMenu();
     initializeDropdowns();
+    initializeLoginModal();
     
     // Mark as completed
     window.spNavigation.loading = false;
@@ -112,6 +113,7 @@ function fetchNavigationMenu(menuId) {
         // Initialize mobile menu and dropdowns
         initializeMobileMenu();
         initializeDropdowns();
+        initializeLoginModal();
         
         window.spNavigation.loading = false;
         window.spNavigation.initialized = true;
@@ -134,6 +136,7 @@ function fetchNavigationMenu(menuId) {
             // Initialize mobile menu and dropdowns
             initializeMobileMenu();
             initializeDropdowns();
+            initializeLoginModal();
             
             // Mark as completed
             window.spNavigation.loading = false;
@@ -148,6 +151,7 @@ function fetchNavigationMenu(menuId) {
             // Initialize mobile menu and dropdowns
             initializeMobileMenu();
             initializeDropdowns();
+            initializeLoginModal();
             
             // Mark as completed
             window.spNavigation.loading = false;
@@ -363,4 +367,188 @@ document.addEventListener('DOMContentLoaded', initializeDropdownsWithSennaSuppor
 // Re-initialize dropdowns after SennaJS navigation
 if (typeof Liferay !== 'undefined' && Liferay.on) {
     Liferay.on('endNavigate', initializeDropdownsWithSennaSupport);
+}
+
+// Initialize login modal functionality
+function initializeLoginModal() {
+    const loginBtn = document.getElementById('login-btn');
+    const loginOverlay = document.getElementById('login-overlay');
+    const closeBtn = document.getElementById('close-login');
+    const loginContent = document.getElementById('login-content');
+    
+    if (!loginBtn || !loginOverlay || !closeBtn || !loginContent) {
+        console.warn('Login modal elements not found');
+        return;
+    }
+    
+    // Handle login button click
+    loginBtn.addEventListener('click', function() {
+        openLoginModal();
+    });
+    
+    // Handle close button click
+    closeBtn.addEventListener('click', function() {
+        closeLoginModal();
+    });
+    
+    // Handle overlay click (close modal)
+    loginOverlay.addEventListener('click', function(e) {
+        if (e.target === loginOverlay) {
+            closeLoginModal();
+        }
+    });
+    
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && loginOverlay.style.display === 'flex') {
+            closeLoginModal();
+        }
+    });
+    
+    console.log('Login modal initialized');
+}
+
+// Open login modal and load appropriate widget
+function openLoginModal() {
+    const loginOverlay = document.getElementById('login-overlay');
+    const loginContent = document.getElementById('login-content');
+    
+    if (!loginOverlay || !loginContent) return;
+    
+    // Show overlay
+    loginOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Check if user is logged in
+    checkUserLoginStatus()
+        .then(isLoggedIn => {
+            if (isLoggedIn) {
+                loadUserProfile();
+            } else {
+                loadLoginWidget();
+            }
+        })
+        .catch(error => {
+            console.error('Error checking login status:', error);
+            loadLoginWidget(); // Fallback to login widget
+        });
+}
+
+// Close login modal
+function closeLoginModal() {
+    const loginOverlay = document.getElementById('login-overlay');
+    
+    if (!loginOverlay) return;
+    
+    loginOverlay.style.display = 'none';
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Check if user is currently logged in
+function checkUserLoginStatus() {
+    return new Promise((resolve) => {
+        // Check if Liferay user object exists and user is signed in
+        if (typeof Liferay !== 'undefined' && 
+            Liferay.ThemeDisplay && 
+            Liferay.ThemeDisplay.isSignedIn && 
+            Liferay.ThemeDisplay.isSignedIn()) {
+            resolve(true);
+        } else {
+            resolve(false);
+        }
+    });
+}
+
+// Load Liferay login widget
+function loadLoginWidget() {
+    const loginContent = document.getElementById('login-content');
+    
+    if (!loginContent) return;
+    
+    // Check if we have access to Liferay portlet rendering
+    if (typeof Liferay !== 'undefined' && Liferay.Portlet) {
+        // Try to load the sign-in portlet
+        const loginHTML = `
+            <div class="login-widget">
+                <iframe src="/c/portal/login" 
+                        style="width: 100%; height: 400px; border: none;"
+                        title="Login Form">
+                </iframe>
+            </div>
+        `;
+        loginContent.innerHTML = loginHTML;
+    } else {
+        // Fallback: Simple login form
+        const fallbackLoginHTML = `
+            <div class="login-widget">
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                    <div class="form-group">
+                        <a href="/c/portal/register" target="_blank" class="register-link">
+                            Don't have an account? Register here
+                        </a>
+                    </div>
+                </form>
+            </div>
+        `;
+        loginContent.innerHTML = fallbackLoginHTML;
+        
+        // Handle form submission
+        const form = loginContent.querySelector('.login-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Redirect to Liferay login page with credentials
+                window.location.href = '/c/portal/login';
+            });
+        }
+    }
+}
+
+// Load user profile widget
+function loadUserProfile() {
+    const loginContent = document.getElementById('login-content');
+    const loginTitle = document.querySelector('#login-overlay h3');
+    
+    if (!loginContent) return;
+    
+    // Update modal title
+    if (loginTitle) {
+        loginTitle.textContent = 'My Account';
+    }
+    
+    // Get user information from Liferay
+    let userName = 'User';
+    let userEmail = '';
+    let userInitials = 'U';
+    
+    if (typeof Liferay !== 'undefined' && Liferay.ThemeDisplay) {
+        userName = Liferay.ThemeDisplay.getUserName() || 'User';
+        userEmail = Liferay.ThemeDisplay.getUserEmailAddress() || '';
+        userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+    }
+    
+    const profileHTML = `
+        <div class="user-profile">
+            <div class="user-avatar">${userInitials}</div>
+            <div class="user-name">${userName}</div>
+            <div class="user-email">${userEmail}</div>
+            <div class="profile-actions">
+                <a href="/group/customer-portal/my-account" class="btn btn-primary">My Account</a>
+                <a href="/c/portal/logout" class="btn btn-secondary">Sign Out</a>
+            </div>
+        </div>
+    `;
+    
+    loginContent.innerHTML = profileHTML;
 }
