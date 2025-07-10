@@ -101,8 +101,11 @@
 
 .hero-centered .hero-content {
     justify-content: center;
-    text-align: center;
     flex-direction: column;
+}
+
+.hero-centered .hero-text {
+    text-align: center;
 }
 
 .hero-full-width .hero-content {
@@ -112,6 +115,7 @@
 .hero-text {
     flex: 1;
     max-width: 600px;
+    text-align: left;
 }
 
 .hero-text h1 {
@@ -228,7 +232,10 @@
 @media (max-width: 768px) {
     .hero {
         min-height: 500px;
-        text-align: center;
+    }
+    
+    .hero-text {
+        text-align: left;
     }
     
     .hero-content {
