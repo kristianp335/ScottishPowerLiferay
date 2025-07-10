@@ -10,6 +10,30 @@ This is a complete component-based website system for Scottish Power, built usin
 
 Preferred communication style: Simple, everyday language.
 
+### Liferay Fragment Development Standards
+- **SennaJS Event Handling**: All fragments must include comprehensive SennaJS event support:
+  - `Liferay.on('endNavigate')` - Handle SPA navigation completion
+  - `Liferay.on('beforeScreenFlip')` and `Liferay.on('screenFlip')` - Manage screen transitions
+  - `document.addEventListener('navigate')` - Additional navigation fallback
+  - Global state management to prevent duplicate initialization
+  - Proper cleanup and re-initialization patterns
+
+- **Edit Mode Detection**: All fragments must detect Liferay Experience Designer edit mode:
+  ```javascript
+  const editMode = document.body.classList.contains('has-edit-mode-menu');
+  if (editMode) {
+      // Simplified initialization for edit mode
+      // Disable animations, lazy loading, API calls
+      // Ensure immediate visibility
+  }
+  ```
+
+- **Fragment Structure Standards**:
+  - Individual ZIP files for each fragment using create_fragment_zips.py
+  - Complete collection ZIP with all fragments and resources
+  - Each fragment includes: fragment.json, configuration.json, index.html, index.css, index.js, thumbnail.png
+  - Global state management: `window.spFragmentName = { initialized: false, loading: false }`
+
 ### Liferay Client Extension Development
 - Always include `assemble` property in client-extension.yaml files
 - Use proper extension ID naming convention (e.g., `scottishpower-global-css:`)
