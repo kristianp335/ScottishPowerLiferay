@@ -6,7 +6,7 @@
                 <span data-lfr-editable-id="personal-label" data-lfr-editable-type="text">Personal</span>
                 <span data-lfr-editable-id="business-label" data-lfr-editable-type="text">Business</span>
             </div>
-            
+
             <!-- Brand Logo -->
             <div class="navbar-brand">
                 <img src="https://api.scottishpower.co.uk/cms-next/files/images/scottishpower-logo.svg" 
@@ -14,7 +14,7 @@
                      data-lfr-editable-id="brand-logo" 
                      data-lfr-editable-type="image">
             </div>
-            
+
             <!-- Main Navigation -->
             <nav class="navbar-nav">
                 <div class="nav-item dropdown">
@@ -25,7 +25,7 @@
                         <a href="#" class="dropdown-item" data-lfr-editable-id="green-energy" data-lfr-editable-type="link">Green Energy</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="solar-nav" data-lfr-editable-type="text">Solar</a>
                     <div class="dropdown-menu">
@@ -34,7 +34,7 @@
                         <a href="#" class="dropdown-item" data-lfr-editable-id="solar-benefits" data-lfr-editable-type="link">Benefits</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="heating-nav" data-lfr-editable-type="text">Heating and cooling</a>
                     <div class="dropdown-menu">
@@ -43,7 +43,7 @@
                         <a href="#" class="dropdown-item" data-lfr-editable-id="insulation" data-lfr-editable-type="link">Insulation</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="ev-nav" data-lfr-editable-type="text">EV charging</a>
                     <div class="dropdown-menu">
@@ -52,7 +52,7 @@
                         <a href="#" class="dropdown-item" data-lfr-editable-id="ev-tariffs" data-lfr-editable-type="link">EV Tariffs</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="services-nav" data-lfr-editable-type="text">Home services</a>
                     <div class="dropdown-menu">
@@ -61,7 +61,7 @@
                         <a href="#" class="dropdown-item" data-lfr-editable-id="smart-home" data-lfr-editable-type="link">Smart Home</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-lfr-editable-id="help-nav" data-lfr-editable-type="text">Help</a>
                     <div class="dropdown-menu">
@@ -71,13 +71,13 @@
                     </div>
                 </div>
             </nav>
-            
+
             <!-- User Actions -->
             <div class="navbar-actions">
                 <a href="#" class="nav-link" data-lfr-editable-id="my-account" data-lfr-editable-type="link">My account</a>
                 <a href="#" class="btn btn-primary" data-lfr-editable-id="get-quote-btn" data-lfr-editable-type="link">Get a quote</a>
             </div>
-            
+
             <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -226,31 +226,61 @@
         padding: 20px;
         gap: 0;
     }
-    
+
     .navbar-nav.active {
         display: flex;
     }
-    
+
     .nav-item {
         width: 100%;
         border-bottom: 1px solid var(--sp-border-color);
     }
-    
+
     .dropdown-menu {
         position: static;
         box-shadow: none;
         background-color: var(--sp-light-grey);
         margin-top: 10px;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
-    
+
     .account-type-toggle {
         order: -1;
         width: 100%;
         margin-bottom: 10px;
     }
+}
+
+.form-group input:invalid {
+    border-color: #dc3545;
+}
+
+.form-group .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Fix login widget control labels */
+.login-content .control-label,
+.login-content label {
+    color: var(--sp-text-primary) !important;
+    font-weight: 600;
+}
+
+/* Fix link colors throughout the header */
+.login-content a,
+.navbar a {
+    color: var(--sp-primary-green);
+    text-decoration: none;
+}
+
+.login-content a:hover,
+.navbar a:hover {
+    color: var(--sp-secondary-green);
+    text-decoration: underline;
 }
 </style>

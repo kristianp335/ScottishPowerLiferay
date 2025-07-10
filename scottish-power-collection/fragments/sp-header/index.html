@@ -154,7 +154,8 @@
     color: var(--sp-primary-green);
 }
 
-.dropdown-toggle::after {
+/* Only apply dropdown arrow to header navigation */
+.navbar .dropdown-toggle::after {
     content: '▼';
     font-size: 10px;
     margin-left: 5px;
@@ -572,6 +573,27 @@ body.menu-open {
     width: 100%;
     justify-content: center;
     margin-top: 10px;
+}
+
+/* Fix login widget control labels */
+.login-content .control-label,
+.login-content label,
+.login-content .portlet .control-label {
+    color: var(--sp-text-primary) !important;
+    font-weight: 600;
+}
+
+/* Fix link colors throughout the header */
+.login-content a,
+.navbar a {
+    color: var(--sp-primary-green);
+    text-decoration: none;
+}
+
+.login-content a:hover,
+.navbar a:hover {
+    color: var(--sp-secondary-green);
+    text-decoration: underline;
 }
 
 .register-link {
