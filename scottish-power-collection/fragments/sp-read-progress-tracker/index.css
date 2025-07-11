@@ -18,19 +18,23 @@
 
 /* Floating beside content area */
 .progress-tracker--fixed-top {
-    position: absolute;
+    position: sticky;
     top: 20px;
-    right: -80px;
+    float: right;
+    clear: both;
     max-width: 200px;
     width: 200px;
+    margin: 20px 0 20px 20px;
 }
 
 .progress-tracker--fixed-bottom {
-    position: absolute;
+    position: sticky;
     bottom: 20px;
-    right: -80px;
+    float: right;
+    clear: both;
     max-width: 200px;
     width: 200px;
+    margin: 20px 0 20px 20px;
 }
 
 .progress-tracker--inline {
@@ -138,7 +142,7 @@
 .progress-content-area {
     position: relative;
     min-height: 200px;
-    margin-right: 100px; /* Space for floating progress tracker */
+    overflow: hidden; /* Contain floated elements */
 }
 
 /* Dropzone Styling */

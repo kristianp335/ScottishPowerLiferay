@@ -129,27 +129,38 @@ function initializeProgressCalculation() {
         
         const contentRect = contentArea.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Calculate how much of the content area has been scrolled through
-        const contentTop = contentRect.top;
+        // Get absolute position of content
+        const contentTop = scrollTop + contentRect.top;
         const contentHeight = contentRect.height;
         const contentBottom = contentTop + contentHeight;
         
+        // Current viewport position
+        const viewportTop = scrollTop;
+        const viewportBottom = scrollTop + viewportHeight;
+        
         let progress = 0;
         
-        if (contentTop <= 0 && contentBottom >= viewportHeight) {
-            // Content is larger than viewport and we're in the middle
-            progress = Math.abs(contentTop) / (contentHeight - viewportHeight);
-        } else if (contentTop <= 0 && contentBottom < viewportHeight) {
-            // We've scrolled past most of the content
+        // Check if content is in view
+        if (viewportBottom > contentTop && viewportTop < contentBottom) {
+            // If viewport is past the start of content
+            if (viewportTop >= contentTop) {
+                const scrolledPastStart = viewportTop - contentTop;
+                const totalScrollable = Math.max(1, contentHeight - viewportHeight);
+                progress = Math.min(1, scrolledPastStart / totalScrollable);
+            }
+        } else if (viewportTop >= contentBottom) {
+            // Scrolled past all content
             progress = 1;
-        } else if (contentTop > 0) {
-            // Content hasn't started yet
-            progress = 0;
         }
         
-        // Ensure progress is between 0 and 1
-        progress = Math.max(0, Math.min(1, progress));
+        console.log('Progress calculation:', {
+            contentTop: Math.round(contentTop),
+            contentHeight: Math.round(contentHeight),
+            viewportTop: Math.round(viewportTop),
+            progress: Math.round(progress * 100) + '%'
+        });
         
         updateProgressDisplay(progress);
     }

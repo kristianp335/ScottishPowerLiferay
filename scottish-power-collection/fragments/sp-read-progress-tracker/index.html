@@ -22,19 +22,19 @@
     [/#if]
 
     <div class="reading-content-wrapper">
-        [#if (progressPosition!"top") == "inline"]
-            <div class="progress-tracker progress-tracker--inline ${progressStyle!"bar"}">
-                <div class="progress-bar" id="reading-progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                [#if (showPercentage!true)]
-                    <span class="progress-percentage" id="reading-percentage">0%</span>
-                [/#if]
-            </div>
-        [/#if]
-        
         <!-- Content wrapper for progress calculation - remains in DOM when dropzone has content -->
         <div class="progress-content-area" id="progress-content-area">
+            [#if (progressPosition!"top") == "inline"]
+                <div class="progress-tracker progress-tracker--inline ${progressStyle!"bar"}">
+                    <div class="progress-bar" id="reading-progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    [#if (showPercentage!true)]
+                        <span class="progress-percentage" id="reading-percentage">0%</span>
+                    [/#if]
+                </div>
+            [/#if]
+            
             <lfr-drop-zone>
                 <div class="alert alert-info text-center">
                     <h4 class="alert-heading">Content Area</h4>
