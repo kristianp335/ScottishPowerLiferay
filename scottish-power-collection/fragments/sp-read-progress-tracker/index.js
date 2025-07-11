@@ -113,16 +113,13 @@ function initializeProgressCalculation() {
         
         if (hasRealContent) {
             trackerElement.classList.add('has-content');
-            if (!isVisible) {
-                showProgressTracker();
-                startProgressTracking();
-            }
         } else {
             trackerElement.classList.remove('has-content');
-            // For now, show the tracker even without content for testing
-            showProgressTracker();
-            startProgressTracking();
         }
+        
+        // Always show tracker and start tracking regardless of content
+        showProgressTracker();
+        startProgressTracking();
         
         return hasRealContent;
     }
@@ -220,6 +217,12 @@ function initializeProgressCalculation() {
     }
     
     function startProgressTracking() {
+        // Prevent duplicate event listeners
+        if (fragmentElement.dataset.trackingStarted === 'true') {
+            return;
+        }
+        fragmentElement.dataset.trackingStarted = 'true';
+        
         // Throttled scroll handler for performance
         let ticking = false;
         
@@ -242,13 +245,13 @@ function initializeProgressCalculation() {
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', calculateReadingProgress, { passive: true });
         
-        // Force tracker to be visible immediately
-        showProgressTracker();
-        
-        // Initial calculation with delay to ensure DOM is ready
+        // Initial calculation immediately and with delay
+        calculateReadingProgress();
         setTimeout(() => {
             calculateReadingProgress();
-        }, 100);
+        }, 500);
+        
+        console.log('Progress tracking started for fragment');
     }
     
     // Always show tracker initially (for testing)
