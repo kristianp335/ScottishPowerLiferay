@@ -10,13 +10,23 @@
     document.addEventListener('DOMContentLoaded', function() {
         initializeNavigation(); // Critical for interaction
         
-        // Defer non-critical features
-        requestIdleCallback(function() {
-            initializeScrollAnimations();
-            initializeFormValidation();
-            initializeHoverEffects();
-            initializeCarousels();
-        });
+        // Defer non-critical features using requestIdleCallback
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function() {
+                initializeScrollAnimations();
+                initializeFormValidation();
+                initializeHoverEffects();
+                initializeCarousels();
+            });
+        } else {
+            // Fallback for browsers without requestIdleCallback
+            setTimeout(function() {
+                initializeScrollAnimations();
+                initializeFormValidation();
+                initializeHoverEffects();
+                initializeCarousels();
+            }, 100);
+        }
     });
     
     /**
