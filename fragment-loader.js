@@ -13,6 +13,7 @@ class FragmentLoader {
             { name: 'sp-product-cards', container: 'product-cards-fragment' },
             { name: 'sp-support-sections', container: 'support-sections-fragment' },
             { name: 'sp-awards', container: 'awards-fragment' },
+            { name: 'sp-read-progress-tracker', container: 'progress-tracker-fragment' },
             { name: 'sp-testimonials', container: 'testimonials-fragment' },
             { name: 'sp-footer', container: 'footer-fragment' }
         ];

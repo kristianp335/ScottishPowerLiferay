@@ -1,0 +1,50 @@
+{
+    "fieldSets": [
+        {
+            "fields": [
+                {
+                    "name": "progressStyle",
+                    "label": "Progress Bar Style",
+                    "description": "Choose the visual style for the progress tracker",
+                    "type": "select",
+                    "typeOptions": {
+                        "validValues": [
+                            {"value": "bar", "label": "Progress Bar"},
+                            {"value": "circle", "label": "Circular Progress"},
+                            {"value": "percentage", "label": "Percentage Only"}
+                        ]
+                    },
+                    "defaultValue": "bar"
+                },
+                {
+                    "name": "progressPosition",
+                    "label": "Progress Position",
+                    "description": "Where to display the progress tracker",
+                    "type": "select",
+                    "typeOptions": {
+                        "validValues": [
+                            {"value": "top", "label": "Top Fixed"},
+                            {"value": "bottom", "label": "Bottom Fixed"},
+                            {"value": "inline", "label": "Inline with Content"}
+                        ]
+                    },
+                    "defaultValue": "top"
+                },
+                {
+                    "name": "showPercentage",
+                    "label": "Show Percentage Text",
+                    "description": "Display the percentage number alongside the progress indicator",
+                    "type": "checkbox",
+                    "defaultValue": true
+                },
+                {
+                    "name": "enableScrollSmoothing",
+                    "label": "Enable Smooth Scrolling",
+                    "description": "Add smooth animation to progress updates",
+                    "type": "checkbox",
+                    "defaultValue": true
+                }
+            ]
+        }
+    ]
+}

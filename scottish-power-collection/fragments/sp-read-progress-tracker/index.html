@@ -1,0 +1,43 @@
+<div class="sp-read-progress-tracker">
+    [#if progressPosition.getData() == "top"]
+        <div class="progress-tracker progress-tracker--fixed-top ${progressStyle.getData()}">
+            <div class="progress-bar" id="reading-progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            [#if showPercentage.getData()]
+                <span class="progress-percentage" id="reading-percentage">0%</span>
+            [/#if]
+        </div>
+    [/#if]
+    
+    [#if progressPosition.getData() == "bottom"]
+        <div class="progress-tracker progress-tracker--fixed-bottom ${progressStyle.getData()}">
+            <div class="progress-bar" id="reading-progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            [#if showPercentage.getData()]
+                <span class="progress-percentage" id="reading-percentage">0%</span>
+            [/#if]
+        </div>
+    [/#if]
+
+    <div class="reading-content-wrapper">
+        [#if progressPosition.getData() == "inline"]
+            <div class="progress-tracker progress-tracker--inline ${progressStyle.getData()}">
+                <div class="progress-bar" id="reading-progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                [#if showPercentage.getData()]
+                    <span class="progress-percentage" id="reading-percentage">0%</span>
+                [/#if]
+            </div>
+        [/#if]
+        
+        <lfr-dropzone>
+            <div class="alert alert-info text-center">
+                <h4 class="alert-heading">Content Area</h4>
+                <p class="mb-0">Drop your content here. The progress tracker will automatically calculate reading progress based on scroll position through this content.</p>
+            </div>
+        </lfr-dropzone>
+    </div>
+</div>

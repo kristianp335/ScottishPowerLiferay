@@ -181,6 +181,17 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 
 ## Recent Changes
 
+**July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
+- ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes
+- ✓ Implemented <lfr-dropzone> for content editors to add readable content
+- ✓ Added intelligent reading progress calculation based on scroll position through dropzone content
+- ✓ Multiple progress display styles: progress bar, circular progress, percentage only
+- ✓ Configurable positioning: top fixed, bottom fixed, or inline with content
+- ✓ Smooth animation and performance-optimized scroll tracking
+- ✓ Edit mode detection with demo progress display for Liferay Experience Designer
+- ✓ Full SennaJS support for SPA navigation compatibility
+- ✓ Responsive design with mobile-optimized layouts
+
 **July 11, 2025** - Performance optimizations for improved Lighthouse scores:
 - ✓ Reduced CSS bundle size by minifying selectors and removing redundant styles
 - ✓ Optimized JavaScript execution with requestIdleCallback for non-critical features
