@@ -4,7 +4,7 @@
   "htmlPath": "index.html",
   "cssPath": "index.css",
   "icon": "analytics",
-  "name": "Scottish Power Read Progress Tracker",
+  "name": "sp-read-progress-tracker",
   "thumbnailPath": "thumbnail.png",
   "type": "component"
 }
