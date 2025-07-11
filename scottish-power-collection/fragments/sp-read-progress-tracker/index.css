@@ -26,15 +26,15 @@
     width: 100%;
 }
 
-.progress-tracker-inline-container--left {
+.progress-tracker-inline-container--inline-left {
     justify-content: flex-start;
 }
 
-.progress-tracker-inline-container--center {
+.progress-tracker-inline-container--inline-center {
     justify-content: center;
 }
 
-.progress-tracker-inline-container--right {
+.progress-tracker-inline-container--inline-right {
     justify-content: flex-end;
 }
 
@@ -93,17 +93,15 @@
     position: fixed;
     top: 70px; /* 20px + 50px offset */
     z-index: 1000;
-    animation: slideInFixed 0.3s ease-out;
+    animation: fadeInFixed 0.15s ease-out;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes slideInFixed {
+@keyframes fadeInFixed {
     from {
-        transform: translateX(100%);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
         opacity: 1;
     }
 }

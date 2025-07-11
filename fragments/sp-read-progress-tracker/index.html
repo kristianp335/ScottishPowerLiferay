@@ -1,10 +1,7 @@
 <div class="sp-read-progress-tracker">
     <div class="reading-content-wrapper">
         <!-- Inline progress tracker container above content area -->
-        <div class="progress-tracker-inline-container 
-            [#if (progressPosition!"inline-center") == "inline-left"]progress-tracker-inline-container--left[/#if]
-            [#if (progressPosition!"inline-center") == "inline-center"]progress-tracker-inline-container--center[/#if]
-            [#if (progressPosition!"inline-center") == "inline-right"]progress-tracker-inline-container--right[/#if]">
+        <div class="progress-tracker-inline-container progress-tracker-inline-container--${progressPosition!"inline-center"}">
             <div class="progress-tracker progress-tracker--inline">
                 <div class="progress-bar" id="reading-progress-bar">
                     <div class="progress-fill"></div>

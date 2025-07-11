@@ -245,9 +245,12 @@ function initializeProgressCalculation() {
             // If user has scrolled past the tracker's original position (with 50px offset)
             if (scrollTop > (originalTop + 50) && !isFixed) {
                 // Get the original alignment from container classes
-                const isLeft = trackerContainer.classList.contains('progress-tracker-inline-container--left');
-                const isRight = trackerContainer.classList.contains('progress-tracker-inline-container--right');
-                const isCenter = trackerContainer.classList.contains('progress-tracker-inline-container--center');
+                const isLeft = trackerContainer.classList.contains('progress-tracker-inline-container--inline-left');
+                const isRight = trackerContainer.classList.contains('progress-tracker-inline-container--inline-right');
+                const isCenter = trackerContainer.classList.contains('progress-tracker-inline-container--inline-center');
+                
+                console.log('Container classes:', trackerContainer.className);
+                console.log('Alignment detection:', { isLeft, isRight, isCenter });
                 
                 // Switch to fixed position with same alignment
                 progressTracker.classList.add('fixed-position');
