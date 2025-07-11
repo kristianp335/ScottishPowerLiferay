@@ -200,11 +200,13 @@ function initializeProgressCalculation() {
             progressPercentage.textContent = `${percentage}%`;
         }
         
-        // Add completion effect
+        // Add completion effect and check if user scrolled beyond content
         if (percentage === 100) {
             progressTracker.classList.add('completed');
             setTimeout(() => {
                 progressTracker.classList.remove('completed');
+                // Check if user has scrolled well beyond the content area
+                checkForRemoval();
             }, 2000);
         }
     }
@@ -234,6 +236,7 @@ function initializeProgressCalculation() {
         function updateProgress() {
             calculateReadingProgress();
             handleInlineToFixed();
+            checkForRemoval();
             ticking = false;
         }
         
@@ -242,8 +245,8 @@ function initializeProgressCalculation() {
             
             const scrollTop = window.pageYOffset;
             
-            // If user has scrolled past the tracker's original position (with 50px offset)
-            if (scrollTop > (originalTop + 50) && !isFixed) {
+            // If user has scrolled past the tracker's original position (with 20px offset for earlier activation)
+            if (scrollTop > (originalTop + 20) && !isFixed) {
                 // Get the original alignment from container classes
                 const isLeft = trackerContainer.classList.contains('progress-tracker-inline-container--inline-left');
                 const isRight = trackerContainer.classList.contains('progress-tracker-inline-container--inline-right');
@@ -273,7 +276,7 @@ function initializeProgressCalculation() {
                 
                 isFixed = true;
                 console.log('Progress tracker switched to fixed position with alignment:', isLeft ? 'left' : isRight ? 'right' : 'center');
-            } else if (scrollTop <= (originalTop + 50) && isFixed) {
+            } else if (scrollTop <= (originalTop + 20) && isFixed) {
                 // Switch back to inline position
                 progressTracker.classList.remove('fixed-position', 'fixed-left', 'fixed-right', 'fixed-center');
                 progressTracker.style.left = '';
@@ -281,6 +284,33 @@ function initializeProgressCalculation() {
                 progressTracker.style.transform = '';
                 isFixed = false;
                 console.log('Progress tracker switched back to inline position');
+            }
+        }
+        
+        function checkForRemoval() {
+            if (!contentArea || !progressTracker) return;
+            
+            const scrollTop = window.pageYOffset;
+            const contentRect = contentArea.getBoundingClientRect();
+            const contentBottom = contentRect.bottom + scrollTop;
+            const viewportHeight = window.innerHeight;
+            
+            // If user has scrolled significantly past the content (200px beyond)
+            if (scrollTop > (contentBottom + 200) && currentProgress >= 100) {
+                progressTracker.style.opacity = '0';
+                progressTracker.style.transition = 'opacity 0.3s ease-out';
+                setTimeout(() => {
+                    if (progressTracker.style.opacity === '0') {
+                        progressTracker.style.display = 'none';
+                    }
+                }, 300);
+                console.log('Progress tracker hidden - user scrolled past completed content');
+            } else if (scrollTop <= (contentBottom + 100) && progressTracker.style.display === 'none') {
+                // Show tracker again if user scrolls back up
+                progressTracker.style.display = 'block';
+                progressTracker.style.opacity = '1';
+                progressTracker.style.transition = 'opacity 0.3s ease-in';
+                console.log('Progress tracker shown again - user scrolled back to content');
             }
         }
         
