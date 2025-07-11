@@ -110,34 +110,36 @@ function initializeProgressCalculation() {
         const viewportHeight = window.innerHeight;
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Get absolute position of content
-        const contentTop = scrollTop + contentRect.top;
-        const contentHeight = contentRect.height;
-        const contentBottom = contentTop + contentHeight;
+        // Get element position relative to document
+        const elementTop = contentRect.top + scrollTop;
+        const elementHeight = contentRect.height;
+        const elementBottom = elementTop + elementHeight;
         
-        // Current viewport position
-        const viewportTop = scrollTop;
-        const viewportBottom = scrollTop + viewportHeight;
-        
+        // Calculate reading progress based on how much content has been scrolled through
         let progress = 0;
         
-        // Check if content is in view
-        if (viewportBottom > contentTop && viewportTop < contentBottom) {
-            // If viewport is past the start of content
-            if (viewportTop >= contentTop) {
-                const scrolledPastStart = viewportTop - contentTop;
-                const totalScrollable = Math.max(1, contentHeight - viewportHeight);
-                progress = Math.min(1, scrolledPastStart / totalScrollable);
+        if (scrollTop >= elementTop) {
+            // We're at or past the start of the content
+            if (scrollTop >= elementBottom - viewportHeight) {
+                // We've scrolled to see all the content
+                progress = 1;
+            } else {
+                // Calculate progress based on how much we've scrolled through
+                const scrolledPast = scrollTop - elementTop;
+                const totalScrollable = Math.max(1, elementHeight - viewportHeight);
+                progress = Math.min(1, Math.max(0, scrolledPast / totalScrollable));
             }
-        } else if (viewportTop >= contentBottom) {
-            // Scrolled past all content
-            progress = 1;
+        }
+        
+        // Add some progress even when content is visible but not fully scrolled
+        if (progress === 0 && contentRect.top < viewportHeight && contentRect.bottom > 0) {
+            progress = 0.1; // Show 10% when content is in view
         }
         
         console.log('Progress calculation:', {
-            contentTop: Math.round(contentTop),
-            contentHeight: Math.round(contentHeight),
-            viewportTop: Math.round(viewportTop),
+            elementTop: Math.round(elementTop),
+            elementHeight: Math.round(elementHeight),
+            scrollTop: Math.round(scrollTop),
             progress: Math.round(progress * 100) + '%'
         });
         

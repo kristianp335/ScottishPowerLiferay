@@ -16,25 +16,35 @@
     transition: all 0.3s ease;
 }
 
-/* Floating beside content area */
+/* Floating over content area */
 .progress-tracker--fixed-top {
-    position: sticky;
+    position: fixed;
     top: 20px;
-    float: right;
-    clear: both;
-    max-width: 200px;
-    width: 200px;
-    margin: 20px 0 20px 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 250px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 166, 81, 0.2);
 }
 
 .progress-tracker--fixed-bottom {
-    position: sticky;
+    position: fixed;
     bottom: 20px;
-    float: right;
-    clear: both;
-    max-width: 200px;
-    width: 200px;
-    margin: 20px 0 20px 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 250px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 166, 81, 0.2);
 }
 
 .progress-tracker--inline {
