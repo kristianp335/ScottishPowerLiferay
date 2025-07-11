@@ -21,32 +21,13 @@
         </div>
     [/#if]
     
-    [#if (progressPosition!"top") == "center-float-left"]
-        <div class="progress-tracker progress-tracker--center-float-left ${progressStyle!"bar"}">
-            <div class="progress-bar" id="reading-progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            [#if (showPercentage!true)]
-                <span class="progress-percentage" id="reading-percentage">0%</span>
-            [/#if]
-        </div>
-    [/#if]
-    
-    [#if (progressPosition!"top") == "center-float-right"]
-        <div class="progress-tracker progress-tracker--center-float-right ${progressStyle!"bar"}">
-            <div class="progress-bar" id="reading-progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            [#if (showPercentage!true)]
-                <span class="progress-percentage" id="reading-percentage">0%</span>
-            [/#if]
-        </div>
-    [/#if]
-
     <div class="reading-content-wrapper">
-        <!-- Content wrapper for progress calculation - remains in DOM when dropzone has content -->
-        <div class="progress-content-area" id="progress-content-area">
-            [#if (progressPosition!"top") == "inline"]
+        <!-- Inline progress tracker container above content area -->
+        [#if (progressPosition!"top") == "inline-left" || (progressPosition!"top") == "inline-center" || (progressPosition!"top") == "inline-right"]
+            <div class="progress-tracker-inline-container 
+                [#if (progressPosition!"top") == "inline-left"]progress-tracker-inline-container--left[/#if]
+                [#if (progressPosition!"top") == "inline-center"]progress-tracker-inline-container--center[/#if]
+                [#if (progressPosition!"top") == "inline-right"]progress-tracker-inline-container--right[/#if]">
                 <div class="progress-tracker progress-tracker--inline ${progressStyle!"bar"}">
                     <div class="progress-bar" id="reading-progress-bar">
                         <div class="progress-fill"></div>
@@ -55,7 +36,11 @@
                         <span class="progress-percentage" id="reading-percentage">0%</span>
                     [/#if]
                 </div>
-            [/#if]
+            </div>
+        [/#if]
+        
+        <!-- Content wrapper for progress calculation - remains in DOM when dropzone has content -->
+        <div class="progress-content-area" id="progress-content-area">
             
             <lfr-drop-zone>
                 <div class="alert alert-info text-center">

@@ -47,48 +47,31 @@
     border: 1px solid rgba(0, 166, 81, 0.2);
 }
 
-.progress-tracker--inline {
+/* Inline progress tracker container above content area */
+.progress-tracker-inline-container {
     margin: 20px 0;
-    position: sticky;
-    top: 20px;
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
 }
 
-.progress-tracker--center-float-left {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    z-index: 100;
-    max-width: 250px;
-    width: 250px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 166, 81, 0.2);
+.progress-tracker-inline-container--left {
+    justify-content: flex-start;
 }
 
-.progress-tracker--center-float-right {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    z-index: 100;
-    max-width: 250px;
-    width: 250px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 166, 81, 0.2);
+.progress-tracker-inline-container--center {
+    justify-content: center;
 }
 
-/* Ensure the progress content area can contain absolute positioned elements */
-.sp-read-progress-tracker .progress-content-area {
+.progress-tracker-inline-container--right {
+    justify-content: flex-end;
+}
+
+.progress-tracker--inline {
     position: relative;
-    min-height: 200px;
+    max-width: 300px;
+    width: auto;
+    min-width: 200px;
 }
 
 /* Progress Bar Styles */
