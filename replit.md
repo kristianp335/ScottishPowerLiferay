@@ -181,6 +181,14 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 
 ## Recent Changes
 
+**July 11, 2025** - Enhanced sp-read-progress-tracker with advanced positioning and auto-hide behavior:
+- ✓ Earlier fixed position activation (20px offset instead of 50px) for better sticky header compatibility
+- ✓ Auto-hide functionality when reading complete (100%) and user scrolls 200px beyond content
+- ✓ Auto-show when user scrolls back to content area with smooth fade transitions
+- ✓ Fixed position top increased to 100px for better spacing from sticky header
+- ✓ Faster fade-in animation (0.15s) when switching to fixed position
+- → **Current Issue**: Left/right alignment configuration not applying correctly - debugging added to identify template variable issue
+
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes
 - ✓ Implemented <lfr-drop-zone> with correct Liferay syntax for content editors

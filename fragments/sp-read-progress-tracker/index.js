@@ -73,6 +73,13 @@ function initializeProgressCalculation() {
         progressTracker: !!progressTracker
     });
     
+    // Debug the container classes to see what's actually being applied
+    const trackerContainer = fragmentElement.querySelector('.progress-tracker-inline-container');
+    if (trackerContainer) {
+        console.log('Container element classes:', trackerContainer.className);
+        console.log('Container classList:', Array.from(trackerContainer.classList));
+    }
+    
     if (!contentArea || !progressFill) {
         console.log('Missing required elements for progress tracker');
         return;
