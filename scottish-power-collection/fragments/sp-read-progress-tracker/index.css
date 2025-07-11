@@ -136,6 +136,12 @@
     position: relative;
 }
 
+/* Progress Content Area - wrapper for calculation */
+.progress-content-area {
+    position: relative;
+    min-height: 200px;
+}
+
 /* Dropzone Styling */
 lfr-drop-zone {
     display: block;

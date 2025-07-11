@@ -43,13 +43,14 @@ function initializeProgressCalculation() {
     const trackerElement = document.querySelector('.sp-read-progress-tracker');
     if (!trackerElement) return;
     
-    const dropzone = trackerElement.querySelector('lfr-drop-zone');
+    // Use the content area wrapper instead of dropzone (which disappears when content is added)
+    const contentArea = trackerElement.querySelector('.progress-content-area');
     const progressFill = trackerElement.querySelector('.progress-fill');
     const progressPercentage = trackerElement.querySelector('.progress-percentage');
     const progressBar = trackerElement.querySelector('.progress-bar');
     const progressTracker = trackerElement.querySelector('.progress-tracker');
     
-    if (!dropzone || !progressFill) return;
+    if (!contentArea || !progressFill) return;
     
     let isVisible = false;
     let currentProgress = 0;
@@ -59,9 +60,20 @@ function initializeProgressCalculation() {
         trackerElement.querySelector('[data-smooth-scrolling]').dataset.smoothScrolling === 'true' : true;
     
     function checkForContent() {
-        // Check if dropzone has actual content (not just the placeholder)
-        const hasRealContent = dropzone.children.length > 1 || 
-            (dropzone.children.length === 1 && !dropzone.querySelector('.alert'));
+        if (!contentArea) return false;
+        
+        // Check if content area has actual content (beyond the default dropzone alert)
+        const dropzone = contentArea.querySelector('lfr-drop-zone');
+        let hasRealContent = false;
+        
+        if (!dropzone) {
+            // Dropzone has been replaced with content
+            hasRealContent = contentArea.children.length > 0;
+        } else {
+            // Check if dropzone has been populated with content
+            hasRealContent = dropzone.children.length > 1 || 
+                (dropzone.children.length === 1 && !dropzone.querySelector('.alert'));
+        }
         
         if (hasRealContent) {
             trackerElement.classList.add('has-content');
@@ -73,6 +85,8 @@ function initializeProgressCalculation() {
             trackerElement.classList.remove('has-content');
             hideProgressTracker();
         }
+        
+        return hasRealContent;
     }
     
     function showProgressTracker() {
@@ -90,25 +104,25 @@ function initializeProgressCalculation() {
     }
     
     function calculateReadingProgress() {
-        if (!dropzone || !isVisible) return;
+        if (!contentArea || !isVisible) return;
         
-        const dropzoneRect = dropzone.getBoundingClientRect();
+        const contentRect = contentArea.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Calculate how much of the dropzone content has been scrolled through
-        const dropzoneTop = dropzoneRect.top;
-        const dropzoneHeight = dropzoneRect.height;
-        const dropzoneBottom = dropzoneTop + dropzoneHeight;
+        // Calculate how much of the content area has been scrolled through
+        const contentTop = contentRect.top;
+        const contentHeight = contentRect.height;
+        const contentBottom = contentTop + contentHeight;
         
         let progress = 0;
         
-        if (dropzoneTop <= 0 && dropzoneBottom >= viewportHeight) {
+        if (contentTop <= 0 && contentBottom >= viewportHeight) {
             // Content is larger than viewport and we're in the middle
-            progress = Math.abs(dropzoneTop) / (dropzoneHeight - viewportHeight);
-        } else if (dropzoneTop <= 0 && dropzoneBottom < viewportHeight) {
+            progress = Math.abs(contentTop) / (contentHeight - viewportHeight);
+        } else if (contentTop <= 0 && contentBottom < viewportHeight) {
             // We've scrolled past most of the content
             progress = 1;
-        } else if (dropzoneTop > 0) {
+        } else if (contentTop > 0) {
             // Content hasn't started yet
             progress = 0;
         }

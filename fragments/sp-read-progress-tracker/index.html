@@ -33,11 +33,14 @@
             </div>
         [/#if]
         
-        <lfr-drop-zone>
-            <div class="alert alert-info text-center">
-                <h4 class="alert-heading">Content Area</h4>
-                <p class="mb-0">Drop your content here. The progress tracker will automatically calculate reading progress based on scroll position through this content.</p>
-            </div>
-        </lfr-drop-zone>
+        <!-- Content wrapper for progress calculation - remains in DOM when dropzone has content -->
+        <div class="progress-content-area" id="progress-content-area">
+            <lfr-drop-zone>
+                <div class="alert alert-info text-center">
+                    <h4 class="alert-heading">Content Area</h4>
+                    <p class="mb-0">Drop your content here. The progress tracker will automatically calculate reading progress based on scroll position through this content.</p>
+                </div>
+            </lfr-drop-zone>
+        </div>
     </div>
 </div>
