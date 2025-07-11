@@ -142,6 +142,12 @@
     min-height: 200px;
 }
 
+/* Progress Content Area - wrapper for calculation */
+.progress-content-area {
+    position: relative;
+    min-height: 200px;
+}
+
 /* Dropzone Styling */
 lfr-drop-zone {
     display: block;
@@ -174,6 +180,13 @@ lfr-drop-zone:not(:empty) {
 
 lfr-drop-zone:not(:empty) .alert {
     display: none;
+}
+
+/* Force Progress Tracker Visibility for Testing */
+.sp-read-progress-tracker .progress-tracker {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Responsive Design */

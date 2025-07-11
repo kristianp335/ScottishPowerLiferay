@@ -190,16 +190,23 @@ function initializeProgressCalculation() {
         calculateReadingProgress();
     }
     
-    // Watch for content changes in dropzone
-    const observer = new MutationObserver(checkForContent);
-    observer.observe(dropzone, {
+    // Always show tracker initially (for testing)
+    showProgressTracker();
+    
+    // Watch for content changes in content area
+    const observer = new MutationObserver(() => {
+        setTimeout(checkForContent, 100);
+    });
+    observer.observe(contentArea, {
         childList: true,
         subtree: true,
         attributes: false
     });
     
-    // Initial content check
-    checkForContent();
+    // Initial content check with delay
+    setTimeout(() => {
+        checkForContent();
+    }, 100);
 }
 
 // Initialize on DOM ready

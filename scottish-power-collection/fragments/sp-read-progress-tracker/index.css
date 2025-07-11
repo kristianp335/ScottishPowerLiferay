@@ -176,6 +176,13 @@ lfr-drop-zone:not(:empty) .alert {
     display: none;
 }
 
+/* Force Progress Tracker Visibility for Testing */
+.sp-read-progress-tracker .progress-tracker {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .progress-tracker--fixed-top,

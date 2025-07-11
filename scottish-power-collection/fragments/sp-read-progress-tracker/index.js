@@ -41,7 +41,10 @@ function initializeForEditMode() {
 
 function initializeProgressCalculation() {
     const trackerElement = document.querySelector('.sp-read-progress-tracker');
-    if (!trackerElement) return;
+    if (!trackerElement) {
+        console.log('Progress tracker element not found');
+        return;
+    }
     
     // Use the content area wrapper instead of dropzone (which disappears when content is added)
     const contentArea = trackerElement.querySelector('.progress-content-area');
@@ -50,7 +53,17 @@ function initializeProgressCalculation() {
     const progressBar = trackerElement.querySelector('.progress-bar');
     const progressTracker = trackerElement.querySelector('.progress-tracker');
     
-    if (!contentArea || !progressFill) return;
+    console.log('Progress tracker elements found:', {
+        trackerElement: !!trackerElement,
+        contentArea: !!contentArea,
+        progressFill: !!progressFill,
+        progressTracker: !!progressTracker
+    });
+    
+    if (!contentArea || !progressFill) {
+        console.log('Missing required elements for progress tracker');
+        return;
+    }
     
     let isVisible = false;
     let currentProgress = 0;
@@ -69,11 +82,15 @@ function initializeProgressCalculation() {
         if (!dropzone) {
             // Dropzone has been replaced with content
             hasRealContent = contentArea.children.length > 0;
+            console.log('Dropzone replaced with content, children count:', contentArea.children.length);
         } else {
             // Check if dropzone has been populated with content
             hasRealContent = dropzone.children.length > 1 || 
                 (dropzone.children.length === 1 && !dropzone.querySelector('.alert'));
+            console.log('Dropzone found, children count:', dropzone.children.length, 'has alert:', !!dropzone.querySelector('.alert'));
         }
+        
+        console.log('Content check result:', hasRealContent);
         
         if (hasRealContent) {
             trackerElement.classList.add('has-content');
@@ -83,7 +100,9 @@ function initializeProgressCalculation() {
             }
         } else {
             trackerElement.classList.remove('has-content');
-            hideProgressTracker();
+            // For now, show the tracker even without content for testing
+            showProgressTracker();
+            startProgressTracking();
         }
         
         return hasRealContent;
@@ -92,7 +111,9 @@ function initializeProgressCalculation() {
     function showProgressTracker() {
         if (progressTracker) {
             progressTracker.classList.add('visible');
+            progressTracker.style.display = 'block';
             isVisible = true;
+            console.log('Progress tracker made visible');
         }
     }
     
@@ -190,16 +211,23 @@ function initializeProgressCalculation() {
         calculateReadingProgress();
     }
     
-    // Watch for content changes in dropzone
-    const observer = new MutationObserver(checkForContent);
-    observer.observe(dropzone, {
+    // Always show tracker initially (for testing)
+    showProgressTracker();
+    
+    // Watch for content changes in content area
+    const observer = new MutationObserver(() => {
+        setTimeout(checkForContent, 100);
+    });
+    observer.observe(contentArea, {
         childList: true,
         subtree: true,
         attributes: false
     });
     
-    // Initial content check
-    checkForContent();
+    // Initial content check with delay
+    setTimeout(() => {
+        checkForContent();
+    }, 100);
 }
 
 // Initialize on DOM ready
