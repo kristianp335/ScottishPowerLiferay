@@ -1,0 +1,222 @@
+.sp-read-progress-tracker {
+    position: relative;
+}
+
+/* Progress Tracker Styles */
+.progress-tracker {
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 12px 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Fixed Positioning */
+.progress-tracker--fixed-top {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.progress-tracker--fixed-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.progress-tracker--inline {
+    margin: 20px 0;
+    position: sticky;
+    top: 20px;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00A651, #004225);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Circular Progress Style */
+.circle .progress-bar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#00A651 0deg, #e9ecef 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.circle .progress-fill {
+    display: none;
+}
+
+.circle .progress-bar::before {
+    content: '';
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Percentage Text */
+.progress-percentage {
+    font-weight: 600;
+    font-size: 14px;
+    color: #00A651;
+    min-width: 40px;
+    text-align: right;
+}
+
+.circle .progress-percentage {
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    color: #004225;
+}
+
+/* Percentage Only Style */
+.percentage .progress-bar {
+    display: none;
+}
+
+.percentage .progress-percentage {
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00A651, #004225);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Content Wrapper */
+.reading-content-wrapper {
+    position: relative;
+}
+
+/* Dropzone Styling */
+lfr-dropzone {
+    display: block;
+    min-height: 200px;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    position: relative;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+lfr-dropzone:hover {
+    border-color: #00A651;
+    background: #f0f8f3;
+}
+
+lfr-dropzone .alert {
+    margin: 40px 20px;
+    border: none;
+    background: rgba(0, 166, 81, 0.1);
+    color: #004225;
+}
+
+/* When content is added to dropzone */
+lfr-dropzone:not(:empty) {
+    border: none;
+    background: transparent;
+    min-height: auto;
+}
+
+lfr-dropzone:not(:empty) .alert {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .progress-tracker--fixed-top,
+    .progress-tracker--fixed-bottom {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        padding: 8px 16px;
+    }
+    
+    .progress-percentage {
+        font-size: 12px;
+        min-width: 35px;
+    }
+    
+    .circle .progress-bar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .circle .progress-bar::before {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Hide progress tracker when no content */
+.sp-read-progress-tracker:not(.has-content) .progress-tracker {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animation for progress tracker appearance */
+.progress-tracker.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.progress-tracker--fixed-top {
+    transform: translateY(-100%);
+}
+
+.progress-tracker--fixed-bottom {
+    transform: translateY(100%);
+}
+
+.progress-tracker--inline {
+    transform: translateY(-20px);
+    opacity: 0;
+}
