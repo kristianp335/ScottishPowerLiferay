@@ -88,12 +88,18 @@ function initializeProgressCalculation() {
     function checkForContent() {
         if (!contentArea) return false;
         
-        // Check if content area has actual content (beyond the default dropzone alert)
+        // Look for Liferay layout structure items (actual dropped content)
+        const layoutItems = contentArea.querySelectorAll('.lfr-layout-structure-item-basic-component-html, .lfr-layout-structure-item, [data-layout-structure-item-id]');
         const dropzone = contentArea.querySelector('lfr-drop-zone');
+        
         let hasRealContent = false;
         
-        if (!dropzone) {
-            // Dropzone has been replaced with content
+        if (layoutItems.length > 0) {
+            // Found Liferay layout structure items - this is actual dropped content
+            hasRealContent = true;
+            console.log('Found Liferay layout items:', layoutItems.length);
+        } else if (!dropzone) {
+            // Dropzone has been replaced with other content
             hasRealContent = contentArea.children.length > 0;
             console.log('Dropzone replaced with content, children count:', contentArea.children.length);
         } else {
@@ -103,7 +109,7 @@ function initializeProgressCalculation() {
             console.log('Dropzone found, children count:', dropzone.children.length, 'has alert:', !!dropzone.querySelector('.alert'));
         }
         
-        console.log('Content check result:', hasRealContent);
+        console.log('Content check result:', hasRealContent, 'Layout items found:', layoutItems.length);
         
         if (hasRealContent) {
             trackerElement.classList.add('has-content');
@@ -140,76 +146,44 @@ function initializeProgressCalculation() {
     function calculateReadingProgress() {
         if (!contentArea || !isVisible) return;
         
-        // Get all actual content elements inside the content area
-        const allContentElements = contentArea.querySelectorAll('*:not(.alert):not(lfr-drop-zone)');
-        
-        if (allContentElements.length === 0) {
-            console.log('No content found to track');
-            return;
-        }
-        
-        // Calculate the full content area bounds including all dropped content
-        let topMostElement = null;
-        let bottomMostElement = null;
-        let totalHeight = 0;
-        
-        for (let element of allContentElements) {
-            const rect = element.getBoundingClientRect();
-            const elementTop = rect.top + window.pageYOffset;
-            const elementBottom = rect.bottom + window.pageYOffset;
-            
-            if (!topMostElement || elementTop < (topMostElement.getBoundingClientRect().top + window.pageYOffset)) {
-                topMostElement = element;
-            }
-            if (!bottomMostElement || elementBottom > (bottomMostElement.getBoundingClientRect().bottom + window.pageYOffset)) {
-                bottomMostElement = element;
-            }
-        }
-        
-        if (!topMostElement || !bottomMostElement) {
-            console.log('Could not determine content bounds');
-            return;
-        }
-        
-        // Calculate reading progress based on scroll position through all content
-        const topRect = topMostElement.getBoundingClientRect();
-        const bottomRect = bottomMostElement.getBoundingClientRect();
+        // Find the specific content container - the progress-content-area div itself
+        const contentRect = contentArea.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        
-        // Content bounds
-        const contentTop = topRect.top + window.pageYOffset;
-        const contentBottom = bottomRect.bottom + window.pageYOffset;
-        const contentHeight = contentBottom - contentTop;
-        
-        // Current scroll position
         const scrollTop = window.pageYOffset;
-        const viewportTop = scrollTop;
-        const viewportBottom = scrollTop + viewportHeight;
         
+        // Get absolute positions
+        const contentTop = contentRect.top + scrollTop;
+        const contentBottom = contentRect.bottom + scrollTop;
+        const contentHeight = contentRect.height;
+        
+        // Calculate progress based on how much of the content area has been scrolled through
         let progress = 0;
         
-        if (viewportTop >= contentBottom) {
-            // Scrolled past all content
+        if (scrollTop + viewportHeight >= contentBottom) {
+            // Bottom of content is visible (fully read)
             progress = 1;
-        } else if (viewportBottom <= contentTop) {
-            // Haven't reached content yet
-            progress = 0;
-        } else {
-            // Calculate progress based on how much content has been scrolled through
-            const scrolledPastStart = Math.max(0, viewportTop - contentTop);
-            const totalScrollableDistance = Math.max(1, contentHeight - viewportHeight);
-            progress = Math.min(1, scrolledPastStart / totalScrollableDistance);
+        } else if (scrollTop >= contentTop) {
+            // Started reading content
+            const scrolledIntoContent = (scrollTop + viewportHeight) - contentTop;
+            const totalReadableHeight = contentHeight;
+            progress = Math.min(1, Math.max(0, scrolledIntoContent / totalReadableHeight));
+        } else if (scrollTop + viewportHeight > contentTop) {
+            // Content is partially visible at bottom of viewport
+            const visibleHeight = (scrollTop + viewportHeight) - contentTop;
+            progress = Math.min(0.1, visibleHeight / contentHeight);
         }
+        
+        // Ensure progress is between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
         
         console.log('Progress calculation:', {
             contentTop: Math.round(contentTop),
             contentBottom: Math.round(contentBottom),
             contentHeight: Math.round(contentHeight),
             scrollTop: Math.round(scrollTop),
-            viewportTop: Math.round(viewportTop),
-            viewportBottom: Math.round(viewportBottom),
-            progress: Math.round(progress * 100) + '%',
-            elementsFound: allContentElements.length
+            viewportHeight: Math.round(viewportHeight),
+            scrollPlusViewport: Math.round(scrollTop + viewportHeight),
+            progress: Math.round(progress * 100) + '%'
         });
         
         updateProgressDisplay(progress);
