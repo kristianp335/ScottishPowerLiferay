@@ -1,5 +1,18 @@
 function initializeReadProgressTracker() {
-    if (window.spReadProgressTracker && window.spReadProgressTracker.initialized) return;
+    // Use fragmentElement for proper scoping - each fragment instance is independent
+    if (!fragmentElement) {
+        console.error('fragmentElement not available - cannot initialize progress tracker');
+        return;
+    }
+    
+    // Check if this specific fragment instance is already initialized
+    if (fragmentElement.dataset.progressInitialized === 'true') {
+        console.log('Read progress tracker already initialized for this fragment instance');
+        return;
+    }
+    
+    // Mark this fragment instance as initialized
+    fragmentElement.dataset.progressInitialized = 'true';
     
     const editMode = document.body.classList.contains('has-edit-mode-menu');
     if (editMode) {
@@ -9,7 +22,6 @@ function initializeReadProgressTracker() {
     
     try {
         initializeProgressCalculation();
-        window.spReadProgressTracker = { initialized: true };
     } catch (error) {
         console.error('Error initializing read progress tracker:', error);
     }
@@ -17,7 +29,7 @@ function initializeReadProgressTracker() {
 
 function initializeForEditMode() {
     // In edit mode, show the tracker but don't activate scroll tracking
-    const trackerElement = document.querySelector('.sp-read-progress-tracker');
+    const trackerElement = fragmentElement.querySelector('.sp-read-progress-tracker');
     if (trackerElement) {
         trackerElement.classList.add('has-content');
         const progressFill = trackerElement.querySelector('.progress-fill');
@@ -40,18 +52,19 @@ function initializeForEditMode() {
 }
 
 function initializeProgressCalculation() {
-    const trackerElement = document.querySelector('.sp-read-progress-tracker');
+    // Use fragmentElement to scope to this specific fragment instance
+    const trackerElement = fragmentElement.querySelector('.sp-read-progress-tracker');
     if (!trackerElement) {
-        console.log('Progress tracker element not found');
+        console.log('Progress tracker element not found in fragment');
         return;
     }
     
-    // Use the content area wrapper instead of dropzone (which disappears when content is added)
-    const contentArea = trackerElement.querySelector('.progress-content-area');
-    const progressFill = trackerElement.querySelector('.progress-fill');
-    const progressPercentage = trackerElement.querySelector('.progress-percentage');
-    const progressBar = trackerElement.querySelector('.progress-bar');
-    const progressTracker = trackerElement.querySelector('.progress-tracker');
+    // Find the content area that contains the dropped content
+    const contentArea = fragmentElement.querySelector('.progress-content-area');
+    const progressFill = fragmentElement.querySelector('.progress-fill');
+    const progressPercentage = fragmentElement.querySelector('.progress-percentage');
+    const progressBar = fragmentElement.querySelector('.progress-bar');
+    const progressTracker = fragmentElement.querySelector('.progress-tracker');
     
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
@@ -127,45 +140,76 @@ function initializeProgressCalculation() {
     function calculateReadingProgress() {
         if (!contentArea || !isVisible) return;
         
-        const contentRect = contentArea.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // Get all actual content elements inside the content area
+        const allContentElements = contentArea.querySelectorAll('*:not(.alert):not(lfr-drop-zone)');
         
-        // Get element position relative to document
-        const elementTop = contentRect.top + scrollTop;
-        const elementHeight = contentRect.height;
-        const elementBottom = elementTop + elementHeight;
-        
-        // Calculate reading progress based on how much content has been scrolled through
-        let progress = 0;
-        
-        // Simple calculation: if element is in view, start progress
-        if (contentRect.top < viewportHeight && contentRect.bottom > 0) {
-            // Element is visible in viewport
-            if (contentRect.top <= 0) {
-                // Element top has passed viewport top
-                const scrolledIntoElement = Math.abs(contentRect.top);
-                const totalScrollable = Math.max(1, elementHeight - viewportHeight);
-                progress = Math.min(1, scrolledIntoElement / totalScrollable);
-            } else {
-                // Element is visible but not yet scrolled into
-                progress = 0.1;
-            }
-        } else if (contentRect.bottom <= 0) {
-            // Element is completely above viewport (fully scrolled)
-            progress = 1;
+        if (allContentElements.length === 0) {
+            console.log('No content found to track');
+            return;
         }
         
-        // Ensure progress is between 0 and 1
-        progress = Math.max(0, Math.min(1, progress));
+        // Calculate the full content area bounds including all dropped content
+        let topMostElement = null;
+        let bottomMostElement = null;
+        let totalHeight = 0;
+        
+        for (let element of allContentElements) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top + window.pageYOffset;
+            const elementBottom = rect.bottom + window.pageYOffset;
+            
+            if (!topMostElement || elementTop < (topMostElement.getBoundingClientRect().top + window.pageYOffset)) {
+                topMostElement = element;
+            }
+            if (!bottomMostElement || elementBottom > (bottomMostElement.getBoundingClientRect().bottom + window.pageYOffset)) {
+                bottomMostElement = element;
+            }
+        }
+        
+        if (!topMostElement || !bottomMostElement) {
+            console.log('Could not determine content bounds');
+            return;
+        }
+        
+        // Calculate reading progress based on scroll position through all content
+        const topRect = topMostElement.getBoundingClientRect();
+        const bottomRect = bottomMostElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Content bounds
+        const contentTop = topRect.top + window.pageYOffset;
+        const contentBottom = bottomRect.bottom + window.pageYOffset;
+        const contentHeight = contentBottom - contentTop;
+        
+        // Current scroll position
+        const scrollTop = window.pageYOffset;
+        const viewportTop = scrollTop;
+        const viewportBottom = scrollTop + viewportHeight;
+        
+        let progress = 0;
+        
+        if (viewportTop >= contentBottom) {
+            // Scrolled past all content
+            progress = 1;
+        } else if (viewportBottom <= contentTop) {
+            // Haven't reached content yet
+            progress = 0;
+        } else {
+            // Calculate progress based on how much content has been scrolled through
+            const scrolledPastStart = Math.max(0, viewportTop - contentTop);
+            const totalScrollableDistance = Math.max(1, contentHeight - viewportHeight);
+            progress = Math.min(1, scrolledPastStart / totalScrollableDistance);
+        }
         
         console.log('Progress calculation:', {
-            elementTop: Math.round(elementTop),
-            elementHeight: Math.round(elementHeight),
+            contentTop: Math.round(contentTop),
+            contentBottom: Math.round(contentBottom),
+            contentHeight: Math.round(contentHeight),
             scrollTop: Math.round(scrollTop),
-            contentTop: Math.round(contentRect.top),
-            contentBottom: Math.round(contentRect.bottom),
-            progress: Math.round(progress * 100) + '%'
+            viewportTop: Math.round(viewportTop),
+            viewportBottom: Math.round(viewportBottom),
+            progress: Math.round(progress * 100) + '%',
+            elementsFound: allContentElements.length
         });
         
         updateProgressDisplay(progress);
@@ -236,9 +280,16 @@ function initializeProgressCalculation() {
     // Always show tracker initially (for testing)
     showProgressTracker();
     
-    // Watch for content changes in content area
-    const observer = new MutationObserver(() => {
-        setTimeout(checkForContent, 100);
+    // Watch for content changes in content area - including when content is dropped
+    const observer = new MutationObserver((mutations) => {
+        console.log('Content area mutations detected:', mutations.length);
+        setTimeout(() => {
+            checkForContent();
+            // Recalculate progress when content changes
+            if (isVisible) {
+                calculateReadingProgress();
+            }
+        }, 100);
     });
     observer.observe(contentArea, {
         childList: true,
