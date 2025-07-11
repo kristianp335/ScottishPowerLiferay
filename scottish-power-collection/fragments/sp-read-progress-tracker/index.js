@@ -43,7 +43,7 @@ function initializeProgressCalculation() {
     const trackerElement = document.querySelector('.sp-read-progress-tracker');
     if (!trackerElement) return;
     
-    const dropzone = trackerElement.querySelector('lfr-dropzone');
+    const dropzone = trackerElement.querySelector('lfr-drop-zone');
     const progressFill = trackerElement.querySelector('.progress-fill');
     const progressPercentage = trackerElement.querySelector('.progress-percentage');
     const progressBar = trackerElement.querySelector('.progress-bar');

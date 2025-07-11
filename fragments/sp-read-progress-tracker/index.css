@@ -137,7 +137,7 @@
 }
 
 /* Dropzone Styling */
-lfr-dropzone {
+lfr-drop-zone {
     display: block;
     min-height: 200px;
     border: 2px dashed #dee2e6;
@@ -147,12 +147,12 @@ lfr-dropzone {
     transition: all 0.3s ease;
 }
 
-lfr-dropzone:hover {
+lfr-drop-zone:hover {
     border-color: #00A651;
     background: #f0f8f3;
 }
 
-lfr-dropzone .alert {
+lfr-drop-zone .alert {
     margin: 40px 20px;
     border: none;
     background: rgba(0, 166, 81, 0.1);
@@ -160,13 +160,13 @@ lfr-dropzone .alert {
 }
 
 /* When content is added to dropzone */
-lfr-dropzone:not(:empty) {
+lfr-drop-zone:not(:empty) {
     border: none;
     background: transparent;
     min-height: auto;
 }
 
-lfr-dropzone:not(:empty) .alert {
+lfr-drop-zone:not(:empty) .alert {
     display: none;
 }
 

@@ -183,7 +183,8 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes
-- ✓ Implemented <lfr-dropzone> for content editors to add readable content
+- ✓ Implemented <lfr-drop-zone> with correct Liferay syntax for content editors
+- ✓ Fixed FreeMarker template syntax with proper null safety and default values
 - ✓ Added intelligent reading progress calculation based on scroll position through dropzone content
 - ✓ Multiple progress display styles: progress bar, circular progress, percentage only
 - ✓ Configurable positioning: top fixed, bottom fixed, or inline with content
