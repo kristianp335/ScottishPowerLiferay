@@ -1,33 +1,33 @@
 <div class="sp-read-progress-tracker">
-    [#if progressPosition.getData() == "top"]
-        <div class="progress-tracker progress-tracker--fixed-top ${progressStyle.getData()}">
+    [#if (progressPosition.getData())! == "top"]
+        <div class="progress-tracker progress-tracker--fixed-top ${(progressStyle.getData())!"bar"}">
             <div class="progress-bar" id="reading-progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            [#if showPercentage.getData()]
+            [#if (showPercentage.getData())!true]
                 <span class="progress-percentage" id="reading-percentage">0%</span>
             [/#if]
         </div>
     [/#if]
     
-    [#if progressPosition.getData() == "bottom"]
-        <div class="progress-tracker progress-tracker--fixed-bottom ${progressStyle.getData()}">
+    [#if (progressPosition.getData())! == "bottom"]
+        <div class="progress-tracker progress-tracker--fixed-bottom ${(progressStyle.getData())!"bar"}">
             <div class="progress-bar" id="reading-progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            [#if showPercentage.getData()]
+            [#if (showPercentage.getData())!true]
                 <span class="progress-percentage" id="reading-percentage">0%</span>
             [/#if]
         </div>
     [/#if]
 
     <div class="reading-content-wrapper">
-        [#if progressPosition.getData() == "inline"]
-            <div class="progress-tracker progress-tracker--inline ${progressStyle.getData()}">
+        [#if (progressPosition.getData())!"top" == "inline"]
+            <div class="progress-tracker progress-tracker--inline ${(progressStyle.getData())!"bar"}">
                 <div class="progress-bar" id="reading-progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                [#if showPercentage.getData()]
+                [#if (showPercentage.getData())!true]
                     <span class="progress-percentage" id="reading-percentage">0%</span>
                 [/#if]
             </div>
