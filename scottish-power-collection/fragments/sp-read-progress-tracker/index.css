@@ -154,10 +154,22 @@
 .progress-tracker.fixed-position {
     position: fixed;
     top: 20px;
-    right: 20px;
     z-index: 1000;
     animation: slideInFixed 0.3s ease-out;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.progress-tracker.fixed-position.fixed-left {
+    left: 20px;
+}
+
+.progress-tracker.fixed-position.fixed-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress-tracker.fixed-position.fixed-right {
+    right: 20px;
 }
 
 @keyframes slideInFixed {

@@ -192,13 +192,17 @@ function initializeProgressCalculation() {
         if (currentProgress === percentage) return;
         currentProgress = percentage;
         
-        // Update progress bar or circle
-        if (progressBar.closest('.circle')) {
+        // Update progress bar or circle based on style
+        const progressTracker = fragmentElement.querySelector('.progress-tracker');
+        
+        if (progressTracker.classList.contains('circle')) {
             // Circular progress
             const degrees = progress * 360;
             progressBar.style.background = `conic-gradient(#00A651 ${degrees}deg, #e9ecef ${degrees}deg)`;
+        } else if (progressTracker.classList.contains('percentage')) {
+            // Percentage only - no bar to update
         } else {
-            // Linear progress bar
+            // Linear progress bar (default)
             progressFill.style.width = `${percentage}%`;
         }
         
@@ -251,13 +255,22 @@ function initializeProgressCalculation() {
             
             // If user has scrolled past the tracker's original position
             if (scrollTop > originalTop && !isFixed) {
-                // Switch to fixed position
+                // Get the original alignment from container classes
+                const isLeft = trackerContainer.classList.contains('progress-tracker-inline-container--left');
+                const isRight = trackerContainer.classList.contains('progress-tracker-inline-container--right');
+                const isCenter = trackerContainer.classList.contains('progress-tracker-inline-container--center');
+                
+                // Switch to fixed position with same alignment
                 progressTracker.classList.add('fixed-position');
+                if (isLeft) progressTracker.classList.add('fixed-left');
+                else if (isRight) progressTracker.classList.add('fixed-right');
+                else progressTracker.classList.add('fixed-center');
+                
                 isFixed = true;
-                console.log('Progress tracker switched to fixed position');
+                console.log('Progress tracker switched to fixed position with alignment:', isLeft ? 'left' : isRight ? 'right' : 'center');
             } else if (scrollTop <= originalTop && isFixed) {
                 // Switch back to inline position
-                progressTracker.classList.remove('fixed-position');
+                progressTracker.classList.remove('fixed-position', 'fixed-left', 'fixed-right', 'fixed-center');
                 isFixed = false;
                 console.log('Progress tracker switched back to inline position');
             }
