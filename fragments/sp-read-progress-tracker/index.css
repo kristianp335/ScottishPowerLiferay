@@ -16,23 +16,21 @@
     transition: all 0.3s ease;
 }
 
-/* Fixed Positioning */
+/* Floating beside content area */
 .progress-tracker--fixed-top {
-    position: fixed;
+    position: absolute;
     top: 20px;
-    right: 20px;
-    left: 20px;
-    max-width: 300px;
-    margin: 0 auto;
+    right: -80px;
+    max-width: 200px;
+    width: 200px;
 }
 
 .progress-tracker--fixed-bottom {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
-    right: 20px;
-    left: 20px;
-    max-width: 300px;
-    margin: 0 auto;
+    right: -80px;
+    max-width: 200px;
+    width: 200px;
 }
 
 .progress-tracker--inline {
@@ -140,6 +138,7 @@
 .progress-content-area {
     position: relative;
     min-height: 200px;
+    margin-right: 100px; /* Space for floating progress tracker */
 }
 
 /* Progress Content Area - wrapper for calculation */
