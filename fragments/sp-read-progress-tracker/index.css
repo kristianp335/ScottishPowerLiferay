@@ -50,6 +50,7 @@
     justify-content: center;
     align-items: center;
     min-width: 120px;
+    flex-direction: column;
 }
 
 .progress-tracker.circle .progress-bar {
@@ -147,6 +148,27 @@
     color: #00A651;
     min-width: 40px;
     text-align: right;
+}
+
+/* Fixed position styles for inline-to-fixed behavior */
+.progress-tracker.fixed-position {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    animation: slideInFixed 0.3s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideInFixed {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Content Wrapper */

@@ -223,12 +223,44 @@ function initializeProgressCalculation() {
         }
         fragmentElement.dataset.trackingStarted = 'true';
         
+        // Get tracker container for position detection
+        const trackerContainer = fragmentElement.querySelector('.progress-tracker-inline-container');
+        let isFixed = false;
+        let originalTop = 0;
+        
+        // Get original position after DOM load
+        setTimeout(() => {
+            if (trackerContainer) {
+                originalTop = trackerContainer.getBoundingClientRect().top + window.pageYOffset;
+            }
+        }, 100);
+        
         // Throttled scroll handler for performance
         let ticking = false;
         
         function updateProgress() {
             calculateReadingProgress();
+            handleInlineToFixed();
             ticking = false;
+        }
+        
+        function handleInlineToFixed() {
+            if (!trackerContainer || !progressTracker) return;
+            
+            const scrollTop = window.pageYOffset;
+            
+            // If user has scrolled past the tracker's original position
+            if (scrollTop > originalTop && !isFixed) {
+                // Switch to fixed position
+                progressTracker.classList.add('fixed-position');
+                isFixed = true;
+                console.log('Progress tracker switched to fixed position');
+            } else if (scrollTop <= originalTop && isFixed) {
+                // Switch back to inline position
+                progressTracker.classList.remove('fixed-position');
+                isFixed = false;
+                console.log('Progress tracker switched back to inline position');
+            }
         }
         
         function onScroll() {
@@ -251,7 +283,7 @@ function initializeProgressCalculation() {
             calculateReadingProgress();
         }, 500);
         
-        console.log('Progress tracking started for fragment');
+        console.log('Progress tracking started with inline-to-fixed positioning');
     }
     
     // Always show tracker initially (for testing)
