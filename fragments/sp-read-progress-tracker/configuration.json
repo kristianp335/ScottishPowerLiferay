@@ -25,6 +25,8 @@
                         "validValues": [
                             {"value": "top", "label": "Top Fixed"},
                             {"value": "bottom", "label": "Bottom Fixed"},
+                            {"value": "center-float-left", "label": "Center Float Left"},
+                            {"value": "center-float-right", "label": "Center Float Right"},
                             {"value": "inline", "label": "Inline with Content"}
                         ]
                     },

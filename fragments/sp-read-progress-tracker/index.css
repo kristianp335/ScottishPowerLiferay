@@ -53,6 +53,44 @@
     top: 20px;
 }
 
+.progress-tracker--center-float-left {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 100;
+    max-width: 250px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 166, 81, 0.2);
+}
+
+.progress-tracker--center-float-right {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 100;
+    max-width: 250px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 166, 81, 0.2);
+}
+
+/* Ensure the progress content area can contain absolute positioned elements */
+.sp-read-progress-tracker .progress-content-area {
+    position: relative;
+    min-height: 200px;
+}
+
 /* Progress Bar Styles */
 .progress-bar {
     flex: 1;
@@ -146,13 +184,6 @@
 /* Content Wrapper */
 .reading-content-wrapper {
     position: relative;
-}
-
-/* Progress Content Area - wrapper for calculation */
-.progress-content-area {
-    position: relative;
-    min-height: 200px;
-    margin-right: 100px; /* Space for floating progress tracker */
 }
 
 /* Progress Content Area - wrapper for calculation */

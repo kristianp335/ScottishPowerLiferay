@@ -20,6 +20,28 @@
             [/#if]
         </div>
     [/#if]
+    
+    [#if (progressPosition!"top") == "center-float-left"]
+        <div class="progress-tracker progress-tracker--center-float-left ${progressStyle!"bar"}">
+            <div class="progress-bar" id="reading-progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            [#if (showPercentage!true)]
+                <span class="progress-percentage" id="reading-percentage">0%</span>
+            [/#if]
+        </div>
+    [/#if]
+    
+    [#if (progressPosition!"top") == "center-float-right"]
+        <div class="progress-tracker progress-tracker--center-float-right ${progressStyle!"bar"}">
+            <div class="progress-bar" id="reading-progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            [#if (showPercentage!true)]
+                <span class="progress-percentage" id="reading-percentage">0%</span>
+            [/#if]
+        </div>
+    [/#if]
 
     <div class="reading-content-wrapper">
         <!-- Content wrapper for progress calculation - remains in DOM when dropzone has content -->
