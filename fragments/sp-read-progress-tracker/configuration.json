@@ -23,14 +23,12 @@
                     "type": "select",
                     "typeOptions": {
                         "validValues": [
-                            {"value": "top", "label": "Top Fixed"},
-                            {"value": "bottom", "label": "Bottom Fixed"},
-                            {"value": "inline-left", "label": "Inline Left"},
-                            {"value": "inline-center", "label": "Inline Center"},
-                            {"value": "inline-right", "label": "Inline Right"}
+                            {"value": "inline-left", "label": "Left"},
+                            {"value": "inline-center", "label": "Center"},
+                            {"value": "inline-right", "label": "Right"}
                         ]
                     },
-                    "defaultValue": "top"
+                    "defaultValue": "inline-center"
                 },
                 {
                     "name": "showPercentage",

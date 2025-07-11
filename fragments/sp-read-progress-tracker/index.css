@@ -4,47 +4,18 @@
 
 /* Progress Tracker Styles */
 .progress-tracker {
-    z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-radius: 8px;
-    padding: 12px 20px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     gap: 12px;
     transition: all 0.3s ease;
-}
-
-/* Floating over content area */
-.progress-tracker--fixed-top {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    max-width: 250px;
-    width: 250px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 166, 81, 0.2);
-}
-
-.progress-tracker--fixed-bottom {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    max-width: 250px;
-    width: 250px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 166, 81, 0.2);
+    max-width: 300px;
+    min-width: 200px;
 }
 
 /* Inline progress tracker container above content area */
@@ -69,9 +40,69 @@
 
 .progress-tracker--inline {
     position: relative;
-    max-width: 300px;
+}
+
+/* Circle style specific adjustments */
+.progress-tracker.circle {
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+}
+
+.progress-tracker.circle .progress-bar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(#00A651 0deg, #e9ecef 0deg);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-tracker.circle .progress-fill {
+    display: none;
+}
+
+.progress-tracker.circle .progress-bar::before {
+    content: '';
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.progress-tracker.circle .progress-percentage {
+    position: absolute;
+    z-index: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #00A651;
+}
+
+/* Percentage only style */
+.progress-tracker.percentage {
     width: auto;
-    min-width: 200px;
+    min-width: 80px;
+    padding: 12px 24px;
+}
+
+.progress-tracker.percentage .progress-bar {
+    display: none;
+}
+
+.progress-tracker.percentage .progress-percentage {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00A651, #004225);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
 }
 
 /* Progress Bar Styles */
@@ -109,59 +140,13 @@
     100% { transform: translateX(100%); }
 }
 
-/* Circular Progress Style */
-.circle .progress-bar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: conic-gradient(#00A651 0deg, #e9ecef 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.circle .progress-fill {
-    display: none;
-}
-
-.circle .progress-bar::before {
-    content: '';
-    width: 35px;
-    height: 35px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-}
-
-/* Percentage Text */
+/* Percentage Text - Default Bar Style */
 .progress-percentage {
     font-weight: 600;
     font-size: 14px;
     color: #00A651;
     min-width: 40px;
     text-align: right;
-}
-
-.circle .progress-percentage {
-    position: absolute;
-    z-index: 1;
-    font-size: 12px;
-    color: #004225;
-}
-
-/* Percentage Only Style */
-.percentage .progress-bar {
-    display: none;
-}
-
-.percentage .progress-percentage {
-    font-size: 18px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #00A651, #004225);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 /* Content Wrapper */
