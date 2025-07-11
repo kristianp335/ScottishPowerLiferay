@@ -139,28 +139,32 @@ function initializeProgressCalculation() {
         // Calculate reading progress based on how much content has been scrolled through
         let progress = 0;
         
-        if (scrollTop >= elementTop) {
-            // We're at or past the start of the content
-            if (scrollTop >= elementBottom - viewportHeight) {
-                // We've scrolled to see all the content
-                progress = 1;
-            } else {
-                // Calculate progress based on how much we've scrolled through
-                const scrolledPast = scrollTop - elementTop;
+        // Simple calculation: if element is in view, start progress
+        if (contentRect.top < viewportHeight && contentRect.bottom > 0) {
+            // Element is visible in viewport
+            if (contentRect.top <= 0) {
+                // Element top has passed viewport top
+                const scrolledIntoElement = Math.abs(contentRect.top);
                 const totalScrollable = Math.max(1, elementHeight - viewportHeight);
-                progress = Math.min(1, Math.max(0, scrolledPast / totalScrollable));
+                progress = Math.min(1, scrolledIntoElement / totalScrollable);
+            } else {
+                // Element is visible but not yet scrolled into
+                progress = 0.1;
             }
+        } else if (contentRect.bottom <= 0) {
+            // Element is completely above viewport (fully scrolled)
+            progress = 1;
         }
         
-        // Add some progress even when content is visible but not fully scrolled
-        if (progress === 0 && contentRect.top < viewportHeight && contentRect.bottom > 0) {
-            progress = 0.1; // Show 10% when content is in view
-        }
+        // Ensure progress is between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
         
         console.log('Progress calculation:', {
             elementTop: Math.round(elementTop),
             elementHeight: Math.round(elementHeight),
             scrollTop: Math.round(scrollTop),
+            contentTop: Math.round(contentRect.top),
+            contentBottom: Math.round(contentRect.bottom),
             progress: Math.round(progress * 100) + '%'
         });
         
@@ -220,8 +224,13 @@ function initializeProgressCalculation() {
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', calculateReadingProgress, { passive: true });
         
-        // Initial calculation
-        calculateReadingProgress();
+        // Force tracker to be visible immediately
+        showProgressTracker();
+        
+        // Initial calculation with delay to ensure DOM is ready
+        setTimeout(() => {
+            calculateReadingProgress();
+        }, 100);
     }
     
     // Always show tracker initially (for testing)
