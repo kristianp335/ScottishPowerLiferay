@@ -1,5 +1,10 @@
 {
-    "fragmentEntryKey": "sp-read-progress-tracker",
-    "name": "Scottish Power Read Progress Tracker",
-    "type": "component"
+  "configurationPath": "configuration.json",
+  "jsPath": "index.js",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "icon": "analytics",
+  "name": "Scottish Power Read Progress Tracker",
+  "thumbnailPath": "thumbnail.png",
+  "type": "component"
 }
