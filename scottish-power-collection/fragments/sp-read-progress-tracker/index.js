@@ -88,9 +88,8 @@ function initializeProgressCalculation() {
     let isVisible = false;
     let currentProgress = 0;
     
-    // Configuration from fragment settings
-    const smoothScrolling = trackerElement.querySelector('[data-smooth-scrolling]') ? 
-        trackerElement.querySelector('[data-smooth-scrolling]').dataset.smoothScrolling === 'true' : true;
+    // Configuration from fragment settings - get from data attributes or defaults
+    const smoothScrolling = fragmentElement.dataset.enableScrollSmoothing !== 'false';
     
     function checkForContent() {
         if (!contentArea) return false;

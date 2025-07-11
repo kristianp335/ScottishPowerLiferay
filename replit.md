@@ -187,7 +187,9 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Auto-show when user scrolls back to content area with smooth fade transitions
 - ✓ Fixed position top increased to 100px for better spacing from sticky header
 - ✓ Faster fade-in animation (0.15s) when switching to fixed position
-- → **Current Issue**: Left/right alignment configuration not applying correctly - debugging added to identify template variable issue
+- ✓ Fixed left/right alignment configuration by correcting FreeMarker template variable syntax
+- ✓ Updated all configuration references to use proper `${configuration.fieldName}` syntax
+- ✓ All three alignment options (Left, Center, Right) now work correctly
 
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes
