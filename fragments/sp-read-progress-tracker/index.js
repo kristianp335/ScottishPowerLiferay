@@ -192,19 +192,8 @@ function initializeProgressCalculation() {
         if (currentProgress === percentage) return;
         currentProgress = percentage;
         
-        // Update progress bar or circle based on style
-        const progressTracker = fragmentElement.querySelector('.progress-tracker');
-        
-        if (progressTracker.classList.contains('circle')) {
-            // Circular progress
-            const degrees = progress * 360;
-            progressBar.style.background = `conic-gradient(#00A651 ${degrees}deg, #e9ecef ${degrees}deg)`;
-        } else if (progressTracker.classList.contains('percentage')) {
-            // Percentage only - no bar to update
-        } else {
-            // Linear progress bar (default)
-            progressFill.style.width = `${percentage}%`;
-        }
+        // Update progress bar
+        progressFill.style.width = `${percentage}%`;
         
         // Update percentage text
         if (progressPercentage) {
@@ -253,8 +242,8 @@ function initializeProgressCalculation() {
             
             const scrollTop = window.pageYOffset;
             
-            // If user has scrolled past the tracker's original position
-            if (scrollTop > originalTop && !isFixed) {
+            // If user has scrolled past the tracker's original position (with 50px offset)
+            if (scrollTop > (originalTop + 50) && !isFixed) {
                 // Get the original alignment from container classes
                 const isLeft = trackerContainer.classList.contains('progress-tracker-inline-container--left');
                 const isRight = trackerContainer.classList.contains('progress-tracker-inline-container--right');
@@ -262,15 +251,31 @@ function initializeProgressCalculation() {
                 
                 // Switch to fixed position with same alignment
                 progressTracker.classList.add('fixed-position');
-                if (isLeft) progressTracker.classList.add('fixed-left');
-                else if (isRight) progressTracker.classList.add('fixed-right');
-                else progressTracker.classList.add('fixed-center');
+                if (isLeft) {
+                    progressTracker.classList.add('fixed-left');
+                    progressTracker.style.left = '20px';
+                    progressTracker.style.right = 'auto';
+                    progressTracker.style.transform = 'none';
+                } else if (isRight) {
+                    progressTracker.classList.add('fixed-right');
+                    progressTracker.style.right = '20px';
+                    progressTracker.style.left = 'auto';
+                    progressTracker.style.transform = 'none';
+                } else {
+                    progressTracker.classList.add('fixed-center');
+                    progressTracker.style.left = '50%';
+                    progressTracker.style.right = 'auto';
+                    progressTracker.style.transform = 'translateX(-50%)';
+                }
                 
                 isFixed = true;
                 console.log('Progress tracker switched to fixed position with alignment:', isLeft ? 'left' : isRight ? 'right' : 'center');
-            } else if (scrollTop <= originalTop && isFixed) {
+            } else if (scrollTop <= (originalTop + 50) && isFixed) {
                 // Switch back to inline position
                 progressTracker.classList.remove('fixed-position', 'fixed-left', 'fixed-right', 'fixed-center');
+                progressTracker.style.left = '';
+                progressTracker.style.right = '';
+                progressTracker.style.transform = '';
                 isFixed = false;
                 console.log('Progress tracker switched back to inline position');
             }

@@ -42,69 +42,7 @@
     position: relative;
 }
 
-/* Circle style specific adjustments */
-.progress-tracker.circle {
-    width: 120px;
-    height: 120px;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    min-width: 120px;
-    flex-direction: column;
-}
 
-.progress-tracker.circle .progress-bar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: conic-gradient(#00A651 0deg, #e9ecef 0deg);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.progress-tracker.circle .progress-fill {
-    display: none;
-}
-
-.progress-tracker.circle .progress-bar::before {
-    content: '';
-    width: 60px;
-    height: 60px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-}
-
-.progress-tracker.circle .progress-percentage {
-    position: absolute;
-    z-index: 1;
-    font-size: 16px;
-    font-weight: 700;
-    color: #00A651;
-}
-
-/* Percentage only style */
-.progress-tracker.percentage {
-    width: auto;
-    min-width: 80px;
-    padding: 12px 24px;
-}
-
-.progress-tracker.percentage .progress-bar {
-    display: none;
-}
-
-.progress-tracker.percentage .progress-percentage {
-    font-size: 24px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #00A651, #004225);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
-}
 
 /* Progress Bar Styles */
 .progress-bar {
@@ -153,23 +91,10 @@
 /* Fixed position styles for inline-to-fixed behavior */
 .progress-tracker.fixed-position {
     position: fixed;
-    top: 20px;
+    top: 70px; /* 20px + 50px offset */
     z-index: 1000;
     animation: slideInFixed 0.3s ease-out;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.progress-tracker.fixed-position.fixed-left {
-    left: 20px;
-}
-
-.progress-tracker.fixed-position.fixed-center {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.progress-tracker.fixed-position.fixed-right {
-    right: 20px;
 }
 
 @keyframes slideInFixed {

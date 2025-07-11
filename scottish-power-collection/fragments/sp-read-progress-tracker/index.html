@@ -5,12 +5,10 @@
             [#if (progressPosition!"inline-center") == "inline-left"]progress-tracker-inline-container--left[/#if]
             [#if (progressPosition!"inline-center") == "inline-center"]progress-tracker-inline-container--center[/#if]
             [#if (progressPosition!"inline-center") == "inline-right"]progress-tracker-inline-container--right[/#if]">
-            <div class="progress-tracker progress-tracker--inline[#if (progressStyle!"bar") == "circle"] circle[/#if][#if (progressStyle!"bar") == "percentage"] percentage[/#if]">
-                [#if (progressStyle!"bar") != "percentage"]
-                    <div class="progress-bar" id="reading-progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                [/#if]
+            <div class="progress-tracker progress-tracker--inline">
+                <div class="progress-bar" id="reading-progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
                 [#if (showPercentage!true)]
                     <span class="progress-percentage" id="reading-percentage">0%</span>
                 [/#if]

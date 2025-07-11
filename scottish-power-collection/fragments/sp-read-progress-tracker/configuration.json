@@ -3,20 +3,6 @@
         {
             "fields": [
                 {
-                    "name": "progressStyle",
-                    "label": "Progress Bar Style",
-                    "description": "Choose the visual style for the progress tracker",
-                    "type": "select",
-                    "typeOptions": {
-                        "validValues": [
-                            {"value": "bar", "label": "Progress Bar"},
-                            {"value": "circle", "label": "Circular Progress"},
-                            {"value": "percentage", "label": "Percentage Only"}
-                        ]
-                    },
-                    "defaultValue": "bar"
-                },
-                {
                     "name": "progressPosition",
                     "label": "Progress Position",
                     "description": "Where to display the progress tracker",
