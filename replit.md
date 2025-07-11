@@ -190,6 +190,9 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Fixed left/right alignment configuration by correcting FreeMarker template variable syntax
 - ✓ Updated all configuration references to use proper `${configuration.fieldName}` syntax
 - ✓ All three alignment options (Left, Center, Right) now work correctly
+- ✓ Fixed auto-hide functionality with CSS class-based approach instead of inline styles
+- ✓ Progress tracker now properly hides when scrolled 200px past content AND reading is 100% complete
+- ✓ Tracker reappears with smooth fade-in when user scrolls back to content area
 
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes

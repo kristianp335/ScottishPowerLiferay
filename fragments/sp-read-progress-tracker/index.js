@@ -301,22 +301,16 @@ function initializeProgressCalculation() {
             const contentBottom = contentRect.bottom + scrollTop;
             const viewportHeight = window.innerHeight;
             
-            // If user has scrolled significantly past the content (200px beyond)
+            // If user has scrolled significantly past the content (200px beyond) AND reading is complete
             if (scrollTop > (contentBottom + 200) && currentProgress >= 100) {
-                progressTracker.style.opacity = '0';
-                progressTracker.style.transition = 'opacity 0.3s ease-out';
-                setTimeout(() => {
-                    if (progressTracker.style.opacity === '0') {
-                        progressTracker.style.display = 'none';
-                    }
-                }, 300);
-                console.log('Progress tracker hidden - user scrolled past completed content');
-            } else if (scrollTop <= (contentBottom + 100) && progressTracker.style.display === 'none') {
-                // Show tracker again if user scrolls back up
-                progressTracker.style.display = 'block';
-                progressTracker.style.opacity = '1';
-                progressTracker.style.transition = 'opacity 0.3s ease-in';
-                console.log('Progress tracker shown again - user scrolled back to content');
+                if (!progressTracker.classList.contains('auto-hidden')) {
+                    progressTracker.classList.add('auto-hidden');
+                    console.log('Progress tracker auto-hidden - user scrolled past completed content');
+                }
+            } else if (scrollTop <= (contentBottom + 100) && progressTracker.classList.contains('auto-hidden')) {
+                // Show tracker again if user scrolls back to content area
+                progressTracker.classList.remove('auto-hidden');
+                console.log('Progress tracker auto-shown - user scrolled back to content area');
             }
         }
         

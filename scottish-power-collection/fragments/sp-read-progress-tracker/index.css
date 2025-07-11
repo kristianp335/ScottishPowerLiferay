@@ -190,6 +190,13 @@ lfr-drop-zone:not(:empty) .alert {
     pointer-events: none;
 }
 
+/* Auto-hide when scrolled past content */
+.progress-tracker.auto-hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
 /* Animation for progress tracker appearance */
 .progress-tracker.visible {
     opacity: 1;
