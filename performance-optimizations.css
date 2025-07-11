@@ -1,0 +1,53 @@
+/* Performance Optimizations for Scottish Power Fragments */
+
+/* Critical CSS - Above the fold content */
+.hero{min-height:80vh;background:linear-gradient(135deg,#00A651 0%,#004225 100%);position:relative;overflow:hidden}
+.hero-content{max-width:1200px;margin:0 auto;padding:80px 20px;position:relative;z-index:2}
+.hero-text h1{font-size:3rem;color:#fff;margin-bottom:20px;font-weight:700}
+.hero-subtitle{font-size:1.25rem;color:rgba(255,255,255,0.9);margin-bottom:30px}
+
+/* Navbar critical styles */
+.navbar{background-color:#fff;padding:15px 0;box-shadow:0 2px 8px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000}
+.navbar-brand img{height:40px;width:auto}
+.navbar-nav{display:flex;gap:30px}
+.nav-link{color:#666;text-decoration:none;font-weight:500;transition:color 0.2s ease}
+.nav-link:hover{color:#00A651}
+
+/* Button critical styles */
+.btn-primary{background-color:#00A651;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.2s ease}
+.btn-primary:hover{background-color:#004225;transform:translateY(-2px)}
+
+/* Optimize animations - reduce complexity */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.3s ease,transform 0.3s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Reduce reflow by using transform instead of top/left */
+.dropdown-menu{position:absolute;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.1);border-radius:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity 0.2s ease,visibility 0.2s ease,transform 0.2s ease}
+.dropdown-menu.show{opacity:1;visibility:visible;transform:translateY(0)}
+
+/* Optimize images */
+img{height:auto;max-width:100%}
+
+/* Reduce paint complexity */
+.testimonial-card{background:#fff;padding:30px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.1);border-left:4px solid #00A651;transition:transform 0.2s ease}
+.testimonial-card:hover{transform:translateY(-4px)}
+
+/* Footer optimizations */
+.footer{background:linear-gradient(135deg,#00A651 0%,#004225 100%);color:#fff;padding:60px 0 20px}
+.social-link{width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background-color 0.2s ease,transform 0.2s ease}
+.social-link:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+
+/* Mobile optimizations */
+@media (max-width:768px){
+.hero-text h1{font-size:2rem}
+.hero-subtitle{font-size:1rem}
+.navbar-nav{flex-direction:column;gap:15px}
+.hero-content{padding:40px 20px}
+}
+
+/* Reduce layout shift */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+@media (max-width:768px){
+.section{padding:60px 0}
+}

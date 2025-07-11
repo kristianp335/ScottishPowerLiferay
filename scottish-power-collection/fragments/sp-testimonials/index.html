@@ -211,9 +211,10 @@
     padding: 30px;
     border-radius: var(--sp-border-radius);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transition: var(--sp-transition);
+    transition: transform 0.2s ease;
     position: relative;
     border-left: 4px solid var(--sp-primary-green);
+    will-change: transform;
 }
 
 .testimonial-card:hover {

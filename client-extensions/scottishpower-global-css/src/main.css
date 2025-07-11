@@ -19,23 +19,12 @@
     
     --sp-border-radius: 8px;
     --sp-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --sp-transition: all 0.3s ease;
+    --sp-transition: all 0.2s ease;
 }
 
-/* Global Styles */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--sp-font-family);
-    font-size: var(--sp-font-size-base);
-    line-height: var(--sp-line-height-base);
-    color: var(--sp-text-primary);
-    margin: 0;
-    padding: 0;
-    background-color: var(--sp-white);
-}
+/* Global Styles - Optimized */
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:var(--sp-font-family);font-size:var(--sp-font-size-base);line-height:var(--sp-line-height-base);color:var(--sp-text-primary);margin:0;padding:0;background-color:var(--sp-white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 .container {
     max-width: 1200px;
@@ -43,37 +32,9 @@ body {
     padding: 0 20px;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    color: var(--sp-text-primary);
-}
-
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 2rem;
-}
-
-h3 {
-    font-size: 1.5rem;
-}
-
-h4 {
-    font-size: 1.25rem;
-}
-
-h5 {
-    font-size: 1.125rem;
-}
-
-h6 {
-    font-size: 1rem;
-}
+/* Typography - Optimized */
+h1,h2,h3,h4,h5,h6{font-weight:600;line-height:1.2;margin-bottom:16px;color:var(--sp-text-primary)}
+h1{font-size:2.5rem}h2{font-size:2rem}h3{font-size:1.5rem}h4{font-size:1.25rem}h5{font-size:1.125rem}h6{font-size:1rem}
 
 p {
     margin-bottom: 16px;

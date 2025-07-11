@@ -6,25 +6,31 @@
 (function() {
     'use strict';
     
-    // Initialize on DOM ready
+    // Initialize on DOM ready - Performance optimized
     document.addEventListener('DOMContentLoaded', function() {
-        initializeScrollAnimations();
-        initializeNavigation();
-        initializeFormValidation();
-        initializeHoverEffects();
-        initializeCarousels();
+        initializeNavigation(); // Critical for interaction
+        
+        // Defer non-critical features
+        requestIdleCallback(function() {
+            initializeScrollAnimations();
+            initializeFormValidation();
+            initializeHoverEffects();
+            initializeCarousels();
+        });
     });
     
     /**
-     * Initialize scroll animations for elements
+     * Initialize scroll animations for elements - Performance optimized
      */
     function initializeScrollAnimations() {
         const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
+        if (!animatedElements.length) return;
         
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once animated
                 }
             });
         }, {
