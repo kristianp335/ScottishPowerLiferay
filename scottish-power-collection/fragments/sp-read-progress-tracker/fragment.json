@@ -1,10 +1,9 @@
 {
   "configurationPath": "configuration.json",
-  "jsPath": "index.js",
-  "htmlPath": "index.html",
   "cssPath": "index.css",
-  "icon": "analytics",
-  "name": "sp-read-progress-tracker",
+  "htmlPath": "index.html",
+  "jsPath": "index.js",
+  "name": "Scottish Power Read Progress Tracker",
   "thumbnailPath": "thumbnail.png",
   "type": "component"
 }
