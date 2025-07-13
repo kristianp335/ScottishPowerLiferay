@@ -94,6 +94,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 60px;
+    height: 60px;
 }
 
 .progress-ring {
@@ -122,13 +124,23 @@
     min-width: auto;
 }
 
-/* Circular progress specific sizing for fixed position */
-.progress-tracker--circular.fixed-position {
+/* Circular progress container sizing */
+.progress-tracker--circular {
     width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .progress-tracker--circular .progress-circular {
-    margin: 0 8px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Ensure circular progress doesn't take full width */
+.progress-tracker-inline-container .progress-tracker--circular {
+    display: inline-flex;
+    width: auto;
 }
 
 /* Fixed position styles for inline-to-fixed behavior */
