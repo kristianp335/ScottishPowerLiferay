@@ -1,10 +1,10 @@
-<section class="half-price-weekends [#if (displayStyle!'card') == 'banner']banner-style[#elseif (displayStyle!'card') == 'minimal']minimal-style[#else]card-style[/#if] [#if (animateOnScroll!true)]fade-in[/#if]" 
+<section class="half-price-weekends [#if (configuration.displayStyle!'card') == 'banner']banner-style[#elseif (configuration.displayStyle!'card') == 'minimal']minimal-style[#else]card-style[/#if] [#if (animateOnScroll!true)]fade-in[/#if]" 
          data-lfr-background-image-id="weekends-bg">
     
     <div class="container">
         <div class="weekends-content">
             <div class="weekends-text">
-                <div class="weekends-badge" [#if (showBadge!true)]style="display: inline-block;"[#else]style="display: none;"[/#if]>
+                <div class="weekends-badge" [#if (configuration.showBadge!true)]style="display: inline-block;"[#else]style="display: none;"[/#if]>
                     <span data-lfr-editable-id="badge-text" data-lfr-editable-type="text">Half-Price Weekends</span>
                 </div>
                 

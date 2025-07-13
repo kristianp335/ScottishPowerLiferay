@@ -1,4 +1,4 @@
-<section class="awards-section [#if (displayStyle!'carousel') == 'grid']grid-display[#elseif (displayStyle!'carousel') == 'slider']slider-display[#else]carousel-display[/#if] [#if (animateOnScroll!true)]fade-in[/#if]" 
+<section class="awards-section [#if (configuration.displayStyle!'carousel') == 'grid']grid-display[#elseif (configuration.displayStyle!'carousel') == 'slider']slider-display[#else]carousel-display[/#if] [#if (animateOnScroll!true)]fade-in[/#if]" 
          data-lfr-background-image-id="awards-bg">
     
     <div class="container">
@@ -7,59 +7,59 @@
             <p data-lfr-editable-id="awards-subtitle" data-lfr-editable-type="text">Best in class user experiences across our iOS and Android apps.</p>
         </div>
         
-        <div class="awards-container [#if (displayStyle!'carousel') == 'carousel']carousel[/#if]">
+        <div class="awards-container [#if (configuration.displayStyle!'carousel') == 'carousel']carousel[/#if]">
             <div class="awards-wrapper">
                 <!-- European CX Award -->
-                <div class="award-item [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
+                <div class="award-item [#if (configuration.displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
                     <div class="award-logo">
                         <img src="[resources:trustpilot-logo.png]" 
                              alt="European CX Award"
                              data-lfr-editable-id="award-logo-1" 
                              data-lfr-editable-type="image">
                     </div>
-                    <div class="award-info" [#if (showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                    <div class="award-info" [#if (configuration.showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <h3 data-lfr-editable-id="award-title-1" data-lfr-editable-type="text">European CX Award</h3>
                         <p data-lfr-editable-id="award-desc-1" data-lfr-editable-type="text">2024 Winner</p>
                     </div>
                 </div>
                 
                 <!-- CX Awards Silver -->
-                <div class="award-item [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
+                <div class="award-item [#if (configuration.displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
                     <div class="award-logo">
                         <img src="[resources:trustpilot-logo.png]" 
                              alt="CX Awards Silver"
                              data-lfr-editable-id="award-logo-2" 
                              data-lfr-editable-type="image">
                     </div>
-                    <div class="award-info" [#if (showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                    <div class="award-info" [#if (configuration.showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <h3 data-lfr-editable-id="award-title-2" data-lfr-editable-type="text">CX Awards Silver</h3>
                         <p data-lfr-editable-id="award-desc-2" data-lfr-editable-type="text">2024 Silver Winner</p>
                     </div>
                 </div>
                 
                 <!-- UK Dev Awards -->
-                <div class="award-item [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
+                <div class="award-item [#if (configuration.displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
                     <div class="award-logo">
                         <img src="[resources:trustpilot-logo.png]" 
                              alt="UK Dev Awards"
                              data-lfr-editable-id="award-logo-3" 
                              data-lfr-editable-type="image">
                     </div>
-                    <div class="award-info" [#if (showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                    <div class="award-info" [#if (configuration.showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <h3 data-lfr-editable-id="award-title-3" data-lfr-editable-type="text">UK Dev Awards</h3>
                         <p data-lfr-editable-id="award-desc-3" data-lfr-editable-type="text">Best Mobile App</p>
                     </div>
                 </div>
                 
                 <!-- UK Customer Satisfaction Awards -->
-                <div class="award-item [#if (displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
+                <div class="award-item [#if (configuration.displayStyle!'carousel') == 'carousel']carousel-item[/#if]">
                     <div class="award-logo">
                         <img src="[resources:trustpilot-logo.png]" 
                              alt="UK Customer Satisfaction Awards"
                              data-lfr-editable-id="award-logo-4" 
                              data-lfr-editable-type="image">
                     </div>
-                    <div class="award-info" [#if (showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                    <div class="award-info" [#if (configuration.showDescriptions!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                         <h3 data-lfr-editable-id="award-title-4" data-lfr-editable-type="text">UK Customer Satisfaction Awards</h3>
                         <p data-lfr-editable-id="award-desc-4" data-lfr-editable-type="text">2025 Winner</p>
                     </div>
@@ -67,7 +67,7 @@
             </div>
             
             <!-- Carousel Navigation -->
-            <div class="carousel-controls" [#if (displayStyle!'carousel') == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
+            <div class="carousel-controls" [#if (configuration.displayStyle!'carousel') == 'carousel']style="display: flex;"[#else]style="display: none;"[/#if]>
                 <button class="carousel-btn prev-btn" aria-label="Previous awards">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>

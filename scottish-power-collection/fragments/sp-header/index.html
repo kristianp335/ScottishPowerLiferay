@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-header">
             <!-- Personal/Business Toggle -->
-            <div class="account-type-toggle" [#if (showPersonalBusiness!false)]style="display: block;"[#else]style="display: none;"[/#if]>
+            <div class="account-type-toggle" [#if (configuration.showPersonalBusiness!false)]style="display: block;"[#else]style="display: none;"[/#if]>
                 <span data-lfr-editable-id="personal-label" data-lfr-editable-type="text">Personal</span>
                 <span data-lfr-editable-id="business-label" data-lfr-editable-type="text">Business</span>
             </div>

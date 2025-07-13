@@ -1,11 +1,11 @@
-<section class="support-sections [#if (sectionLayout!'horizontal') == 'vertical']vertical-layout[#elseif (sectionLayout!'horizontal') == 'stacked']stacked-layout[#else]horizontal-layout[/#if]" 
+<section class="support-sections [#if (configuration.sectionLayout!'horizontal') == 'vertical']vertical-layout[#elseif (configuration.sectionLayout!'horizontal') == 'stacked']stacked-layout[#else]horizontal-layout[/#if]" 
          data-lfr-background-image-id="support-bg">
     
     <div class="container">
         <div class="support-grid">
             <!-- Energy Switching Section -->
             <div class="support-item fade-in">
-                <div class="support-image" [#if (showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="support-image" [#if (configuration.showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                     <img src="[resources:hero-background.jpg]" 
                          alt="Energy Switching"
                          data-lfr-editable-id="switching-image" 
@@ -37,7 +37,7 @@
             
             <!-- Webchat Section -->
             <div class="support-item webchat-section [#if (emphasizeWebchat!false)]emphasized[/#if] fade-in">
-                <div class="support-image" [#if (showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="support-image" [#if (configuration.showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                     <img src="[resources:hero-background.jpg]" 
                          alt="Webchat Support"
                          data-lfr-editable-id="webchat-image" 
@@ -75,7 +75,7 @@
             
             <!-- Phone Support Section -->
             <div class="support-item fade-in">
-                <div class="support-image" [#if (showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
+                <div class="support-image" [#if (configuration.showImages!true)]style="display: block;"[#else]style="display: none;"[/#if]>
                     <img src="[resources:hero-background.jpg]" 
                          alt="Phone Support"
                          data-lfr-editable-id="phone-image" 

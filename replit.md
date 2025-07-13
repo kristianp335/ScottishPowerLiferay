@@ -201,6 +201,14 @@ The system is designed to be maintainable, scalable, and flexible for content ed
   - Added MutationObserver fallback polling for older browsers
   - Enhanced DOMContentLoaded detection across all browser versions
 
+**July 13, 2025** - Fixed critical FreeMarker syntax errors across all fragments:
+- ✓ **Automated fix for all fragment configuration variables** using Python script
+- ✓ Updated 9 fragments to use proper `${configuration.variableName}` syntax instead of `${variableName}`
+- ✓ Fixed variables: displayStyle, footerStyle, showPersonalBusiness, sectionLayout, layoutStyle, heroLayout, cardStyle, showTrustpilotBranding, autoRotate, showRatings, and more
+- ✓ All fragments now import successfully into Liferay without FreeMarker template errors
+- ✓ Generated `scottish-power-collection-fixed.zip` with corrected syntax for immediate deployment
+- ✓ Updated individual fragment ZIP files with fixes applied
+
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes
 - ✓ Implemented <lfr-drop-zone> with correct Liferay syntax for content editors
