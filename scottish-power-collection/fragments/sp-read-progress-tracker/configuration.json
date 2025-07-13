@@ -10,7 +10,8 @@
                     "typeOptions": {
                         "validValues": [
                             {"value": "bar", "label": "Progress Bar"},
-                            {"value": "circular", "label": "Circular (Donut)"}
+                            {"value": "circular", "label": "Circular (Donut)"},
+                            {"value": "sausage", "label": "Sausage Progress (10 Sausages)"}
                         ]
                     },
                     "defaultValue": "bar"

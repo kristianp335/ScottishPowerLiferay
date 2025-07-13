@@ -14,6 +14,25 @@
                             <span class="progress-percentage progress-percentage--circular">0%</span>
                         [/#if]
                     </div>
+                [#elseif (configuration.progressStyle!"bar") == "sausage"]
+                    <!-- Sausage progress indicator -->
+                    <div class="progress-sausage">
+                        <div class="sausage-container">
+                            <div class="sausage" data-sausage="1">🌭</div>
+                            <div class="sausage" data-sausage="2">🌭</div>
+                            <div class="sausage" data-sausage="3">🌭</div>
+                            <div class="sausage" data-sausage="4">🌭</div>
+                            <div class="sausage" data-sausage="5">🌭</div>
+                            <div class="sausage" data-sausage="6">🌭</div>
+                            <div class="sausage" data-sausage="7">🌭</div>
+                            <div class="sausage" data-sausage="8">🌭</div>
+                            <div class="sausage" data-sausage="9">🌭</div>
+                            <div class="sausage" data-sausage="10">🌭</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--sausage">0%</span>
+                        [/#if]
+                    </div>
                 [#else]
                     <!-- Standard progress bar -->
                     <div class="progress-bar" id="reading-progress-bar">

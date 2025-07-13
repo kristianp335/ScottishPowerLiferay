@@ -89,13 +89,20 @@ function initializeProgressCalculation() {
     const progressCircular = fragmentElement.querySelector('.progress-circular');
     const isCircularStyle = !!progressCircular;
     
+    // Sausage progress elements
+    const progressSausage = fragmentElement.querySelector('.progress-sausage');
+    const sausageElements = fragmentElement.querySelectorAll('.sausage');
+    const isSausageStyle = !!progressSausage;
+    
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
         contentArea: !!contentArea,
         progressFill: !!progressFill,
         progressTracker: !!progressTracker,
         progressRingFill: !!progressRingFill,
-        isCircularStyle: isCircularStyle
+        isCircularStyle: isCircularStyle,
+        isSausageStyle: isSausageStyle,
+        sausageCount: sausageElements.length
     });
     
     // Debug the container classes to see what's actually being applied
@@ -105,11 +112,12 @@ function initializeProgressCalculation() {
         console.log('Container classList:', Array.from(trackerContainer.classList));
     }
     
-    if (!contentArea || (!progressFill && !progressRingFill)) {
+    if (!contentArea || (!progressFill && !progressRingFill && !progressSausage)) {
         console.log('Missing required elements for progress tracker', {
             contentArea: !!contentArea,
             progressFill: !!progressFill,
-            progressRingFill: !!progressRingFill
+            progressRingFill: !!progressRingFill,
+            progressSausage: !!progressSausage
         });
         return;
     }
@@ -246,6 +254,17 @@ function initializeProgressCalculation() {
             const offset = circumference - (percentage / 100) * circumference;
             progressRingFill.style.strokeDashoffset = offset;
             console.log('Updating circular progress:', percentage + '%', 'offset:', offset);
+        } else if (isSausageStyle && sausageElements.length > 0) {
+            // Update sausage progress - each sausage represents 10%
+            const filledSausages = Math.floor(percentage / 10);
+            sausageElements.forEach((sausage, index) => {
+                if (index < filledSausages) {
+                    sausage.classList.add('filled');
+                } else {
+                    sausage.classList.remove('filled');
+                }
+            });
+            console.log('Updating sausage progress:', percentage + '%', 'filled sausages:', filledSausages);
         } else if (progressFill) {
             // Update progress bar
             progressFill.style.width = `${percentage}%`;

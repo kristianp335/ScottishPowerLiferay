@@ -171,6 +171,63 @@
     padding: 12px;
 }
 
+/* Sausage Progress Styles */
+.progress-sausage {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+}
+
+.sausage-container {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.sausage {
+    font-size: 20px;
+    opacity: 0.3;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+}
+
+.sausage.filled {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1);
+}
+
+.progress-percentage--sausage {
+    font-weight: 700;
+    font-size: 14px;
+    color: #00A651;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Sausage progress container sizing */
+.progress-tracker--sausage {
+    width: auto;
+    min-width: 250px;
+    max-width: 300px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    margin: 0;
+}
+
+/* Compact fixed position for sausage */
+.progress-tracker--sausage.fixed-position {
+    width: auto;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 12px 16px;
+}
+
 @keyframes quickSlideIn {
     from {
         opacity: 0;
