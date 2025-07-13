@@ -89,10 +89,10 @@ function initializeProgressCalculation() {
     const progressCircular = fragmentElement.querySelector('.progress-circular');
     const isCircularStyle = !!progressCircular;
     
-    // Sausage progress elements
-    const progressSausage = fragmentElement.querySelector('.progress-sausage');
-    const sausageElements = fragmentElement.querySelectorAll('.sausage');
-    const isSausageStyle = !!progressSausage;
+    // Emoji progress elements (works for all emoji types)
+    const progressEmoji = fragmentElement.querySelector('.progress-emoji');
+    const emojiElements = fragmentElement.querySelectorAll('.emoji-item');
+    const isEmojiStyle = !!progressEmoji;
     
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
@@ -101,8 +101,8 @@ function initializeProgressCalculation() {
         progressTracker: !!progressTracker,
         progressRingFill: !!progressRingFill,
         isCircularStyle: isCircularStyle,
-        isSausageStyle: isSausageStyle,
-        sausageCount: sausageElements.length
+        isEmojiStyle: isEmojiStyle,
+        emojiCount: emojiElements.length
     });
     
     // Debug the container classes to see what's actually being applied
@@ -112,12 +112,12 @@ function initializeProgressCalculation() {
         console.log('Container classList:', Array.from(trackerContainer.classList));
     }
     
-    if (!contentArea || (!progressFill && !progressRingFill && !progressSausage)) {
+    if (!contentArea || (!progressFill && !progressRingFill && !progressEmoji)) {
         console.log('Missing required elements for progress tracker', {
             contentArea: !!contentArea,
             progressFill: !!progressFill,
             progressRingFill: !!progressRingFill,
-            progressSausage: !!progressSausage
+            progressEmoji: !!progressEmoji
         });
         return;
     }
@@ -254,17 +254,17 @@ function initializeProgressCalculation() {
             const offset = circumference - (percentage / 100) * circumference;
             progressRingFill.style.strokeDashoffset = offset;
             console.log('Updating circular progress:', percentage + '%', 'offset:', offset);
-        } else if (isSausageStyle && sausageElements.length > 0) {
-            // Update sausage progress - each sausage represents 10%
-            const filledSausages = Math.floor(percentage / 10);
-            sausageElements.forEach((sausage, index) => {
-                if (index < filledSausages) {
-                    sausage.classList.add('filled');
+        } else if (isEmojiStyle && emojiElements.length > 0) {
+            // Update emoji progress - each emoji represents 10%
+            const filledEmojis = Math.floor(percentage / 10);
+            emojiElements.forEach((emoji, index) => {
+                if (index < filledEmojis) {
+                    emoji.classList.add('filled');
                 } else {
-                    sausage.classList.remove('filled');
+                    emoji.classList.remove('filled');
                 }
             });
-            console.log('Updating sausage progress:', percentage + '%', 'filled sausages:', filledSausages);
+            console.log('Updating emoji progress:', percentage + '%', 'filled emojis:', filledEmojis);
         } else if (progressFill) {
             // Update progress bar
             progressFill.style.width = `${percentage}%`;

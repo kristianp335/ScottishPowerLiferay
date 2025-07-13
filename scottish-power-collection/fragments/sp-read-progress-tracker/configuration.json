@@ -11,7 +11,14 @@
                         "validValues": [
                             {"value": "bar", "label": "Progress Bar"},
                             {"value": "circular", "label": "Circular (Donut)"},
-                            {"value": "sausage", "label": "Sausage Progress (10 Sausages)"}
+                            {"value": "sausage", "label": "Sausage Progress (10 Sausages)"},
+                            {"value": "football", "label": "Football Progress (10 Footballs)"},
+                            {"value": "chromium", "label": "Chromium Logo Progress (10 Logos)"},
+                            {"value": "dinosaur", "label": "Dinosaur Progress (10 Dinosaurs)"},
+                            {"value": "cat", "label": "Cat Progress (10 Cats)"},
+                            {"value": "dog", "label": "Dog Progress (10 Dogs)"},
+                            {"value": "car", "label": "Car Progress (10 Cars)"},
+                            {"value": "motorbike", "label": "Motorbike Progress (10 Motorbikes)"}
                         ]
                     },
                     "defaultValue": "bar"

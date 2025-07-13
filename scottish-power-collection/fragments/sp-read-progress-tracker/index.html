@@ -16,21 +16,154 @@
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "sausage"]
                     <!-- Sausage progress indicator -->
-                    <div class="progress-sausage">
-                        <div class="sausage-container">
-                            <div class="sausage" data-sausage="1">🌭</div>
-                            <div class="sausage" data-sausage="2">🌭</div>
-                            <div class="sausage" data-sausage="3">🌭</div>
-                            <div class="sausage" data-sausage="4">🌭</div>
-                            <div class="sausage" data-sausage="5">🌭</div>
-                            <div class="sausage" data-sausage="6">🌭</div>
-                            <div class="sausage" data-sausage="7">🌭</div>
-                            <div class="sausage" data-sausage="8">🌭</div>
-                            <div class="sausage" data-sausage="9">🌭</div>
-                            <div class="sausage" data-sausage="10">🌭</div>
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🌭</div>
+                            <div class="emoji-item" data-index="2">🌭</div>
+                            <div class="emoji-item" data-index="3">🌭</div>
+                            <div class="emoji-item" data-index="4">🌭</div>
+                            <div class="emoji-item" data-index="5">🌭</div>
+                            <div class="emoji-item" data-index="6">🌭</div>
+                            <div class="emoji-item" data-index="7">🌭</div>
+                            <div class="emoji-item" data-index="8">🌭</div>
+                            <div class="emoji-item" data-index="9">🌭</div>
+                            <div class="emoji-item" data-index="10">🌭</div>
                         </div>
                         [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--sausage">0%</span>
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "football"]
+                    <!-- Football progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">⚽</div>
+                            <div class="emoji-item" data-index="2">⚽</div>
+                            <div class="emoji-item" data-index="3">⚽</div>
+                            <div class="emoji-item" data-index="4">⚽</div>
+                            <div class="emoji-item" data-index="5">⚽</div>
+                            <div class="emoji-item" data-index="6">⚽</div>
+                            <div class="emoji-item" data-index="7">⚽</div>
+                            <div class="emoji-item" data-index="8">⚽</div>
+                            <div class="emoji-item" data-index="9">⚽</div>
+                            <div class="emoji-item" data-index="10">⚽</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "chromium"]
+                    <!-- Chromium logo progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item chromium-logo" data-index="1">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="2">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="3">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="4">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="5">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="6">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="7">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="8">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="9">🌐</div>
+                            <div class="emoji-item chromium-logo" data-index="10">🌐</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "dinosaur"]
+                    <!-- Dinosaur progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🦕</div>
+                            <div class="emoji-item" data-index="2">🦕</div>
+                            <div class="emoji-item" data-index="3">🦕</div>
+                            <div class="emoji-item" data-index="4">🦕</div>
+                            <div class="emoji-item" data-index="5">🦕</div>
+                            <div class="emoji-item" data-index="6">🦕</div>
+                            <div class="emoji-item" data-index="7">🦕</div>
+                            <div class="emoji-item" data-index="8">🦕</div>
+                            <div class="emoji-item" data-index="9">🦕</div>
+                            <div class="emoji-item" data-index="10">🦕</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "cat"]
+                    <!-- Cat progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🐱</div>
+                            <div class="emoji-item" data-index="2">🐱</div>
+                            <div class="emoji-item" data-index="3">🐱</div>
+                            <div class="emoji-item" data-index="4">🐱</div>
+                            <div class="emoji-item" data-index="5">🐱</div>
+                            <div class="emoji-item" data-index="6">🐱</div>
+                            <div class="emoji-item" data-index="7">🐱</div>
+                            <div class="emoji-item" data-index="8">🐱</div>
+                            <div class="emoji-item" data-index="9">🐱</div>
+                            <div class="emoji-item" data-index="10">🐱</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "dog"]
+                    <!-- Dog progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🐶</div>
+                            <div class="emoji-item" data-index="2">🐶</div>
+                            <div class="emoji-item" data-index="3">🐶</div>
+                            <div class="emoji-item" data-index="4">🐶</div>
+                            <div class="emoji-item" data-index="5">🐶</div>
+                            <div class="emoji-item" data-index="6">🐶</div>
+                            <div class="emoji-item" data-index="7">🐶</div>
+                            <div class="emoji-item" data-index="8">🐶</div>
+                            <div class="emoji-item" data-index="9">🐶</div>
+                            <div class="emoji-item" data-index="10">🐶</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "car"]
+                    <!-- Car progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🚗</div>
+                            <div class="emoji-item" data-index="2">🚗</div>
+                            <div class="emoji-item" data-index="3">🚗</div>
+                            <div class="emoji-item" data-index="4">🚗</div>
+                            <div class="emoji-item" data-index="5">🚗</div>
+                            <div class="emoji-item" data-index="6">🚗</div>
+                            <div class="emoji-item" data-index="7">🚗</div>
+                            <div class="emoji-item" data-index="8">🚗</div>
+                            <div class="emoji-item" data-index="9">🚗</div>
+                            <div class="emoji-item" data-index="10">🚗</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
+                        [/#if]
+                    </div>
+                [#elseif (configuration.progressStyle!"bar") == "motorbike"]
+                    <!-- Motorbike progress indicator -->
+                    <div class="progress-emoji">
+                        <div class="emoji-container">
+                            <div class="emoji-item" data-index="1">🏍️</div>
+                            <div class="emoji-item" data-index="2">🏍️</div>
+                            <div class="emoji-item" data-index="3">🏍️</div>
+                            <div class="emoji-item" data-index="4">🏍️</div>
+                            <div class="emoji-item" data-index="5">🏍️</div>
+                            <div class="emoji-item" data-index="6">🏍️</div>
+                            <div class="emoji-item" data-index="7">🏍️</div>
+                            <div class="emoji-item" data-index="8">🏍️</div>
+                            <div class="emoji-item" data-index="9">🏍️</div>
+                            <div class="emoji-item" data-index="10">🏍️</div>
+                        </div>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--emoji">0%</span>
                         [/#if]
                     </div>
                 [#else]
