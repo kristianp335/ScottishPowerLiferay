@@ -165,9 +165,10 @@
 
 /* Compact fixed position for circular */
 .progress-tracker--circular.fixed-position {
-    width: 76px; /* 60px + 16px padding */
-    min-width: 76px;
-    max-width: 76px;
+    width: 84px; /* 60px circle + 24px padding for proper spacing */
+    min-width: 84px;
+    max-width: 84px;
+    padding: 12px;
 }
 
 @keyframes quickSlideIn {
