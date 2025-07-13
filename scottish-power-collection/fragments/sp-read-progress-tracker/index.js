@@ -94,6 +94,15 @@ function initializeProgressCalculation() {
     const emojiElements = fragmentElement.querySelectorAll('.emoji-item');
     const isEmojiStyle = !!progressEmoji;
     
+    // Reading time elements and configuration
+    const readTimeElement = fragmentElement.querySelector('.read-time');
+    const readingSpeed = parseInt(trackerElement.dataset.readingSpeed) || 200; // WPM
+    const showReadTime = trackerElement.dataset.showReadTime !== 'false';
+    
+    // Word count and reading time variables
+    let totalWordCount = 0;
+    let estimatedReadTime = 0;
+    
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
         contentArea: !!contentArea,
@@ -127,6 +136,43 @@ function initializeProgressCalculation() {
     
     // Configuration from fragment settings - get from data attributes or defaults
     const smoothScrolling = fragmentElement.dataset.enableScrollSmoothing !== 'false';
+    
+    // Function to count words in content area
+    function countWordsInContent() {
+        if (!contentArea) return 0;
+        
+        // Get all text content from the content area, excluding the dropzone placeholder
+        const textContent = contentArea.innerText || contentArea.textContent || '';
+        
+        // Remove the placeholder text if it exists
+        const placeholderText = 'Content Area Drop your content here. The progress tracker will automatically calculate reading progress based on scroll position through this content.';
+        const cleanText = textContent.replace(placeholderText, '').trim();
+        
+        // Count words (split by whitespace and filter out empty strings)
+        const words = cleanText.split(/\s+/).filter(word => word.length > 0);
+        return words.length;
+    }
+    
+    // Function to calculate and update reading time
+    function updateReadingTime() {
+        totalWordCount = countWordsInContent();
+        estimatedReadTime = Math.ceil(totalWordCount / readingSpeed);
+        
+        if (readTimeElement && showReadTime) {
+            if (totalWordCount > 0) {
+                const timeText = estimatedReadTime === 1 ? '~1 min read' : `~${estimatedReadTime} min read`;
+                readTimeElement.textContent = timeText;
+            } else {
+                readTimeElement.textContent = '~0 min read';
+            }
+        }
+        
+        console.log('Reading time updated:', {
+            wordCount: totalWordCount,
+            readingSpeed: readingSpeed,
+            estimatedTime: estimatedReadTime
+        });
+    }
     
     function checkForContent() {
         if (!contentArea) return false;
@@ -163,6 +209,9 @@ function initializeProgressCalculation() {
         // Always show tracker and start tracking regardless of content
         showProgressTracker();
         startProgressTracking();
+        
+        // Update reading time - calculate even for placeholder content
+        updateReadingTime();
         
         return hasRealContent;
     }
@@ -432,13 +481,16 @@ function initializeProgressCalculation() {
                     if (isVisible) {
                         calculateReadingProgress();
                     }
+                    // Update reading time when content changes
+                    updateReadingTime();
                 }, 100);
             });
             
             observer.observe(contentArea, {
                 childList: true,
                 subtree: true,
-                attributes: false
+                attributes: false,
+                characterData: true
             });
         } catch (e) {
             console.warn('MutationObserver failed, using fallback polling:', e);

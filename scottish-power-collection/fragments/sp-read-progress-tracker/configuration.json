@@ -50,6 +50,21 @@
                     "description": "Add smooth animation to progress updates",
                     "type": "checkbox",
                     "defaultValue": true
+                },
+                {
+                    "name": "showReadTime",
+                    "label": "Show Estimated Read Time",
+                    "description": "Display estimated reading time in minutes based on word count",
+                    "type": "checkbox",
+                    "defaultValue": true
+                },
+                {
+                    "name": "readingSpeed",
+                    "label": "Reading Speed (WPM)",
+                    "description": "Average reading speed in words per minute for time calculation",
+                    "type": "text",
+                    "dataType": "int",
+                    "defaultValue": "200"
                 }
             ]
         }

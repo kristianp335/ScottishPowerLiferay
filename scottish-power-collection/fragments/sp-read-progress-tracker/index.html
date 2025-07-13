@@ -1,4 +1,4 @@
-<div class="sp-read-progress-tracker" data-enable-scroll-smoothing="${(configuration.enableScrollSmoothing!true)?c}">
+<div class="sp-read-progress-tracker" data-enable-scroll-smoothing="${(configuration.enableScrollSmoothing!true)?c}" data-reading-speed="${configuration.readingSpeed!200}" data-show-read-time="${(configuration.showReadTime!true)?c}">
     <div class="reading-content-wrapper">
         <!-- Inline progress tracker container above content area -->
         <div class="progress-tracker-inline-container progress-tracker-inline-container--${configuration.progressPosition!"inline-center"}">
@@ -10,9 +10,14 @@
                             <circle class="progress-ring-track" cx="30" cy="30" r="25" stroke-width="6" fill="transparent" stroke="#e5e7eb"/>
                             <circle class="progress-ring-fill" cx="30" cy="30" r="25" stroke-width="6" fill="transparent" stroke="#00A651" stroke-dasharray="157.08" stroke-dashoffset="157.08"/>
                         </svg>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--circular">0%</span>
-                        [/#if]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--circular">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "sausage"]
                     <!-- Sausage progress indicator -->
@@ -29,9 +34,16 @@
                             <div class="emoji-item" data-index="9">🌭</div>
                             <div class="emoji-item" data-index="10">🌭</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "football"]
                     <!-- Football progress indicator -->
@@ -48,9 +60,16 @@
                             <div class="emoji-item" data-index="9">⚽</div>
                             <div class="emoji-item" data-index="10">⚽</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "chromium"]
                     <!-- Chromium logo progress indicator -->
@@ -67,9 +86,16 @@
                             <div class="emoji-item chromium-logo" data-index="9">🌐</div>
                             <div class="emoji-item chromium-logo" data-index="10">🌐</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "dinosaur"]
                     <!-- Dinosaur progress indicator -->
@@ -86,9 +112,16 @@
                             <div class="emoji-item" data-index="9">🦕</div>
                             <div class="emoji-item" data-index="10">🦕</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "cat"]
                     <!-- Cat progress indicator -->
@@ -105,9 +138,16 @@
                             <div class="emoji-item" data-index="9">🐱</div>
                             <div class="emoji-item" data-index="10">🐱</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "dog"]
                     <!-- Dog progress indicator -->
@@ -124,9 +164,16 @@
                             <div class="emoji-item" data-index="9">🐶</div>
                             <div class="emoji-item" data-index="10">🐶</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "car"]
                     <!-- Car progress indicator -->
@@ -143,9 +190,16 @@
                             <div class="emoji-item" data-index="9">🚗</div>
                             <div class="emoji-item" data-index="10">🚗</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#elseif (configuration.progressStyle!"bar") == "motorbike"]
                     <!-- Motorbike progress indicator -->
@@ -162,18 +216,30 @@
                             <div class="emoji-item" data-index="9">🏍️</div>
                             <div class="emoji-item" data-index="10">🏍️</div>
                         </div>
-                        [#if (configuration.showPercentage!true)]
-                            <span class="progress-percentage progress-percentage--emoji">0%</span>
-                        [/#if]
+                        [#if (configuration.showPercentage!true) || (configuration.showReadTime!true)]
+                        <div class="progress-info">
+                            [#if (configuration.showPercentage!true)]
+                                <span class="progress-percentage progress-percentage--emoji">0%</span>
+                            [/#if]
+                            [#if (configuration.showReadTime!true)]
+                                <span class="read-time">~0 min read</span>
+                            [/#if]
+                        </div>
+                    [/#if]
                     </div>
                 [#else]
                     <!-- Standard progress bar -->
                     <div class="progress-bar" id="reading-progress-bar">
                         <div class="progress-fill"></div>
                     </div>
-                    [#if (configuration.showPercentage!true)]
-                        <span class="progress-percentage" id="reading-percentage">0%</span>
-                    [/#if]
+                    <div class="progress-info">
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage" id="reading-percentage">0%</span>
+                        [/#if]
+                        [#if (configuration.showReadTime!true)]
+                            <span class="read-time">~0 min read</span>
+                        [/#if]
+                    </div>
                 [/#if]
             </div>
         </div>

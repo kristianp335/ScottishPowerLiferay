@@ -250,6 +250,40 @@
     padding: 12px 20px;
 }
 
+/* Progress info container for percentage and read time */
+.progress-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.progress-info .progress-percentage {
+    margin: 0;
+}
+
+.read-time {
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+/* Responsive read time for smaller displays */
+@media (max-width: 480px) {
+    .read-time {
+        font-size: 10px;
+    }
+    
+    .progress-info {
+        gap: 2px;
+        min-width: 60px;
+    }
+}
+
 @keyframes quickSlideIn {
     from {
         opacity: 0;
