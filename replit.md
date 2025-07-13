@@ -202,6 +202,14 @@ The system is designed to be maintainable, scalable, and flexible for content ed
   - Added MutationObserver fallback polling for older browsers
   - Enhanced DOMContentLoaded detection across all browser versions
 
+**July 13, 2025** - Enhanced reading time with remaining time calculation and bold colored styling:
+- ✓ **Dynamic Remaining Time**: Shows "~X min left" that decreases as user scrolls through content
+- ✓ **Completion Message**: Displays "Reading complete!" when user finishes reading (100% progress)
+- ✓ **Bold Colored Styling**: Read time now displayed in bold Scottish Power green (#00A651) for better visibility
+- ✓ **Real-Time Progress Integration**: Remaining time updates instantly with scroll progress percentage
+- ✓ **Smart Time Calculation**: Calculates remaining reading time based on current scroll position
+- ✓ **Universal Compatibility**: Works seamlessly with all 8 emoji indicators, bar, and circular progress styles
+
 **July 13, 2025** - Added comprehensive reading time calculation with word count analysis:
 - ✓ **Reading Time Calculation**: Word count analysis of dropzone content with configurable reading speed (default: 200 WPM)
 - ✓ **Real-Time Updates**: Content change detection using MutationObserver for automatic reading time recalculation

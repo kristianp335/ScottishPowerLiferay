@@ -154,14 +154,22 @@ function initializeProgressCalculation() {
     }
     
     // Function to calculate and update reading time
-    function updateReadingTime() {
+    function updateReadingTime(scrollProgress = 0) {
         totalWordCount = countWordsInContent();
         estimatedReadTime = Math.ceil(totalWordCount / readingSpeed);
         
         if (readTimeElement && showReadTime) {
             if (totalWordCount > 0) {
-                const timeText = estimatedReadTime === 1 ? '~1 min read' : `~${estimatedReadTime} min read`;
-                readTimeElement.textContent = timeText;
+                // Calculate remaining reading time based on scroll progress
+                const remainingTime = Math.ceil(estimatedReadTime * (1 - scrollProgress / 100));
+                
+                if (remainingTime <= 0) {
+                    readTimeElement.textContent = 'Reading complete!';
+                } else if (remainingTime === 1) {
+                    readTimeElement.textContent = '~1 min left';
+                } else {
+                    readTimeElement.textContent = `~${remainingTime} min left`;
+                }
             } else {
                 readTimeElement.textContent = '~0 min read';
             }
@@ -170,7 +178,9 @@ function initializeProgressCalculation() {
         console.log('Reading time updated:', {
             wordCount: totalWordCount,
             readingSpeed: readingSpeed,
-            estimatedTime: estimatedReadTime
+            estimatedTime: estimatedReadTime,
+            scrollProgress: scrollProgress,
+            remainingTime: Math.ceil(estimatedReadTime * (1 - scrollProgress / 100))
         });
     }
     
@@ -324,6 +334,9 @@ function initializeProgressCalculation() {
         if (progressPercentage) {
             progressPercentage.textContent = `${percentage}%`;
         }
+        
+        // Update reading time with current progress
+        updateReadingTime(percentage);
         
         // Add completion effect and check if user scrolled beyond content
         if (percentage === 100) {

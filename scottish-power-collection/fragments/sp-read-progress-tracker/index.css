@@ -272,10 +272,20 @@
     white-space: nowrap;
 }
 
+/* Read time styling - bold and colored */
+.read-time {
+    font-size: 0.8em;
+    color: #00A651;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
 /* Responsive read time for smaller displays */
 @media (max-width: 480px) {
     .read-time {
         font-size: 10px;
+        font-weight: bold;
+        color: #00A651;
     }
     
     .progress-info {
