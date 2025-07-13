@@ -38,13 +38,6 @@
     justify-content: flex-end;
 }
 
-/* Override alignment for circular - always center the compact circle */
-.progress-tracker-inline-container--inline-left .progress-tracker--circular,
-.progress-tracker-inline-container--inline-center .progress-tracker--circular,
-.progress-tracker-inline-container--inline-right .progress-tracker--circular {
-    margin: 0 auto;
-}
-
 .progress-tracker--inline {
     position: relative;
 }
@@ -133,30 +126,19 @@
 
 /* Circular progress container sizing */
 .progress-tracker--circular {
-    width: auto;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 8px;
+    margin: 0;
 }
 
 .progress-tracker--circular .progress-circular {
     margin: 0;
     flex-shrink: 0;
-}
-
-/* Ensure circular progress doesn't take full width */
-.progress-tracker-inline-container .progress-tracker--circular {
-    display: inline-flex;
-    width: 60px;
-    margin: 0 auto;
-}
-
-/* Center circular progress in all alignment modes */
-.progress-tracker-inline-container--inline-left .progress-tracker--circular,
-.progress-tracker-inline-container--inline-center .progress-tracker--circular,
-.progress-tracker-inline-container--inline-right .progress-tracker--circular {
-    margin: 0 auto;
-    justify-self: center;
 }
 
 /* Fixed position styles for inline-to-fixed behavior */
@@ -166,6 +148,26 @@
     z-index: 1000;
     animation: quickSlideIn 0.1s ease-out; /* Fast 3x animation */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.progress-tracker.fixed-position.fixed-left {
+    left: 20px;
+}
+
+.progress-tracker.fixed-position.fixed-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress-tracker.fixed-position.fixed-right {
+    right: 20px;
+}
+
+/* Compact fixed position for circular */
+.progress-tracker--circular.fixed-position {
+    width: 76px; /* 60px + 16px padding */
+    min-width: 76px;
+    max-width: 76px;
 }
 
 @keyframes quickSlideIn {
