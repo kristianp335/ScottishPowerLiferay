@@ -126,13 +126,13 @@
 
 /* Circular progress container sizing */
 .progress-tracker--circular {
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
+    width: 84px;
+    min-width: 84px;
+    max-width: 84px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 12px;
     margin: 0;
 }
 
