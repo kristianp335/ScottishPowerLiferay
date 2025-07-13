@@ -347,13 +347,8 @@ function initializeProgressCalculation() {
         }
         
         function onScroll() {
-            // More responsive scroll handling - update immediately for smoother progress
-            if (!ticking) {
-                updateProgress();
-                ticking = true;
-                // Reduced throttling for smoother updates
-                setTimeout(() => { ticking = false; }, 10);
-            }
+            // Ultra-responsive scroll handling - update on every scroll event
+            updateProgress();
         }
         
         // Cross-browser event listener attachment
