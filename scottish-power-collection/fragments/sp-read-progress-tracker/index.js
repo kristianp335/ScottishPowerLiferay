@@ -333,13 +333,13 @@ function initializeProgressCalculation() {
             const contentBottom = contentRect.bottom + scrollTop;
             const viewportHeight = getViewportHeight();
             
-            // If user has scrolled significantly past the content (200px beyond) AND reading is complete
-            if (scrollTop > (contentBottom + 200) && currentProgress >= 100) {
+            // If user has scrolled past the content (20px beyond) AND reading is complete
+            if (scrollTop > (contentBottom + 20) && currentProgress >= 100) {
                 if (!progressTracker.classList.contains('auto-hidden')) {
                     progressTracker.classList.add('auto-hidden');
                     console.log('Progress tracker auto-hidden - user scrolled past completed content');
                 }
-            } else if (scrollTop <= (contentBottom + 100) && progressTracker.classList.contains('auto-hidden')) {
+            } else if (scrollTop <= (contentBottom + 10) && progressTracker.classList.contains('auto-hidden')) {
                 // Show tracker again if user scrolls back to content area
                 progressTracker.classList.remove('auto-hidden');
                 console.log('Progress tracker auto-shown - user scrolled back to content area');
