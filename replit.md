@@ -28,9 +28,10 @@ Preferred communication style: Simple, everyday language.
   }
   ```
 
-- **Fragment Structure Standards**:
-  - Individual ZIP files for each fragment using create_fragment_zips.py
-  - Complete collection ZIP with all fragments and resources
+- **Fragment ZIP Structure Standards**:
+  - **CRITICAL**: Individual fragment ZIPs must contain directory structure: `fragment-name/files`
+  - Each fragment ZIP contains: `fragment-name/fragment.json`, `fragment-name/configuration.json`, etc.
+  - Complete collection ZIP with all fragments and resources at root level
   - Each fragment includes: fragment.json, configuration.json, index.html, index.css, index.js, thumbnail.png
   - Global state management: `window.spFragmentName = { initialized: false, loading: false }`
 
