@@ -202,12 +202,14 @@ The system is designed to be maintainable, scalable, and flexible for content ed
   - Added MutationObserver fallback polling for older browsers
   - Enhanced DOMContentLoaded detection across all browser versions
 
-**July 13, 2025** - Enhanced reading time with remaining time calculation and bold colored styling:
+**July 13, 2025** - Enhanced reading time with remaining time calculation and improved layout for all progress styles:
 - ✓ **Dynamic Remaining Time**: Shows "~X min left" that decreases as user scrolls through content
 - ✓ **Completion Message**: Displays "Reading complete!" when user finishes reading (100% progress)
 - ✓ **Bold Colored Styling**: Read time now displayed in bold Scottish Power green (#00A651) for better visibility
 - ✓ **Real-Time Progress Integration**: Remaining time updates instantly with scroll progress percentage
 - ✓ **Smart Time Calculation**: Calculates remaining reading time based on current scroll position
+- ✓ **Enhanced Circular Layout**: Wider container (200-300px) with horizontal layout for circular progress + read time
+- ✓ **Improved Container Width**: Expanded from 200-300px to 280-400px to properly accommodate all content
 - ✓ **Universal Compatibility**: Works seamlessly with all 8 emoji indicators, bar, and circular progress styles
 
 **July 13, 2025** - Added comprehensive reading time calculation with word count analysis:

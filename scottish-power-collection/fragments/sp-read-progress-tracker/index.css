@@ -14,8 +14,8 @@
     gap: 12px;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 166, 81, 0.2);
-    max-width: 300px;
-    min-width: 200px;
+    max-width: 400px;
+    min-width: 280px;
 }
 
 /* Inline progress tracker container above content area */
@@ -91,10 +91,10 @@
 /* Circular Progress Styles */
 .progress-circular {
     position: relative;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 60px;
+    gap: 16px;
+    width: auto;
     height: 60px;
 }
 
@@ -124,21 +124,40 @@
     min-width: auto;
 }
 
+/* Circular progress wrapper for SVG and percentage */
+.circular-progress-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+/* Progress info container for circular style */
+.progress-circular .progress-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    min-width: 80px;
+}
+
 /* Circular progress container sizing */
 .progress-tracker--circular {
-    width: 84px;
-    min-width: 84px;
-    max-width: 84px;
-    display: inline-flex;
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 12px;
+    justify-content: flex-start;
+    padding: 16px 20px;
     margin: 0;
 }
 
 .progress-tracker--circular .progress-circular {
     margin: 0;
     flex-shrink: 0;
+    position: relative;
 }
 
 /* Fixed position styles for inline-to-fixed behavior */
