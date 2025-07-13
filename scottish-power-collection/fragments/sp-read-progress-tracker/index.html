@@ -2,12 +2,26 @@
     <div class="reading-content-wrapper">
         <!-- Inline progress tracker container above content area -->
         <div class="progress-tracker-inline-container progress-tracker-inline-container--${configuration.progressPosition!"inline-center"}">
-            <div class="progress-tracker progress-tracker--inline">
-                <div class="progress-bar" id="reading-progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                [#if (configuration.showPercentage!true)]
-                    <span class="progress-percentage" id="reading-percentage">0%</span>
+            <div class="progress-tracker progress-tracker--inline progress-tracker--${configuration.progressStyle!"bar"}">
+                [#if (configuration.progressStyle!"bar") == "circular"]
+                    <!-- Circular donut progress -->
+                    <div class="progress-circular">
+                        <svg class="progress-ring" width="60" height="60">
+                            <circle class="progress-ring-track" cx="30" cy="30" r="25" stroke-width="6" fill="transparent" stroke="#e5e7eb"/>
+                            <circle class="progress-ring-fill" cx="30" cy="30" r="25" stroke-width="6" fill="transparent" stroke="#00A651" stroke-dasharray="157.08" stroke-dashoffset="157.08"/>
+                        </svg>
+                        [#if (configuration.showPercentage!true)]
+                            <span class="progress-percentage progress-percentage--circular">0%</span>
+                        [/#if]
+                    </div>
+                [#else]
+                    <!-- Standard progress bar -->
+                    <div class="progress-bar" id="reading-progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    [#if (configuration.showPercentage!true)]
+                        <span class="progress-percentage" id="reading-percentage">0%</span>
+                    [/#if]
                 [/#if]
             </div>
         </div>

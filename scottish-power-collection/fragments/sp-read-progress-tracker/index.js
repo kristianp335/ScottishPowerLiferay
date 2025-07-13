@@ -84,6 +84,10 @@ function initializeProgressCalculation() {
     const progressBar = fragmentElement.querySelector('.progress-bar');
     const progressTracker = fragmentElement.querySelector('.progress-tracker');
     
+    // Circular progress elements
+    const progressRingFill = fragmentElement.querySelector('.progress-ring-fill');
+    const isCircularStyle = progressTracker && progressTracker.classList.contains('progress-tracker--circular');
+    
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
         contentArea: !!contentArea,
@@ -229,8 +233,15 @@ function initializeProgressCalculation() {
         // Update on every change, even small ones, for smoother experience
         currentProgress = percentage;
         
-        // Update progress bar
-        progressFill.style.width = `${percentage}%`;
+        if (isCircularStyle && progressRingFill) {
+            // Update circular progress
+            const circumference = 2 * Math.PI * 25; // radius = 25
+            const offset = circumference - (percentage / 100) * circumference;
+            progressRingFill.style.strokeDashoffset = offset;
+        } else if (progressFill) {
+            // Update progress bar
+            progressFill.style.width = `${percentage}%`;
+        }
         
         // Update percentage text
         if (progressPercentage) {
