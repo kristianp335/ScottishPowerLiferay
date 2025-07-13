@@ -182,8 +182,10 @@
 
 .sausage-container {
     display: flex;
-    gap: 3px;
+    gap: 4px;
     align-items: center;
+    flex-wrap: nowrap;
+    min-width: 250px;
 }
 
 .sausage {
@@ -211,21 +213,21 @@
 /* Sausage progress container sizing */
 .progress-tracker--sausage {
     width: auto;
-    min-width: 250px;
-    max-width: 300px;
+    min-width: 320px;
+    max-width: 400px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 16px;
+    padding: 12px 20px;
     margin: 0;
 }
 
 /* Compact fixed position for sausage */
 .progress-tracker--sausage.fixed-position {
     width: auto;
-    min-width: 250px;
-    max-width: 300px;
-    padding: 12px 16px;
+    min-width: 320px;
+    max-width: 400px;
+    padding: 12px 20px;
 }
 
 @keyframes quickSlideIn {
