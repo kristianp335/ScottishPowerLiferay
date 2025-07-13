@@ -86,13 +86,16 @@ function initializeProgressCalculation() {
     
     // Circular progress elements
     const progressRingFill = fragmentElement.querySelector('.progress-ring-fill');
-    const isCircularStyle = progressTracker && progressTracker.classList.contains('progress-tracker--circular');
+    const progressCircular = fragmentElement.querySelector('.progress-circular');
+    const isCircularStyle = !!progressCircular;
     
     console.log('Progress tracker elements found:', {
         trackerElement: !!trackerElement,
         contentArea: !!contentArea,
         progressFill: !!progressFill,
-        progressTracker: !!progressTracker
+        progressTracker: !!progressTracker,
+        progressRingFill: !!progressRingFill,
+        isCircularStyle: isCircularStyle
     });
     
     // Debug the container classes to see what's actually being applied
@@ -102,8 +105,12 @@ function initializeProgressCalculation() {
         console.log('Container classList:', Array.from(trackerContainer.classList));
     }
     
-    if (!contentArea || !progressFill) {
-        console.log('Missing required elements for progress tracker');
+    if (!contentArea || (!progressFill && !progressRingFill)) {
+        console.log('Missing required elements for progress tracker', {
+            contentArea: !!contentArea,
+            progressFill: !!progressFill,
+            progressRingFill: !!progressRingFill
+        });
         return;
     }
     
@@ -235,12 +242,14 @@ function initializeProgressCalculation() {
         
         if (isCircularStyle && progressRingFill) {
             // Update circular progress
-            const circumference = 2 * Math.PI * 25; // radius = 25
+            const circumference = 2 * Math.PI * 25; // radius = 25 (157.08)
             const offset = circumference - (percentage / 100) * circumference;
             progressRingFill.style.strokeDashoffset = offset;
+            console.log('Updating circular progress:', percentage + '%', 'offset:', offset);
         } else if (progressFill) {
             // Update progress bar
             progressFill.style.width = `${percentage}%`;
+            console.log('Updating bar progress:', percentage + '%');
         }
         
         // Update percentage text
