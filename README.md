@@ -1,6 +1,6 @@
 # Scottish Power Corporate Website - Liferay Fragment Collection
 
-A complete recreation of the Scottish Power corporate website built using Liferay Client Extensions and Fragments with dynamic content capabilities.
+A comprehensive Liferay fragment collection for the Scottish Power corporate website, featuring modular, reusable UI components with advanced functionality, performance optimizations, and innovative reading progress tracking.
 
 ## 🚀 Quick Start
 
@@ -16,7 +16,7 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 │   ├── scottishpower-theme-css/    # CSS theme extension
 │   └── scottishpower-theme-js/     # JavaScript theme extension
 ├── fragments/                  # Liferay Fragment Components
-│   ├── sp-header/                 # Navigation header
+│   ├── sp-header/                 # Navigation header with Liferay login
 │   ├── sp-hero/                   # Hero section with quote form
 │   ├── sp-half-price-weekends/    # Promotional content
 │   ├── sp-service-blocks/         # Service highlights
@@ -24,14 +24,49 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 │   ├── sp-support-sections/       # Customer support
 │   ├── sp-awards/                 # Awards and certifications
 │   ├── sp-testimonials/           # Customer testimonials
+│   ├── sp-read-progress-tracker/  # NEW: Advanced reading progress tracker
 │   └── sp-footer/                 # Site footer
+├── fragment-zips/              # Individual fragment ZIP files
 ├── index.html                  # Complete website demo
 ├── demo.html                   # Fragment component demo
 ├── fragment-loader.js          # Fragment loading utility
+├── performance-optimizations.css # Lighthouse-optimized CSS
+├── performance-optimizations.js  # Performance-optimized JavaScript
 ├── scottish-power-collection.zip # Liferay fragment collection package
 ├── DEPLOYMENT_GUIDE.md         # Production deployment instructions
 └── scottish-power-collection.json # Liferay collection metadata
 ```
+
+## 🆕 Latest Features (July 2025)
+
+### Read Progress Tracker (sp-read-progress-tracker)
+**Advanced reading progress tracking with dropzone content area:**
+
+- **Universal Progress Tracking**: Tracks reading progress through any content dropped in the fragment's dropzone
+- **Multiple Display Styles**: 
+  - Progress bar with customizable colors
+  - Circular/donut progress indicator
+  - **8 Fun Emoji Indicators**: Hotdogs 🌭, Footballs ⚽, Chromium Logos 🌐, Dinosaurs 🦕, Cats 🐱, Dogs 🐶, Cars 🚗, Motorbikes 🏍️
+- **Flexible Positioning**: Inline above content, top fixed, or bottom fixed
+- **Smart Behavior**: Transitions from inline to fixed position when scrolled past, auto-hides when reading complete
+- **Configurable Alignment**: Left, center, or right alignment for all progress styles
+- **Edit Mode Support**: Simplified initialization for Liferay Experience Designer
+- **SPA Navigation**: Full SennaJS support for seamless page transitions
+- **Performance Optimized**: Efficient scroll tracking with cross-browser compatibility
+
+### Performance Optimizations
+- **Lighthouse-Optimized**: CSS and JavaScript files optimized for Core Web Vitals
+- **LCP Improvements**: Critical CSS and lazy loading strategies
+- **FID Optimization**: RequestIdleCallback for non-critical features
+- **CLS Prevention**: Stable layouts with defined dimensions
+- **Animation Performance**: Transform-only animations with will-change properties
+
+### Technical Enhancements
+- **FreeMarker Syntax Fixes**: All configuration variables use proper `${configuration.fieldName}` syntax
+- **SennaJS Integration**: Complete SPA navigation support across all fragments
+- **Edit Mode Detection**: All fragments detect and adapt to Liferay Experience Designer
+- **Cross-Browser Compatibility**: Enhanced support for Chromium browsers with comprehensive fallbacks
+- **Memory Management**: Proper cleanup of observers and event listeners
 
 ## 🎨 Design System
 
@@ -57,15 +92,23 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 
 ### Header (sp-header)
 - Sticky navigation with dropdown menus
+- **Liferay Login Integration**: Native login portlet and user authentication
 - Personal/Business toggle
 - Mobile-responsive hamburger menu
-- Search functionality
+- Smart user state management
 
 ### Hero (sp-hero)
 - Quote form with postcode validation
 - Background image with overlay
 - Call-to-action buttons
 - Multiple layout options
+
+### Read Progress Tracker (sp-read-progress-tracker) ⭐ NEW
+- **Dropzone Content Area**: Uses `<lfr-drop-zone>` for flexible content management
+- **Universal Emoji System**: 8 fun progress indicators with consistent logic
+- **Smart Positioning**: Auto-transitions from inline to fixed with early activation
+- **Auto-Hide Behavior**: Hides when reading complete and scrolled past content
+- **Perfect Alignment Testing**: Wide containers (320-400px) for clear left/center/right testing
 
 ### Half-Price Weekends (sp-half-price-weekends)
 - Promotional content display
@@ -76,6 +119,7 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 - Configurable 2-4 column layouts
 - Hover effects and animations
 - Icon and text combinations
+- **Clay Framework Integration**: Enhanced styling compatibility
 
 ### Product Cards (sp-product-cards)
 - Carousel, grid, and masonry layouts
@@ -96,6 +140,7 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 - Trustpilot integration
 - Customer review display
 - Star rating system
+- **Edit Mode Optimization**: All cards visible in Liferay Experience Designer
 
 ### Footer (sp-footer)
 - Comprehensive link structure
@@ -114,42 +159,23 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 
 1. **Deploy Client Extensions**:
    ```bash
-   # Deploy CSS theme
+   # Deploy CSS theme (globalCSS type)
    blade deploy client-extensions/scottishpower-theme-css
    
-   # Deploy JavaScript theme
+   # Deploy JavaScript theme (globalJS type)
    blade deploy client-extensions/scottishpower-theme-js
    ```
 
 2. **Import Fragment Collection**:
-   - Package the `fragments/` directory as a ZIP file
+   - Use `scottish-power-collection.zip` for complete deployment
    - Import through Liferay's Fragment admin interface
-   - Map fragment configurations to content
+   - All fragments include proper FreeMarker syntax and configuration
+   - Resources are embedded with correct `[resources:filename]` syntax
 
-3. **Configure Content**:
-   - Use Liferay's fragment configuration system
-   - Map editable elements to content fields
-   - Set up content workflows
-
-## 🎯 Key Features
-
-### Content Management
-- **Dynamic Content**: All text and images are editable through Liferay
-- **Configuration Options**: Each fragment has configurable display options
-- **Responsive Design**: Mobile-first approach with flexible layouts
-- **SEO Optimization**: Semantic HTML and meta tag support
-
-### User Experience
-- **Performance**: Optimized CSS and JavaScript
-- **Accessibility**: WCAG compliant components
-- **Cross-browser**: Support for modern browsers
-- **Progressive Enhancement**: Graceful degradation for older browsers
-
-### Developer Experience
-- **Modular Architecture**: Component-based system
-- **Consistent Theming**: CSS variables for easy customization
-- **Documentation**: Comprehensive component documentation
-- **Testing**: Built-in demo and testing capabilities
+3. **Individual Fragment Deployment**:
+   - Use individual ZIP files from `fragment-zips/` directory
+   - Each ZIP contains proper directory structure: `fragment-name/files`
+   - Ready for selective deployment and testing
 
 ## 🔄 Development Workflow
 
@@ -160,27 +186,43 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 4. Edit fragments in `fragments/` directory
 5. Test changes with fragment loader
 
-### Fragment Development
-1. Create new fragment directory in `fragments/`
-2. Add required files: `fragment.json`, `configuration.json`, `index.html`, `index.css`, `index.js`
-3. Test fragment in isolation
-4. Add to fragment loader configuration
-5. Update collection metadata
+### Fragment Development Standards
+- **SennaJS Events**: All fragments include comprehensive SPA navigation support
+- **Edit Mode Detection**: Components detect Liferay Experience Designer with `document.body.classList.contains('has-edit-mode-menu')`
+- **Global State Management**: Prevents duplicate initialization with `window.spFragmentName = { initialized: false }`
+- **FreeMarker Syntax**: Use `${configuration.fieldName}` for all configuration variables
+- **Performance First**: Optimized animations, lazy loading, and minimal DOM manipulation
 
-## 📊 Performance Considerations
+## 📊 Performance & Browser Support
 
-### Optimization Strategies
-- **Lazy Loading**: Components load as needed
-- **CSS Optimization**: Minimized stylesheets with design tokens
-- **JavaScript Optimization**: Vanilla JavaScript for minimal overhead
-- **Image Optimization**: CDN-delivered optimized images
-- **Caching**: Fragment-level caching in Liferay
+### Lighthouse Optimizations
+- **LCP (Largest Contentful Paint)**: Optimized with critical CSS and lazy loading
+- **FID (First Input Delay)**: Minimized JavaScript execution with requestIdleCallback
+- **CLS (Cumulative Layout Shift)**: Stable layouts with defined dimensions
+- **Performance Score**: Target 90+ on mobile and desktop
 
-### Browser Support
-- **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
-- **Mobile Browsers**: iOS Safari, Chrome Mobile, Samsung Internet
-- **Progressive Enhancement**: Fallbacks for older browsers
-- **Accessibility**: Screen reader compatibility
+### Full Browser Support
+- **Chrome/Chromium**: 60+ (with enhanced compatibility fixes for latest versions)
+- **Firefox**: 55+
+- **Safari**: 11+ (including iOS Safari)
+- **Edge**: 79+ (Chromium-based)
+
+### Progressive Enhancement
+- **Internet Explorer**: 11+ (basic functionality with graceful degradation)
+- **Older Mobile Browsers**: Enhanced fallbacks for iOS 10+ and Android 6+
+- **Low-End Devices**: Optimized performance with reduced animations on request
+
+### Technical Compatibility
+- **Intersection Observer**: With polyfill fallback for older browsers
+- **CSS Grid/Flexbox**: With fallback layouts for IE11
+- **Modern JavaScript**: ES6+ features with comprehensive cross-browser support
+- **Touch/Gesture Support**: Full touch support for mobile and tablet devices
+
+### Accessibility
+- **WCAG 2.1 AA**: Compliance considerations built into all components
+- **Screen Reader Support**: Semantic HTML and ARIA labels
+- **Keyboard Navigation**: Full keyboard accessibility for interactive elements
+- **High Contrast**: Respects user preference for reduced motion and high contrast
 
 ## 🔐 Security & Compliance
 
@@ -202,14 +244,16 @@ A complete recreation of the Scottish Power corporate website built using Lifera
 - Component-level documentation in each fragment
 - Configuration guide for content editors
 - Developer setup instructions
-- Troubleshooting guide
+- Comprehensive browser compatibility guide
 
-### Updates
-- Version-controlled fragment collection
-- Backward compatibility considerations
-- Update procedures for Liferay deployments
-- Testing protocols for changes
+### Recent Updates (July 2025)
+- **Complete Emoji Progress System**: 8 fun emoji-based progress indicators
+- **Enhanced Browser Compatibility**: Fixed Chromium browser issues
+- **FreeMarker Syntax Fixes**: Automated correction across all fragments
+- **Performance Optimizations**: Lighthouse-optimized CSS and JavaScript
+- **SennaJS Integration**: Full SPA navigation support
+- **Edit Mode Detection**: Proper Liferay Experience Designer support
 
 ---
 
-**Built for Scottish Power** | **Powered by Liferay** | **Ready for Production**
+**Built for Scottish Power** | **Powered by Liferay** | **Ready for Production** | **Performance Optimized**
