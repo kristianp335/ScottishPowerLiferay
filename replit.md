@@ -193,6 +193,13 @@ The system is designed to be maintainable, scalable, and flexible for content ed
 - ✓ Fixed auto-hide functionality with CSS class-based approach instead of inline styles
 - ✓ Progress tracker now properly hides when scrolled 200px past content AND reading is 100% complete
 - ✓ Tracker reappears with smooth fade-in when user scrolls back to content area
+- ✓ **Fixed Chromium browser compatibility issues** with comprehensive cross-browser fallbacks:
+  - Replaced deprecated `window.pageYOffset` with cross-browser scroll detection
+  - Added viewport height fallbacks for different browser implementations
+  - Enhanced event listener attachment with IE8+ compatibility
+  - Improved `getBoundingClientRect()` error handling
+  - Added MutationObserver fallback polling for older browsers
+  - Enhanced DOMContentLoaded detection across all browser versions
 
 **July 11, 2025** - Added sp-read-progress-tracker fragment with dropzone and content reading calculation:
 - ✓ Created new sp-read-progress-tracker fragment using standard Liferay classes

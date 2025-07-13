@@ -52,6 +52,24 @@ function initializeForEditMode() {
 }
 
 function initializeProgressCalculation() {
+    // Cross-browser compatibility utilities
+    function getScrollTop() {
+        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    }
+    
+    function getViewportHeight() {
+        return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+    }
+    
+    function getElementRect(element) {
+        try {
+            return element.getBoundingClientRect();
+        } catch (e) {
+            console.warn('getBoundingClientRect failed, using fallback:', e);
+            return { top: 0, bottom: 0, height: 0 };
+        }
+    }
+    
     // Use fragmentElement to scope to this specific fragment instance
     const trackerElement = fragmentElement.querySelector('.sp-read-progress-tracker');
     if (!trackerElement) {
@@ -150,9 +168,9 @@ function initializeProgressCalculation() {
         if (!contentArea || !isVisible) return;
         
         // Find the specific content container - the progress-content-area div itself
-        const contentRect = contentArea.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const scrollTop = window.pageYOffset;
+        const contentRect = getElementRect(contentArea);
+        const viewportHeight = getViewportHeight();
+        const scrollTop = getScrollTop();
         
         // Get absolute positions
         const contentTop = contentRect.top + scrollTop;
@@ -232,7 +250,8 @@ function initializeProgressCalculation() {
         // Get original position after DOM load
         setTimeout(() => {
             if (trackerContainer) {
-                originalTop = trackerContainer.getBoundingClientRect().top + window.pageYOffset;
+                const rect = getElementRect(trackerContainer);
+                originalTop = rect.top + getScrollTop();
             }
         }, 100);
         
@@ -249,7 +268,7 @@ function initializeProgressCalculation() {
         function handleInlineToFixed() {
             if (!trackerContainer || !progressTracker) return;
             
-            const scrollTop = window.pageYOffset;
+            const scrollTop = getScrollTop();
             
             // If user has scrolled past the tracker's original position (with 20px offset for earlier activation)
             if (scrollTop > (originalTop + 20) && !isFixed) {
@@ -296,10 +315,10 @@ function initializeProgressCalculation() {
         function checkForRemoval() {
             if (!contentArea || !progressTracker) return;
             
-            const scrollTop = window.pageYOffset;
-            const contentRect = contentArea.getBoundingClientRect();
+            const scrollTop = getScrollTop();
+            const contentRect = getElementRect(contentArea);
             const contentBottom = contentRect.bottom + scrollTop;
-            const viewportHeight = window.innerHeight;
+            const viewportHeight = getViewportHeight();
             
             // If user has scrolled significantly past the content (200px beyond) AND reading is complete
             if (scrollTop > (contentBottom + 200) && currentProgress >= 100) {
@@ -316,7 +335,7 @@ function initializeProgressCalculation() {
         
         function onScroll() {
             if (!ticking) {
-                if (smoothScrolling) {
+                if (smoothScrolling && window.requestAnimationFrame) {
                     requestAnimationFrame(updateProgress);
                 } else {
                     updateProgress();
@@ -325,8 +344,24 @@ function initializeProgressCalculation() {
             }
         }
         
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', calculateReadingProgress, { passive: true });
+        // Cross-browser event listener attachment
+        function addEventListenerSafely(element, event, handler, options) {
+            try {
+                if (element.addEventListener) {
+                    element.addEventListener(event, handler, options || false);
+                } else if (element.attachEvent) {
+                    // IE8 fallback
+                    element.attachEvent('on' + event, handler);
+                }
+            } catch (e) {
+                console.warn('Failed to add event listener:', e);
+                // Fallback without options
+                element.addEventListener(event, handler, false);
+            }
+        }
+        
+        addEventListenerSafely(window, 'scroll', onScroll, { passive: true });
+        addEventListenerSafely(window, 'resize', calculateReadingProgress, { passive: true });
         
         // Initial calculation immediately and with delay
         calculateReadingProgress();
@@ -340,22 +375,50 @@ function initializeProgressCalculation() {
     // Always show tracker initially (for testing)
     showProgressTracker();
     
-    // Watch for content changes in content area - including when content is dropped
-    const observer = new MutationObserver((mutations) => {
-        console.log('Content area mutations detected:', mutations.length);
-        setTimeout(() => {
-            checkForContent();
-            // Recalculate progress when content changes
-            if (isVisible) {
-                calculateReadingProgress();
+    // Watch for content changes in content area - including when content is dropped  
+    if (window.MutationObserver && contentArea) {
+        try {
+            const observer = new MutationObserver((mutations) => {
+                console.log('Content area mutations detected:', mutations.length);
+                setTimeout(() => {
+                    checkForContent();
+                    // Recalculate progress when content changes
+                    if (isVisible) {
+                        calculateReadingProgress();
+                    }
+                }, 100);
+            });
+            
+            observer.observe(contentArea, {
+                childList: true,
+                subtree: true,
+                attributes: false
+            });
+        } catch (e) {
+            console.warn('MutationObserver failed, using fallback polling:', e);
+            setupFallbackContentPolling();
+        }
+    } else {
+        console.warn('MutationObserver not supported, using fallback polling');
+        setupFallbackContentPolling();
+    }
+    
+    function setupFallbackContentPolling() {
+        // Fallback for older browsers or when MutationObserver fails
+        let lastContentCount = 0;
+        setInterval(() => {
+            if (contentArea) {
+                const currentCount = contentArea.children.length;
+                if (currentCount !== lastContentCount) {
+                    lastContentCount = currentCount;
+                    checkForContent();
+                    if (isVisible) {
+                        calculateReadingProgress();
+                    }
+                }
             }
-        }, 100);
-    });
-    observer.observe(contentArea, {
-        childList: true,
-        subtree: true,
-        attributes: false
-    });
+        }, 1000);
+    }
     
     // Initial content check with delay
     setTimeout(() => {
@@ -363,8 +426,31 @@ function initializeProgressCalculation() {
     }, 100);
 }
 
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', initializeReadProgressTracker);
+// Initialize on DOM ready with cross-browser compatibility
+function initializeWhenReady() {
+    try {
+        if (document.readyState === 'loading') {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', initializeReadProgressTracker);
+            } else if (document.attachEvent) {
+                document.attachEvent('onreadystatechange', function() {
+                    if (document.readyState === 'complete') {
+                        initializeReadProgressTracker();
+                    }
+                });
+            }
+        } else {
+            // DOM already loaded
+            initializeReadProgressTracker();
+        }
+    } catch (e) {
+        console.warn('DOMContentLoaded failed, using fallback:', e);
+        // Fallback with timeout
+        setTimeout(initializeReadProgressTracker, 100);
+    }
+}
+
+initializeWhenReady();
 
 // SennaJS support for SPA navigation
 if (window.Liferay) {
