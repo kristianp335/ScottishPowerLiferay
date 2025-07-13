@@ -177,21 +177,35 @@ function initializeProgressCalculation() {
         const contentBottom = contentRect.bottom + scrollTop;
         const contentHeight = contentRect.height;
         
-        // Calculate progress based on how much of the content area has been scrolled through
+        // More responsive progress calculation
         let progress = 0;
         
-        if (scrollTop + viewportHeight >= contentBottom) {
-            // Bottom of content is visible (fully read)
-            progress = 1;
-        } else if (scrollTop >= contentTop) {
-            // Started reading content
-            const scrolledIntoContent = (scrollTop + viewportHeight) - contentTop;
-            const totalReadableHeight = contentHeight;
-            progress = Math.min(1, Math.max(0, scrolledIntoContent / totalReadableHeight));
-        } else if (scrollTop + viewportHeight > contentTop) {
-            // Content is partially visible at bottom of viewport
-            const visibleHeight = (scrollTop + viewportHeight) - contentTop;
-            progress = Math.min(0.1, visibleHeight / contentHeight);
+        // Start showing progress as soon as content enters viewport
+        if (scrollTop + viewportHeight > contentTop) {
+            if (scrollTop + viewportHeight >= contentBottom) {
+                // Bottom of content is visible (fully read)
+                progress = 1;
+            } else {
+                // Calculate how much of the content has been scrolled through
+                const viewportTop = scrollTop;
+                const viewportBottom = scrollTop + viewportHeight;
+                
+                // More granular calculation - start progress when content first appears
+                if (viewportBottom > contentTop && viewportTop < contentBottom) {
+                    // Content is in viewport
+                    const visibleTop = Math.max(contentTop, viewportTop);
+                    const visibleBottom = Math.min(contentBottom, viewportBottom);
+                    const totalScrollableDistance = contentHeight + viewportHeight;
+                    const scrolledDistance = Math.max(0, viewportBottom - contentTop);
+                    
+                    progress = Math.min(1, scrolledDistance / totalScrollableDistance);
+                    
+                    // Ensure we start at least at 1% when content first appears
+                    if (progress > 0 && progress < 0.01) {
+                        progress = 0.01;
+                    }
+                }
+            }
         }
         
         // Ensure progress is between 0 and 1
@@ -203,7 +217,6 @@ function initializeProgressCalculation() {
             contentHeight: Math.round(contentHeight),
             scrollTop: Math.round(scrollTop),
             viewportHeight: Math.round(viewportHeight),
-            scrollPlusViewport: Math.round(scrollTop + viewportHeight),
             progress: Math.round(progress * 100) + '%'
         });
         
@@ -213,7 +226,7 @@ function initializeProgressCalculation() {
     function updateProgressDisplay(progress) {
         const percentage = Math.round(progress * 100);
         
-        if (currentProgress === percentage) return;
+        // Update on every change, even small ones, for smoother experience
         currentProgress = percentage;
         
         // Update progress bar
@@ -334,13 +347,12 @@ function initializeProgressCalculation() {
         }
         
         function onScroll() {
+            // More responsive scroll handling - update immediately for smoother progress
             if (!ticking) {
-                if (smoothScrolling && window.requestAnimationFrame) {
-                    requestAnimationFrame(updateProgress);
-                } else {
-                    updateProgress();
-                }
+                updateProgress();
                 ticking = true;
+                // Reduced throttling for smoother updates
+                setTimeout(() => { ticking = false; }, 10);
             }
         }
         
