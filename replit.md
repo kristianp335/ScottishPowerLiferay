@@ -45,6 +45,16 @@ Preferred communication style: Simple, everyday language.
 - **Fragment Entry Link**: Access fragment namespace with `data-lfr-fragment-entry-link-id` attribute for JavaScript configuration access
 - **Drop Zone Implementation**: Use `<lfr-drop-zone></lfr-drop-zone>` with proper Liferay classes for content areas
 
+### Fragment Instance Scoping Pattern
+- **Fragment Element Reference**: Use `const fragmentElement = document.querySelector('[data-lfr-fragment-entry-link-id]');` to get the specific fragment instance
+- **Fragment-Scoped Queries**: Always scope DOM queries to the fragment: `fragmentElement.querySelector('.class-name')` instead of global `document.querySelector('.class-name')`
+- **Multiple Fragment Support**: This pattern allows multiple instances of the same fragment on one page without conflicts
+- **Fragment Entry Link ID**: Each fragment instance gets unique `data-lfr-fragment-entry-link-id` attribute for identification
+- **Configuration Namespace Access**: Use fragment entry link ID to access configuration: `window.fragmentNamespace[fragmentEntryLinkId].configField`
+- **CSS Scoping**: Prefix CSS selectors with fragment container: `[data-lfr-fragment-entry-link-id] .your-class { }` for fragment-specific styling
+- **Event Listener Scoping**: Attach events to elements within fragment scope to avoid conflicts with other fragment instances
+- **Global State Management**: Use fragment-specific keys: `window.spFragmentName_${fragmentEntryLinkId} = { initialized: false }`
+
 ### Liferay Fragment Development Standards
 - **SennaJS Event Handling**: All fragments must include comprehensive SennaJS event support:
   - `Liferay.on('endNavigate')` - Handle SPA navigation completion
