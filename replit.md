@@ -12,7 +12,7 @@ Preferred communication style: Simple, everyday language.
 
 ### Navigation API Integration Pattern
 - **Secured API Calls**: Always use `?p_auth={Liferay.authtoken}` parameter for authenticated Liferay API requests to prevent CSRF attacks
-- **Dynamic Menu Loading**: Fetch navigation menus from Liferay's navigation API (`/api/jsonws/layoutset/get-layout-set-by-group`) rather than hardcoding navigation
+- **Dynamic Menu Loading**: Fetch navigation menus from Liferay's Headless Delivery API (`/o/headless-delivery/v1.0/navigation-menus/{menuId}?nestedFields=true`) rather than hardcoding navigation
 - **Configurable Menu IDs**: Provide fragment configuration options for content editors to specify which navigation menu to display
 - **Multi-level Navigation**: Build dropdown navigation dynamically from API response with proper hierarchy support
 - **Error Handling**: Include graceful fallbacks when navigation API is unavailable or authentication fails
