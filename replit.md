@@ -34,6 +34,17 @@ Preferred communication style: Simple, everyday language.
 - **CSS Isolation**: Use specific selectors to prevent portlet styles from affecting fragment navigation or other elements
 - **Responsive Portlet Layout**: Ensure portlets work properly in mobile layouts with proper spacing and alignment
 
+### Fragment Configuration and FreeMarker Patterns
+- **Configuration Variable Syntax**: Always use `${configuration.fieldName}` format for accessing fragment configuration values
+- **Null Safety with Defaults**: Use `${configuration.fieldName!'defaultValue'}` pattern for safe defaults when configuration might be missing
+- **Boolean Configuration**: Use `${configuration.booleanField!true}` or `${configuration.booleanField!false}` for boolean values with defaults
+- **Conditional Rendering**: Use `[#if (configuration.fieldName!'default') == 'value']content[/#if]` for conditional display based on configuration
+- **Select Options Configuration**: Create select fields in configuration.json with fieldType "select" and options array
+- **Editable Content Structure**: Use `data-lfr-editable-id="unique-id"` and `data-lfr-editable-type="text|rich-text|link|image"` for content editing
+- **Resource References**: Use `[resources:filename.ext]` syntax for fragment resources (images, files)
+- **Fragment Entry Link**: Access fragment namespace with `data-lfr-fragment-entry-link-id` attribute for JavaScript configuration access
+- **Drop Zone Implementation**: Use `<lfr-drop-zone></lfr-drop-zone>` with proper Liferay classes for content areas
+
 ### Liferay Fragment Development Standards
 - **SennaJS Event Handling**: All fragments must include comprehensive SennaJS event support:
   - `Liferay.on('endNavigate')` - Handle SPA navigation completion
