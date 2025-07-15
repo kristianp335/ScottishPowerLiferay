@@ -16,7 +16,7 @@ A comprehensive Liferay fragment collection for the Scottish Power corporate web
 │   ├── scottishpower-theme-css/    # CSS theme extension
 │   └── scottishpower-theme-js/     # JavaScript theme extension
 ├── fragments/                  # Liferay Fragment Components
-│   ├── sp-header/                 # Navigation header with Liferay login
+│   ├── sp-header/                 # Dynamic navigation with API integration
 │   ├── sp-hero/                   # Hero section with quote form
 │   ├── sp-half-price-weekends/    # Promotional content
 │   ├── sp-service-blocks/         # Service highlights
@@ -60,6 +60,16 @@ A comprehensive Liferay fragment collection for the Scottish Power corporate web
 - **FID Optimization**: RequestIdleCallback for non-critical features
 - **CLS Prevention**: Stable layouts with defined dimensions
 - **Animation Performance**: Transform-only animations with will-change properties
+
+### Header Navigation API Integration
+**Professional Liferay navigation system with dynamic menu loading:**
+
+- **Secured API Integration**: Fetches navigation menus from Liferay's navigation API using authenticated requests
+- **Security Token**: All API calls secured with `?p_auth={Liferay.authtoken}` parameter for CSRF protection
+- **Configurable Menu ID**: Content editors can specify which navigation menu to display via fragment configuration
+- **Dynamic Menu Rendering**: Automatically builds multi-level dropdown navigation from Liferay navigation structure
+- **Professional Authentication**: Native Liferay login portlet integration with conditional user profile display
+- **Responsive Design**: Mobile-optimized with proper dropdown functionality and hamburger menu
 
 ### Technical Enhancements
 - **FreeMarker Syntax Fixes**: All configuration variables use proper `${configuration.fieldName}` syntax

@@ -72,10 +72,15 @@ Each fragment follows a consistent structure:
 ## Key Components
 
 ### Header Component (`sp-header`)
-- Configurable navigation with dropdown menus
-- Personal/Business toggle functionality
-- Sticky header option
-- Multiple layout styles (default, compact, minimal)
+- **Dynamic Navigation API Integration**: Fetches navigation menus from Liferay's navigation API with security token
+- **Secured API Calls**: Uses `?p_auth={Liferay.authtoken}` parameter for authenticated navigation requests
+- **Configurable Menu ID**: Content editors can specify which Liferay navigation menu to display via fragment configuration
+- **Professional Liferay Integration**: Native login portlet integration with conditional rendering for authenticated users
+- **Dropdown Navigation**: Dynamic multi-level menu rendering with hover effects
+- **Personal/Business Toggle**: Configurable section switching functionality
+- **Sticky Header Option**: Configurable fixed positioning behavior
+- **Multiple Layout Styles**: Default, compact, and minimal display modes
+- **Responsive Design**: Mobile-optimized with hamburger menu and proper spacing
 
 ### Hero Section (`sp-hero`)
 - Multiple layout options (split, centered, full-width)
@@ -181,6 +186,16 @@ Each fragment follows a consistent structure:
 The system is designed to be maintainable, scalable, and flexible for content editors while providing a consistent user experience across the Scottish Power digital presence.
 
 ## Recent Changes
+
+**July 15, 2025** - Enhanced header fragment with dynamic Liferay navigation API integration:
+- ✓ **Dynamic Navigation API**: Header fragment now fetches navigation menus from Liferay's navigation API
+- ✓ **Security Implementation**: All API calls secured with `?p_auth={Liferay.authtoken}` parameter for CSRF protection  
+- ✓ **Configurable Menu ID**: Added fragment configuration option for content editors to specify navigation menu ID
+- ✓ **Multi-level Menu Rendering**: Automatic generation of dropdown navigation with proper hierarchy support
+- ✓ **Professional Authentication Integration**: Native Liferay login portlet with conditional user profile display
+- ✓ **Error Handling**: Graceful fallback when navigation API is unavailable or authentication fails
+- ✓ **Mobile Optimization**: Responsive dropdown functionality with hamburger menu for mobile devices
+- ✓ **Performance**: Efficient menu caching and DOM manipulation for smooth user experience
 
 **July 11, 2025** - Enhanced sp-read-progress-tracker with advanced positioning and auto-hide behavior:
 - ✓ Earlier fixed position activation (20px offset instead of 50px) for better sticky header compatibility
