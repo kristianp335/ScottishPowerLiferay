@@ -19,6 +19,21 @@ Preferred communication style: Simple, everyday language.
 - **Mobile Optimization**: Ensure responsive dropdown functionality works with hamburger menus on mobile devices
 - **Performance**: Implement efficient menu caching and DOM manipulation for smooth user experience
 
+### Liferay Portlet Integration Pattern
+- **Native Login Portlet**: Use `[@liferay_portlet["com_liferay_login_web_portlet_LoginPortlet"] /]` for professional login functionality
+- **User Profile Integration**: Implement `[@liferay.user_personal_bar /]` for logged-in user profile display
+- **Conditional Authentication Rendering**: Use `themeDisplay.isSignedIn()` to show different UI based on authentication status
+- **FreeMarker Template Syntax**: 
+  ```freemarker
+  [#if themeDisplay.isSignedIn()]
+      [@liferay.user_personal_bar /]
+  [#else]
+      [@liferay_portlet["com_liferay_login_web_portlet_LoginPortlet"] /]
+  [/#if]
+  ```
+- **CSS Isolation**: Use specific selectors to prevent portlet styles from affecting fragment navigation or other elements
+- **Responsive Portlet Layout**: Ensure portlets work properly in mobile layouts with proper spacing and alignment
+
 ### Liferay Fragment Development Standards
 - **SennaJS Event Handling**: All fragments must include comprehensive SennaJS event support:
   - `Liferay.on('endNavigate')` - Handle SPA navigation completion
