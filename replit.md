@@ -46,14 +46,14 @@ Preferred communication style: Simple, everyday language.
 - **Drop Zone Implementation**: Use `<lfr-drop-zone></lfr-drop-zone>` with proper Liferay classes for content areas
 
 ### Fragment Instance Scoping Pattern
-- **Fragment Element Reference**: Use `const fragmentElement = document.querySelector('[data-lfr-fragment-entry-link-id]');` to get the specific fragment instance
+- **Built-in fragmentElement Property**: Liferay provides `fragmentElement` as a built-in JavaScript property that automatically references the current fragment instance
 - **Fragment-Scoped Queries**: Always scope DOM queries to the fragment: `fragmentElement.querySelector('.class-name')` instead of global `document.querySelector('.class-name')`
-- **Multiple Fragment Support**: This pattern allows multiple instances of the same fragment on one page without conflicts
-- **Fragment Entry Link ID**: Each fragment instance gets unique `data-lfr-fragment-entry-link-id` attribute for identification
-- **Configuration Namespace Access**: Use fragment entry link ID to access configuration: `window.fragmentNamespace[fragmentEntryLinkId].configField`
+- **Multiple Fragment Support**: Using `fragmentElement` allows multiple instances of the same fragment on one page without conflicts
+- **Automatic Fragment Reference**: No need to manually query for fragment container - `fragmentElement` is automatically available in fragment JavaScript
+- **Configuration Access**: Access fragment configuration via `fragmentElement` or use `configuration` object directly in fragment context
 - **CSS Scoping**: Prefix CSS selectors with fragment container: `[data-lfr-fragment-entry-link-id] .your-class { }` for fragment-specific styling
-- **Event Listener Scoping**: Attach events to elements within fragment scope to avoid conflicts with other fragment instances
-- **Global State Management**: Use fragment-specific keys: `window.spFragmentName_${fragmentEntryLinkId} = { initialized: false }`
+- **Event Listener Scoping**: Attach events to elements within `fragmentElement` scope to avoid conflicts with other fragment instances
+- **Element Finding Pattern**: Use `fragmentElement.querySelector()` and `fragmentElement.querySelectorAll()` for all DOM manipulation within fragments
 
 ### Liferay Fragment Development Standards
 - **SennaJS Event Handling**: All fragments must include comprehensive SennaJS event support:
